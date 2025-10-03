@@ -21,6 +21,4 @@ public interface UserRepository extends JpaRepository<User, String> {
     // 특정 닉네임 존재 확인
     boolean existsByNickname(String nickname);
 
-    // 질문1) exists라는 함수가 있는가??
-
 }

@@ -50,7 +50,6 @@ public class AuthService {
         // DB에 저장하기.
         userRepository.save(user);
 
-        // 결과로 ID 전달 (질문3)
         return user.getId();
     }
 }
