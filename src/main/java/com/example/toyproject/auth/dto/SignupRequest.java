@@ -1,4 +1,4 @@
-package com.example.toyproject.auth;
+package com.example.toyproject.auth.dto;
 
 /*
 * 작성자 : 조정학

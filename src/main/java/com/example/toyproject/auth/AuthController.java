@@ -17,6 +17,7 @@ package com.example.toyproject.auth;
 *  : 결과를 적절한 HTTP 상태코드로 반환한다.
 * */
 
+import com.example.toyproject.auth.dto.SignupRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,17 +34,16 @@ public class AuthController {
         this.authservice = authservice;
     }
 
-    // 회원가입 엔드포인트(질문4)
+    // 회원가입 엔드포인트
     /*
     * 성공 : 201 Created + Location 헤더(/api/users/{id} ) + body에 id
     * 실패(중복 등) : 400 Bad Request
     * */
-    //질문5
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody SignupRequest req){
         String createdId = authservice.signup(req);
 
-        // Location 헤더 예시(선택) : 나중에 /api/users/{id} 같은 조회 API가 생기면 유용하다.(질문6)
+        // Location 헤더 예시(선택) : 나중에 /api/users/{id} 같은 조회 API가 생기면 유용하다.
         HttpHeaders headers = new HttpHeaders();
         headers.add(HttpHeaders.LOCATION, "/api/users/" + createdId);
 

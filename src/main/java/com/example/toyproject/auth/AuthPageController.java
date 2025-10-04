@@ -7,6 +7,8 @@ package com.example.toyproject.auth;
 * */
 
 
+import com.example.toyproject.auth.dto.SignupForm;
+import com.example.toyproject.auth.dto.SignupRequest;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +33,14 @@ public class AuthPageController {
         this.authService = authService;
     }
 
+    // 회원가입 html 이동
     @GetMapping("/signup")
     public String signupForm(Model model) {
         model.addAttribute("signupForm", new SignupForm());
         return "signup"; // templates/auth/signup.html
     }
 
+    // 회원가입 정보 DB에 저장하기.
     @PostMapping("/signup")
     public String signupSubmit(@Valid @ModelAttribute("signupForm") SignupForm form,
                                BindingResult bindingResult) {

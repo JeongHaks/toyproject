@@ -20,6 +20,7 @@ CustomUserDetailsService: “사용자 조회(인증 대상)”를 정의
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
 
+    // 객체 생성
     private final UserRepository userRepository;
 
     // 생성자 의존성 주입

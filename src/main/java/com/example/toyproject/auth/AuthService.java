@@ -5,6 +5,7 @@ package com.example.toyproject.auth;
 * 작성일 : 20250929
 * */
 
+import com.example.toyproject.auth.dto.SignupRequest;
 import com.example.toyproject.domain.User;
 import com.example.toyproject.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
