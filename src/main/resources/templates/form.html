@@ -28,13 +28,13 @@
         <div class="mb-3">
           <label class="form-label">제목</label>
           <input type="text" th:field="*{title}" class="form-control" placeholder="제목을 입력하세요">
-          <div class="text-danger" th:errors="*{title}"></div>
+          <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="err"></p>
         </div>
 
         <div class="mb-3">
           <label class="form-label">본문</label>
           <textarea th:field="*{content}" class="form-control" rows="10" placeholder="내용을 입력하세요"></textarea>
-          <div class="text-danger" th:errors="*{content}"></div>
+          <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="err"></p>
         </div>
 
         <div class="d-grid">

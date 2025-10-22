@@ -14,10 +14,13 @@ import com.example.toyproject.post.dto.PostForm;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 @RequestMapping("/posts")
@@ -28,7 +31,8 @@ public class PostController {
         this.postService = postService;
     }
 
-    /** 목록 (최신순, 페이징) */
+    /** 게시판 목록 (최신순, 페이징) */
+    // 게시판 이동 누르면 오늘 함수
     @GetMapping
     public String list(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "10") int size,
@@ -53,38 +57,40 @@ public class PostController {
     /** 작성 폼 */
     @GetMapping("/new")
     public String newForm(Model model) {
-        model.addAttribute("postForm", new PostForm()); // th:object 바인딩용
+        if(!model.containsAttribute("postForm")){ // 이름 : postForm
+            model.addAttribute("postForm", new PostForm()); // 타입 : postForm으로 통일
+        }
         return "form"; // templates/form.html
     }
 
     /** 작성 처리 */
     @PostMapping("/new")
     public String create(@Valid @ModelAttribute("postForm") PostForm form,
+                         RedirectAttributes ra,
                          BindingResult bindingResult,
                          Authentication auth) {
         // BindingResult는 @ModelAttribute 바로 다음에 위치해야 유효성 에러가 바인딩됨
+        // 유효성 검사
         if (bindingResult.hasErrors()) return "form";
 
         String writerId = auth.getName(); // 로그인 사용자 ID
         Long id = postService.create(form.getTitle(), form.getContent(), writerId);
+        ra.addFlashAttribute("msg", "게시글이 등록되었습니다.");
         return "redirect:/posts/" + id; // 작성 후 상세로
     }
 
     /** 수정 폼 */
     @GetMapping("/{id}/edit")
     public String editForm(@PathVariable("id") Long id, Model model, Authentication auth) {
-        Post post = postService.get(id);
-        // 서버 사이드에서도 2차 권한 체크(뷰에서 버튼 숨김과 별개)
-        if (auth == null || !post.getUserId().equals(auth.getName())) {
-            return "redirect:/posts/" + id;
+        // 유효성 검사
+        if (!model.containsAttribute("post")) {
+            var post = postService.get(id); // Post 반환 (title, content 있음)
+            PostForm req = new PostForm();
+            req.setTitle(post.getTitle());
+            req.setContent(post.getContent());
+            model.addAttribute("postForm", req);
         }
-
-        PostForm form = new PostForm();
-        form.setTitle(post.getTitle());
-        form.setContent(post.getContent());
-
-        model.addAttribute("postForm", form);
-        model.addAttribute("postId", id); // 폼 action 분기용
+        model.addAttribute("postId", id);
         return "form";
     }
 
@@ -96,6 +102,7 @@ public class PostController {
                          Authentication auth,
                          Model model) {
         // ⚠️ 에러 시에도 postId를 다시 넣어줘야 form의 th:action 분기가 유지됨
+        // 유효성 검사
         if (bindingResult.hasErrors()) {
             model.addAttribute("postId", id);
             return "form";
@@ -106,8 +113,13 @@ public class PostController {
 
     /** 삭제 (POST) */
     @PostMapping("/{id}/delete")
-    public String delete(@PathVariable Long id, Authentication auth) {
+    public String delete(@PathVariable("id") Long id
+                       , Authentication auth
+                       , RedirectAttributes ra) {
         postService.delete(id, auth.getName());
+        // 유효성 검사
+        ra.addFlashAttribute("msg","게시글이 삭제되었습니다.");
+
         return "redirect:/posts"; // 삭제 후 목록으로
     }
 }

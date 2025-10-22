@@ -1,0 +1,23 @@
+<!-- 500.html : 서버 내부 오류(예상치 못한 예외 등) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>500 - 서버 내부 오류</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 48px; }
+        .card { max-width: 720px; padding: 24px; border: 1px solid #ddd; border-radius: 12px; }
+        .hint { color: #666; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>💥 서버 내부 오류가 발생했습니다 (500)</h2>
+    <!-- 운영환경에서는 상세 메시지 노출을 최소화하고, 로그/모니터링으로 추적한다. -->
+    <p th:text="${message} ?: '잠시 후 다시 시도해주세요.'"></p>
+    <p class="hint">문제가 계속되면 관리자에게 문의해주세요.</p>
+
+    <a th:href="@{/}">홈으로</a>
+</div>
+</body>
+</html>

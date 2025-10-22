@@ -1,0 +1,80 @@
+<!-- src/main/resources/templates/home.html
+     [역할]
+     - 메인 화면: 3개의 카드/버튼을 크게 배치 (게시판 / 생성형 AI / 모바일 청첩장)
+     - 로그인 여부에 따라 간단 환영 문구 분기
+-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>메인</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 48px; background: #f8f9fb; }
+        .container { max-width: 960px; margin: 0 auto; }
+        .header { margin-bottom: 24px; }
+        .header h1 { margin: 0 0 8px; }
+        .grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+          gap: 16px;
+        }
+        .card {
+          background: #fff;
+          border: 1px solid #e5e7eb;
+          border-radius: 14px;
+          padding: 20px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+          transition: transform .12s ease, box-shadow .12s ease;
+          text-decoration: none;
+          color: inherit;
+        }
+        .card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+        }
+        .card h3 { margin: 0 0 8px; }
+        .card p { margin: 0; color: #555; }
+        .footer { margin-top: 28px; color: #777; font-size: 14px; }
+    </style>
+</head>
+<body>
+<div class="container">
+
+    <div class="header">
+        <h1>메인</h1>
+        <!-- 로그인 상태면 환영 문구, 아니면 안내 문구 -->
+        <p th:if="${username != null}">
+            <strong th:text="${username}">user</strong> 님, 환영합니다. 아래에서 기능을 선택하세요.
+        </p>
+        <p th:if="${username == null}">
+            로그인 후 더 많은 기능을 사용할 수 있어요. 일단은 아래 메뉴로 이동해보세요.
+        </p>
+    </div>
+
+    <!-- ✅ 3개 버튼(카드) -->
+    <div class="grid">
+        <!-- 게시판 -->
+        <a th:href="@{/posts}" class="card">
+            <h3>📝 게시판</h3>
+            <p>글 목록을 보고, 로그인하면 새 글 작성/수정/삭제를 할 수 있어요.</p>
+        </a>
+
+        <!-- 생성형 AI -->
+        <a th:href="@{/ai}" class="card">
+            <h3>🤖 생성형 AI</h3>
+            <p>간단한 데모/진입 페이지. 이후 기능을 확장할 수 있어요.</p>
+        </a>
+
+        <!-- 모바일 청첩장 -->
+        <a th:href="@{/invite}" class="card">
+            <h3>💌 모바일 청첩장</h3>
+            <p>모바일 청첩장 데모/진입 페이지. 실서비스 구조로 확장 예정.</p>
+        </a>
+    </div>
+
+    <div class="footer">
+        <span><a th:href="@{/login}">로그인</a> · <a th:href="@{/auth/signup}">회원가입</a></span>
+    </div>
+</div>
+</body>
+</html>

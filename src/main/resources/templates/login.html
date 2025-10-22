@@ -10,9 +10,8 @@
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
     <input type="text"   name="username" />
     <input type="password" name="password" />
-
     <button type="submit">로그인</button>
-    <a th:href="@{/auth/signup}">회원가입</a>
+    <button type="button"><a th:href="@{/auth/signup}">회원가입</a></button>
 </form>
 </p>
 </body>

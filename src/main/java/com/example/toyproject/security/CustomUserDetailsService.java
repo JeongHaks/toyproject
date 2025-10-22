@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
 
     /**
-     * (질문1) 해당 함수는 내부 함수클래스이고, 로그인한 id, pw를 db 값과 비교해서 맞으면 로그인인증 성공)
+     * 해당 함수는 내부 함수클래스이고, 로그인한 id, pw를 db 값과 비교해서 맞으면 로그인인증 성공)
      * 파라미터 username은 login.html에서 보낸 name="username" 값.
      * 우리는 User 엔티티의 PK(id)를 username으로 사용한다.
      */

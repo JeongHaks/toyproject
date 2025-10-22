@@ -1,0 +1,26 @@
+<!-- 404.html : 사용자가 잘못된/사라진 페이지로 접근했을 때 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>404 - 페이지를 찾을 수 없습니다</title>
+    <!-- 간단한 스타일은 인라인으로 두고, 실제 서비스에서는 별도 CSS로 분리 권장 -->
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 48px; }
+        .card { max-width: 720px; padding: 24px; border: 1px solid #ddd; border-radius: 12px; }
+        .actions a { margin-right: 12px; }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>🚫 페이지를 찾을 수 없습니다 (404)</h2>
+    <!-- GlobalExceptionHandler에서 model에 담은 메시지. 없으면 기본 문구 노출 -->
+    <p th:text="${message} ?: '요청하신 페이지가 존재하지 않습니다.'"></p>
+
+    <div class="actions">
+        <a th:href="@{/}">홈으로</a>
+        <a th:href="@{/posts}">게시판으로</a>
+    </div>
+</div>
+</body>
+</html>

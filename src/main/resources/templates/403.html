@@ -1,0 +1,25 @@
+<!-- 403.html : 권한이 없어 접근할 수 없을 때(미인증/작성자 아님 등) -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>403 - 접근 권한이 없습니다</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 48px; }
+    .card { max-width: 720px; padding: 24px; border: 1px solid #ddd; border-radius: 12px; }
+    .actions a { margin-right: 12px; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h2>🔒 접근 권한이 없습니다 (403)</h2>
+  <!-- AccessDeniedException 메시지 출력 -->
+  <p th:text="${message} ?: '접근 권한이 없습니다. 로그인/권한을 확인해주세요.'"></p>
+
+  <div class="actions">
+    <a th:href="@{/login}">로그인</a>
+    <a th:href="@{/}">홈으로</a>
+  </div>
+</div>
+</body>
+</html>

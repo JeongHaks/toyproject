@@ -17,10 +17,11 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PostForm {
-    @NotBlank
-    @Size(max = 200)
+    @NotBlank(message="제목은 비어 있을 수 없습니다.")
+    @Size(max = 200, message = "제목은 200자 이하여야 합니다.")
     private String title;
 
-    @NotBlank
+    @NotBlank(message="본문은 비어있을 수 없습니다.")
+    @Size(max=5000,message = "본문은 5000자 이하여야 합니다.")
     private String content;
 }

@@ -44,8 +44,10 @@ public class AuthPageController {
     @PostMapping("/signup")
     public String signupSubmit(@Valid @ModelAttribute("signupForm") SignupForm form,
                                BindingResult bindingResult) {
+        // 회원가입 실패시 회원가입 화면으로 이동
         if (bindingResult.hasErrors()) return "signup";
 
+        // SignupForm form html에서 입력한 정보가 담긴 값
         try {
             SignupRequest req = new SignupRequest();
             req.id = form.getId();
@@ -57,6 +59,7 @@ public class AuthPageController {
             return "signup";
         }
 
+        // 회원가입 완료 시 로그인 화면으로 이동
         return "redirect:/login?signup=success";
     }
 }
