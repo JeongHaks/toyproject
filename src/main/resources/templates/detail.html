@@ -1,30 +1,236 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title th:text="'게시글 #' + ${post.id}">게시글</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* 대댓글 들여쓰기 */
+    .reply-indent { margin-left:1.5rem; border-left:3px solid #e9ecef; padding-left:0.75rem; }
+    /* 새로 등록된 요소 하이라이트 */
+    .flash-highlight { animation: highlight 1.5s ease-out 1; }
+    @keyframes highlight {
+      0% { background:#fff3cd; }
+      100% { background:transparent; }
+    }
+    pre { white-space: pre-wrap; }
+  </style>
 </head>
 <body class="bg-light">
 <div class="container mt-4">
-  <a th:href="@{/posts}">← 목록</a>
-  <div class="card mt-2">
+
+  <!-- 0) 플래시 메시지 -->
+  <div th:if="${msg}" class="alert alert-success alert-dismissible fade show mt-2" role="alert" aria-live="polite">
+    <span th:text="${msg}">성공 메시지</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <div th:if="${err}" class="alert alert-danger alert-dismissible fade show mt-2" role="alert" aria-live="assertive">
+    <span th:text="${err}">오류 메시지</span>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+
+  <a class="text-decoration-none" th:href="@{/posts}">← 목록</a>
+
+  <!-- 1) 게시글 본문 -->
+  <article class="card mt-2">
     <div class="card-body">
-      <h3 th:text="${post.title}">제목</h3>
+      <h1 class="h3" th:text="${post.title}">제목</h1>
       <div class="text-muted mb-2">
-        <span th:text="'작성자: ' + ${post.userId}"></span>
-        <span class="ms-3" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
+        <span th:text="'작성자: ' + ${post.userId}">작성자</span>
+        <span class="ms-3" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
       </div>
-      <pre class="mt-3" th:text="${post.content}" style="white-space: pre-wrap;"></pre>
+
+      <pre class="mt-3" th:text="${post.content}">본문</pre>
+
+      <!-- 내 글이면 수정/삭제 -->
       <div class="mt-3 d-flex gap-2" th:if="${mine}">
         <a class="btn btn-warning" th:href="@{|/posts/${post.id}/edit|}">수정</a>
-        <form th:action="@{|/posts/${post.id}/delete|}" method="post" class="d-inline">
+        <form th:action="@{|/posts/${post.id}/delete|}" method="post" class="d-inline"
+              onsubmit="return confirm('정말 삭제하시겠어요?');">
           <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
           <button type="submit" class="btn btn-danger">삭제</button>
         </form>
       </div>
     </div>
-  </div>
+  </article>
+
+  <!-- 2) 댓글 -->
+  <section class="card mt-4" id="comments">
+    <div class="card-body">
+      <h2 class="h5 mb-3">댓글 (<span th:text="${commentsCount}">0</span>)</h2>
+
+      <p th:if="${#lists.isEmpty(comments)}" class="text-muted mb-3">
+        아직 댓글이 없습니다. 첫 댓글을 남겨보세요!
+      </p>
+
+      <ul th:if="${!#lists.isEmpty(comments)}" class="list-group mb-3">
+        <li th:each="c,stat : ${comments}"
+            class="list-group-item"
+            th:classappend="${stat.first} ? 'flash-highlight' : ''"
+            th:attr="id=${'c-' + c.id}">
+
+          <!-- 상단: 작성자/시간 + 우측버튼 -->
+          <div class="d-flex justify-content-between align-items-start">
+            <div>
+              <strong th:text="${c.userId}">작성자</strong>
+              <span class="text-muted small ms-2"
+                    th:text="${#temporals.format(c.createdAt, 'yyyy-MM-dd HH:mm')}">2025-10-24 21:00</span>
+            </div>
+
+            <div class="d-flex gap-2">
+              <!-- 대댓글 -->
+              <button type="button"
+                      class="btn btn-sm btn-outline-primary"
+                      th:attr="data-id=${c.id},data-writer=${c.userId}"
+                      onclick="setReplyTarget(this)">
+                답글
+              </button>
+
+              <!-- 본인만 수정/삭제 -->
+              <div th:if="${#authentication != null and #authentication.name == c.userId}">
+                <button type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        th:attr="data-id=${c.id}"
+                        onclick="toggleEdit(this)">수정</button>
+
+                <form th:action="@{/comment/delete}" method="post" class="d-inline"
+                      onsubmit="return confirm('정말 삭제하시겠어요?');">
+                  <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+                  <input type="hidden" name="commentId" th:value="${c.id}"/>
+                  <input type="hidden" name="postid" th:value="${post.id}"/>
+                  <button type="submit" class="btn btn-sm btn-outline-danger">삭제</button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- 본문 -->
+          <div class="mt-2"
+               th:attr="id=${'comment-text-' + c.id}"
+               th:classappend="${c.parentId} != null ? ' reply-indent' : ''"
+               th:text="${c.content}">
+            댓글 내용
+          </div>
+
+          <!-- 수정 폼 -->
+          <form th:action="@{/comment/update}" method="post" class="mt-2 d-none"
+                th:attr="id=${'comment-edit-form-' + c.id}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+            <input type="hidden" name="commentId" th:value="${c.id}"/>
+            <input type="hidden" name="postid" th:value="${post.id}"/>
+
+            <div class="mb-2">
+              <textarea class="form-control" name="content" rows="3"
+                        th:text="${c.content}" required></textarea>
+            </div>
+            <div class="text-end">
+              <button type="submit" class="btn btn-sm btn-primary">저장</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary"
+                      th:attr="data-id=${c.id}" onclick="toggleEdit(this)">취소</button>
+            </div>
+          </form>
+        </li>
+      </ul>
+
+      <!-- 2-4) 현재 대댓글 대상 표시 -->
+      <div id="reply-target-box" class="alert alert-info py-2 px-3 d-none" role="status" aria-live="polite">
+        <strong id="reply-target-writer">@대상</strong> 님에게 답글 작성 중
+        <button type="button" class="btn btn-sm btn-outline-secondary ms-2" onclick="clearReplyTarget()">취소</button>
+      </div>
+
+      <!-- 2-5) 작성 폼 -->
+      <h3 class="h6 border-top pt-3 mb-2">댓글 작성</h3>
+      <form th:action="@{/comment/add}" method="post" id="comment-add-form" autocomplete="off" novalidate>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <input type="hidden" name="postid" th:value="${post.id}"/>
+        <input type="hidden" name="parentid" id="parentid" value="" />
+
+        <div class="mb-3">
+          <textarea class="form-control" name="content" rows="3"
+                    placeholder="댓글을 입력하세요" required></textarea>
+        </div>
+        <div class="d-flex justify-content-between align-items-center">
+          <div class="form-text">욕설/개인정보 기재 금지</div>
+          <!-- 중복 제출 방지용 data-role 속성 추가 -->
+          <button type="button" class="btn btn-primary" data-role="submit"
+                  onclick="document.getElementById('comment-add-form').requestSubmit();">
+            등록
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
 </div>
+
+<!-- 3) JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // 수정/취소 토글 (간결/안전)
+  function toggleEdit(btn) {
+    const id = btn.getAttribute('data-id');
+    const text = document.getElementById('comment-text-' + id);
+    const form = document.getElementById('comment-edit-form-' + id);
+    if (!text || !form) return;
+
+    if (form.classList.contains('d-none')) {
+      form.classList.remove('d-none');   // 폼 보이기
+      text.classList.add('d-none');      // 본문 숨기기
+      const ta = form.querySelector('textarea'); if (ta) ta.focus();
+    } else {
+      form.classList.add('d-none');      // 폼 숨기기
+      text.classList.remove('d-none');   // 본문 보이기
+    }
+  }
+
+  // 대댓글 대상 지정
+  function setReplyTarget(btn) {
+    const id = btn.getAttribute('data-id');
+    const writer = btn.getAttribute('data-writer');
+    const hidden = document.getElementById('parentid');
+    const box = document.getElementById('reply-target-box');
+    const writerSpan = document.getElementById('reply-target-writer');
+    const textarea = document.querySelector('#comment-add-form textarea[name="content"]');
+
+    if (!hidden || !box || !writerSpan) return;
+    hidden.value = id;
+    writerSpan.textContent = writer ? '@' + writer : '@대상';
+    box.classList.remove('d-none');
+    if (textarea) {
+      textarea.focus();
+      textarea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  // 대댓글 대상 해제
+  function clearReplyTarget() {
+    const hidden = document.getElementById('parentid');
+    const box = document.getElementById('reply-target-box');
+    if (hidden) hidden.value = '';
+    if (box) box.classList.add('d-none');
+  }
+
+  // 리다이렉트 후 #comments 앵커가 있을 때 부드럽게 스크롤
+  (function () {
+    if (location.hash === '#comments') {
+      const el = document.getElementById('comments');
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  })();
+
+  // ✅ 중복 전송 잠금: submit은 반드시 1회만
+  (function () {
+    const form = document.getElementById('comment-add-form');
+    if (!form) return;
+    let locked = false;
+
+    form.addEventListener('submit', function (e) {
+      if (locked) { e.preventDefault(); return; }
+      locked = true;
+
+      const btn = form.querySelector('button[data-role="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = '등록 중...'; }
+    });
+  })();
+</script>
 </body>
 </html>

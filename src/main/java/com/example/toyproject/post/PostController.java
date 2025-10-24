@@ -9,27 +9,34 @@ package com.example.toyproject.post;
  * - 로그인 사용자 ID는 Authentication#getName()
  */
 
+import com.example.toyproject.domain.Comment;
 import com.example.toyproject.domain.Post;
 import com.example.toyproject.post.dto.PostForm;
+import com.example.toyproject.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/posts")
 public class PostController {
 
     private final PostService postService;
-    public PostController(PostService postService) {
+    private final CommentService commentService;
+
+    public PostController(PostService postService, CommentService commentService)
+    {
         this.postService = postService;
+        this.commentService =commentService;
     }
+
 
     /** 게시판 목록 (최신순, 페이징) */
     // 게시판 이동 누르면 오늘 함수
@@ -45,12 +52,25 @@ public class PostController {
     /** 상세 */
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Long id, Model model, Authentication auth) {
+        // 1. 게시글 단건 조회
         Post post = postService.get(id);
+
+        // 로그인 사용자 확인한 후 내 글 여부 판단한다.
         String currentUser = (auth != null) ? auth.getName() : null;
         boolean mine = currentUser != null && currentUser.equals(post.getUserId());
 
+        // 댓글 목록 조회
+        List<Comment> comments = commentService.getCommentsByPost(String.valueOf(id));
+
+
+
+
+        // 모델에 담기.
         model.addAttribute("post", post);
         model.addAttribute("mine", mine); // 내 글이면 수정/삭제 버튼 노출
+        model.addAttribute("comments", comments);  // 댓글 목록
+        model.addAttribute("commentsCount", comments.size()); // 댓글 수
+
         return "detail"; // templates/detail.html
     }
 
@@ -122,4 +142,7 @@ public class PostController {
 
         return "redirect:/posts"; // 삭제 후 목록으로
     }
+
+    /** 댓글 목록 모델 추가*/
+
 }
