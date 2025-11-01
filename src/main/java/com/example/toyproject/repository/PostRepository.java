@@ -4,6 +4,8 @@ import com.example.toyproject.domain.Post;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 /**
  * 게시판 리포지토리
@@ -24,4 +26,25 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      * ex) postRepo.findByUserIdOrderByIdDesc("hong", PageRequest.of(0, 10))
      */
     Page<Post> findByUserIdOrderByIdDesc(String userId, Pageable pageable);
+
+    @Query(
+            value = """
+    SELECT p
+    FROM Post p
+    WHERE (:kw IS NULL OR :kw = '' 
+           OR LOWER(p.title) LIKE LOWER(CONCAT('%', :kw, '%'))
+           OR LOWER(p.content) LIKE LOWER(CONCAT('%', :kw, '%'))
+           OR LOWER(p.userId) LIKE LOWER(CONCAT('%', :kw, '%')))
+    ORDER BY p.id DESC
+  """,
+            countQuery = """
+    SELECT COUNT(p)
+    FROM Post p
+    WHERE (:kw IS NULL OR :kw = '' 
+           OR LOWER(p.title) LIKE LOWER(CONCAT('%', :kw, '%'))
+           OR LOWER(p.content) LIKE LOWER(CONCAT('%', :kw, '%'))
+           OR LOWER(p.userId) LIKE LOWER(CONCAT('%', :kw, '%')))
+  """
+    )
+    Page<Post> search(@Param("kw") String keyword, Pageable pageable);
 }

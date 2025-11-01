@@ -44,7 +44,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/posts", "/posts/*").permitAll() // 목록/상세 공개
                 .anyRequest().authenticated() // 이 외 로그인 인증 필요
                 )
-                // 폼 로그인 설정(질문5) 폼 로그인 의미
+                // 폼 로그인 설정 폼 로그인 의미(로그인 시도시 인증 받았던 사람인지 확인)
                 .formLogin(login -> login
                 .loginPage("/login") // GET /login --> login.html 렌더(우리가 만든 페이지)
                 .loginProcessingUrl("/login") //POST /login --> 시큐리티가 인증 처리 해준다.(인증 완료하면 아래 페이지로 이동)
@@ -54,8 +54,7 @@ public class SecurityConfig {
                 // 로그아웃은 기본값 사용 (/logout)
                 .logout(Customizer.withDefaults());
 
-        
-        // CSRF는 기본 활성화(권장). 폼에 hidden 토큰만 넣으면 됩니다.(질문6) CSRF 개념 설명
+        // CSRF는 기본 활성화(권장). 폼에 hidden 토큰만 넣으면 됩니다.
         return http.build();
     }
 

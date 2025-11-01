@@ -43,9 +43,13 @@ public class PostController {
     @GetMapping
     public String list(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "10") int size,
+                       @RequestParam(name = "keyword", required = false) String keyword,
                        Model model) {
-        Page<Post> posts = postService.list(page, size);
+        Page<Post> posts = postService.list(keyword, page, size);
+        System.out.printf("DEBUG page=%d, size=%d, totalElements=%d, totalPages=%d, contentSize=%d%n",
+                posts.getNumber(), posts.getSize(), posts.getTotalElements(), posts.getTotalPages(), posts.getContent().size());
         model.addAttribute("posts", posts);
+        model.addAttribute("keyword", keyword);
         return "list"; // templates/list.html
     }
 

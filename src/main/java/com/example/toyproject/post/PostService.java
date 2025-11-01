@@ -86,16 +86,20 @@ public class PostService {
      * - 정렬: id DESC (작성 최신순)
      */
     @Transactional(readOnly = true)
-    public Page<Post> list(int page, int size){
+    public Page<Post> list(String keyword, int page, int size){
         // 1) 파라미터 가드
-        int p = Math.max(page, 0);                 // 0 미만 방지
-        int s = Math.min(Math.max(size, 1), 100);  // 1~100 범위 제한
+        page = Math.max(page, 0);
+        size = Math.min(Math.max(size, 1), 100); // 1~100 제한
 
         // 2) 페이징/정렬 객체 구성
-        Pageable pageable = PageRequest.of(p, s, Sort.by(Sort.Direction.DESC, "id"));
+        Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        // 3) Repository 호출 (SELECT with LIMIT/OFFSET)
-        return postRepository.findAll(pageable);
+        // 3) 검색 여부 분기
+        if (keyword != null && !keyword.isBlank()) {
+            return postRepository.search(keyword.trim(), pageable); // 🔍 검색용 쿼리 실행
+        } else {
+            return postRepository.findAllByOrderByIdDesc(pageable); // 기본 목록
+        }
     }
 
     /**

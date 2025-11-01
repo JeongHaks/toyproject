@@ -36,8 +36,7 @@ public class Post {
     private String title;
 
     /** 본문 (TEXT 컬럼 매핑, NOT NULL) */
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String content;
 
     /** 작성자 ID (User.id 참조, 문자열 저장) */

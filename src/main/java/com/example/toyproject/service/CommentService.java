@@ -21,7 +21,7 @@ public class CommentService {
 
     private final CommentRepository commentRepository;
 
-    /** ✅ 목록 조회: 부모 바로 아래 정렬 (postId = String) */
+    /** 목록 조회: 부모 바로 아래 정렬 (postId = String) */
     @Transactional(readOnly = true)
     public List<Comment> listForPost(String postId) {
         if (postId == null || postId.isBlank()) {
@@ -30,7 +30,7 @@ public class CommentService {
         return commentRepository.findAllForPostOrdered(postId);
     }
 
-    /** ✅ 루트 댓글 작성: groupId = 자기 id, orderInGroup = 0 */
+    /** 루트 댓글 작성: groupId = 자기 id, orderInGroup = 0 */
     @Transactional
     public Comment addRootComment(String postId, String userId, String content) {
         if (postId == null || postId.isBlank()) throw new IllegalArgumentException("postId는 필수입니다.");
@@ -40,36 +40,39 @@ public class CommentService {
         String newId =  java.util.UUID.randomUUID().toString();
 
         Comment root = Comment.builder()
-                .id(newId)                 // ← String (UUID 문자열)
-                .postId(postId)            // ← String
+                .id(newId)
+                .postId(postId)
                 .userId(userId)
                 .content(content.trim())
                 .parentId(null)
                 .build();
 
-        root.setGroupId(newId);            // 루트는 자기 자신을 그룹으로
-        root.setOrderInGroup(0);           // 루트는 0
+        root.setGroupId(newId);
+        root.setOrderInGroup(0);
         return commentRepository.save(root);
     }
 
-    /** ✅ 새로 추가 : 대댓글 (부모 바로 아래 삽입) */
+    /** 새로 추가 : 대댓글 (부모 바로 아래 삽입) */
     @Transactional
     public Comment addChildComment(String postId, String parentId, String userId, String content) {
         Comment parent = commentRepository.findByIdForUpdate(parentId)
                 .orElseThrow(() -> new IllegalArgumentException("부모 댓글이 존재하지 않습니다."));
 
-        // 부모와 동일한 group 내에서 뒤쪽 순서를 +1씩 밀기
-        commentRepository.shiftOrders(parent.getGroupId(), parent.getOrderInGroup());
+        // 대댓글 삽입 위치 계산하기 위한 변수(20251101)
+        int insertPos = parent.getOrderInGroup() + 1;
+
+        // 부모와 동일한 group 내에서 뒤쪽 순서를 +1씩 밀기(20251101)
+        commentRepository.shiftOrders(parent.getPostId(),parent.getGroupId(), insertPos);
 
         // 부모 바로 다음에 새 대댓글 삽입
         Comment reply = new Comment();
         reply.setId(UUID.randomUUID().toString());
-        reply.setPostId(postId);
+        reply.setPostId(parent.getPostId());
         reply.setUserId(userId);
         reply.setContent(content);
         reply.setParentId(parent.getId());
         reply.setGroupId(parent.getGroupId());
-        reply.setOrderInGroup(parent.getOrderInGroup() + 1);
+        reply.setOrderInGroup(insertPos);
         reply.setCreatedAt(LocalDateTime.now());
 
         commentRepository.save(reply);
@@ -78,7 +81,7 @@ public class CommentService {
 
 
 
-    /** ✅ 대댓글 작성: 부모 바로 아래로 끼워 넣기 (shift → insert) */
+    /** 대댓글 작성: 부모 바로 아래로 끼워 넣기 (shift → insert) */
     @Transactional
     public Comment addReply(String parentId, String userId, String content) {
         if (parentId == null || parentId.isBlank()) throw new IllegalArgumentException("parentId는 필수입니다.");
@@ -89,8 +92,11 @@ public class CommentService {
         Comment parent = commentRepository.findByIdForUpdate(parentId)
                 .orElseThrow(() -> new IllegalArgumentException("부모 댓글을 찾을 수 없습니다."));
 
+        //대댓글 삽입 위치 계산
+        int insertPos = parent.getOrderInGroup() + 1;
+
         // 2) 부모 뒤쪽 순서 +1로 밀기
-        commentRepository.shiftOrders(parent.getGroupId(), parent.getOrderInGroup());
+        commentRepository.shiftOrders(parent.getPostId(),parent.getGroupId(), insertPos);
 
         // 3) 자식 삽입 (부모 group 상속, 부모 바로 아래)
         String newId = UUID.randomUUID().toString();
@@ -109,7 +115,7 @@ public class CommentService {
         return commentRepository.save(child);
     }
 
-    /** ✍️ 수정 (작성자만) — 모든 ID는 String */
+    /**  수정 (작성자만) — 모든 ID는 String */
     @Transactional
     public void updateComment(String commentId, String requesterUserId, String newContent) {
         if (commentId == null || commentId.isBlank()) throw new IllegalArgumentException("commentId는 필수입니다.");
@@ -126,7 +132,7 @@ public class CommentService {
         target.setContent(newContent.trim()); // dirty checking
     }
 
-    /** 🗑️ 삭제 (작성자만, 자식 없을 때) — 모든 ID는 String */
+    /** 삭제 (작성자만, 자식 없을 때) — 모든 ID는 String */
     @Transactional
     public void deleteComment(String commentId, String requesterUserId) {
         if (commentId == null || commentId.isBlank()) throw new IllegalArgumentException("commentId는 필수입니다.");
@@ -147,7 +153,7 @@ public class CommentService {
         commentRepository.delete(target);
     }
 
-    /** 🔁 (옵션) 기존 컨트롤러 호환용: postid(String)로 목록 조회 */
+    /** (옵션) 기존 컨트롤러 호환용: postid(String)로 목록 조회 */
     @Transactional(readOnly = true)
     public List<Comment> getCommentsByPost(String postid) {
         if (postid == null || postid.isBlank()) {

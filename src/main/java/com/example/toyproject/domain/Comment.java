@@ -19,10 +19,11 @@ import java.util.UUID;
         indexes = {
                 @Index(name = "idx_post_group_order", columnList = "post_id, group_id, order_in_group")
         })
+// DB 테이블과 매핑
 public class Comment {
-//DB post_id , user_id , "content" , parent_id , created_at
-@Id
-private String id; // 직접 세팅할 거라 @GeneratedValue 생략 (UUID.randomUUID())
+    //DB post_id , user_id , "content" , parent_id , created_at
+    @Id
+    private String id; // 직접 세팅할 거라 @GeneratedValue 생략 (UUID.randomUUID())
 
     @Column(name = "post_id", nullable = false)
     private String postId;
