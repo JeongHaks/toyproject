@@ -10,7 +10,11 @@
   <meta charset="UTF-8"/>
   <title>메인</title>
   <style>
-    body { font-family: system-ui, sans-serif; margin: 48px; background: #f8f9fb; }
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 48px;
+      background: #f8f9fb;
+    }
     .container { max-width: 960px; margin: 0 auto; }
     .header { margin-bottom: 24px; }
     .header h1 { margin: 0 0 8px; }
@@ -36,10 +40,25 @@
     .card h3 { margin: 0 0 8px; }
     .card p { margin: 0; color: #555; }
     .footer { margin-top: 28px; color: #777; font-size: 14px; }
+
+    /* ✅ 모바일(가로 576px 이하)에서 여백/폰트 조정 */
+    @media (max-width: 576px) {
+      body {
+        margin: 16px;      /* 48px → 16px로 축소 */
+      }
+      .card {
+        padding: 16px;     /* 카드도 살짝 컴팩트하게 */
+      }
+      .header h1 {
+        font-size: 1.4rem; /* 제목 너무 크지 않게 */
+      }
+    }
   </style>
+  <!-- 모바일 반응형 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<div class="container">
+<div class="container my-4">
 
   <div class="header">
     <h1>메인</h1>
@@ -50,7 +69,7 @@
     <p th:if="${username == null}">
       로그인 후 더 많은 기능을 사용할 수 있어요. 일단은 아래 메뉴로 이동해보세요.
     </p>
-  </div>
+  </div> <!-- class=header -->
 
   <!-- ✅ 3개 버튼(카드) -->
   <div class="grid">
@@ -71,7 +90,7 @@
       <h3>💌 모바일 청첩장</h3>
       <p>모바일 청첩장 데모/진입 페이지. 실서비스 구조로 확장 예정.</p>
     </a>
-  </div>
+  </div> <!-- class=grid -->
 
   <!-- ✅ footer: 로그인/비로그인 '서로 배타적' 노출 (중첩 <p> 제거, sec:authorize만 사용) -->
   <div class="footer">
@@ -87,15 +106,15 @@
           로그아웃
         </button>
       </form>
-    </div>
+    </div> <!-- sec:authorize=isAuthenticated -->
 
     <!-- 비로그인(익명) 전용 블록 -->
     <div sec:authorize="isAnonymous()">
       <a th:href="@{/login}">로그인</a>
       ·
       <a th:href="@{/auth/signup}">회원가입</a>
-    </div>
-  </div>
+    </div> <!-- sec:authorize=isAnonymous -->
+  </div>  <!--footer-->
 </div>
 </body>
 </html>
