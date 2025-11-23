@@ -287,3 +287,928 @@
 2025-11-24 01:15:46.322 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=6c321901 GET /uploads/2c92fa30-b1f0-4bf2-ac77-7768fe4b1937.png -> 200 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
 2025-11-24 01:15:46.326 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=bbf16e0d GET /uploads/b2e17f76-df6c-44bb-b572-df32f6132628.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
 2025-11-24 01:15:46.335 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=972e6b25 GET /uploads/0a05c21f-85f4-4a95-82c0-48b05d14f7bd.png -> 200 (8ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:19:59.254 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=c38b7f0c GET /invitation/fz68NMcR -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:19:59.299 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=3945322d GET /admin/invitations/fz68NMcR/images/main -> 404 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:19:59.309 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=8b64b264 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:19:59.382 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=dc898723 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:19:59.928 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=3d22d431 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:12.778 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=2d1f1798 GET /invitation/tAkmnAJk -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:12.832 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=71b43e52 GET /admin/invitations/tAkmnAJk/images/main -> 404 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:12.851 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=e9f1ccda GET /login -> 200 (9ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:13.001 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=9b8845e1 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:13.006 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=bc534cad GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:23.990 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=9b33dff8 GET /invitation/tAkmnAJk -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:24.043 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=0943e7bd GET /admin/invitations/tAkmnAJk/images/main -> 404 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:24.056 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=bc5631f6 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:24.186 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=24039018 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:24.192 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=c22d393c GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:27.199 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=5439dc8c GET / -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:28.980 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=22f1a627 GET /invitation/fz68NMcR -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:29.018 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=5376251a GET /admin/invitations/fz68NMcR/images/main -> 404 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:29.027 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=a73a14cd GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:29.089 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=81483172 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:29.618 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=abe6bc9e GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:52.774 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=a6109527 GET / -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:55.637 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=7c5d47fa GET /invitation/tAkmnAJk -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:55.681 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=44e018a7 GET /admin/invitations/tAkmnAJk/images/main -> 404 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:55.689 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=8ffaf1df GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:55.759 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=3ed1ef5c GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:20:56.294 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=3495c679 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:27:04.389 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:27:04.883 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:27:04.885 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:27:04.888 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:27:04.897 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:27:08.525 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:27:08.631 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 16252 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:27:08.632 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:27:09.638 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:27:09.740 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 91 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:27:10.724 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:27:10.738 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:27:10.740 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:27:10.740 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:27:10.804 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:27:10.806 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2098 ms
+2025-11-24 01:27:11.125 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:27:11.211 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:27:11.270 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:27:11.625 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:27:11.652 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:27:11.824 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@402a69f
+2025-11-24 01:27:11.826 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:27:11.856 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:27:11.890 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:27:12.912 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:27:13.087 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:27:13.652 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:27:14.739 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:27:14.785 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:27:15.750 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:27:15.791 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:27:15.804 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 7.947 seconds (process running for 8.387)
+2025-11-24 01:27:59.172 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:27:59.172 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:27:59.173 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 01:27:59.666 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=4d863f0e GET / -> 200 (447ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:28:07.668 [http-nio-8080-exec-2] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [126] milliseconds.
+2025-11-24 01:28:07.679 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=bdf2003f GET /invitation/tAkmnAJk -> 200 (173ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:28:07.734 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=a6dad5fc GET /admin/invitations/tAkmnAJk/images/main -> 404 (15ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:28:07.822 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=f15979d5 GET /login -> 200 (14ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:28:07.827 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=61f8b903 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:28:08.411 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=f29660a7 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:29:52.751 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:29:53.270 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:29:53.274 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:29:53.277 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:29:53.283 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:29:57.580 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:29:57.648 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 8080 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:29:57.650 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:29:58.595 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:29:58.705 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 89 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:29:59.551 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:29:59.561 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:29:59.563 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:29:59.563 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:29:59.617 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:29:59.619 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1909 ms
+2025-11-24 01:29:59.899 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:30:00.000 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:30:00.065 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:30:00.458 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:30:00.485 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:30:00.695 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@22e813fc
+2025-11-24 01:30:00.696 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:30:00.736 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:30:00.768 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:30:01.755 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:30:01.918 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:30:02.456 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:30:03.597 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:30:03.652 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:30:04.372 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:30:04.398 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:30:04.407 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 7.604 seconds (process running for 8.043)
+2025-11-24 01:30:15.784 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:30:15.785 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:30:15.786 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 01:30:16.226 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=a2919d17 GET / -> 200 (398ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:21.386 [http-nio-8080-exec-2] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [146] milliseconds.
+2025-11-24 01:30:21.404 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=524ab908 GET /invitation/tAkmnAJk -> 200 (206ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:21.453 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=06a42c2b GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:21.513 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=2ee5458e GET /login -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:21.518 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=9b900e4a GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:22.033 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=1ad560c9 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:45.086 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=30ee6e8f GET / -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:45.942 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=c9299e08 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:47.373 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=6587077e GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:47.550 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=d8dc80e8 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:51.855 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=9d69f995 GET / -> 200 (7ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:52.014 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=f274d653 GET /favicon.ico -> 404 (3ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:56.280 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=8b39f4de GET /invitation/d1ceUS2Z -> 200 (8ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:56.304 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=38062977 GET /api/v1/invitations/d1ceUS2Z/images/main -> 404 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:56.463 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=c5213fbf GET /api/v1/invitations/d1ceUS2Z -> 200 (140ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:58.194 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=dbcb3947 GET /api/v1/invitations/d1ceUS2Z/guestbook -> 200 (26ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:30:58.225 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=e6f82987 GET /api/v1/invitations/d1ceUS2Z/images -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.173 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=709739b1 GET /invitation/tAkmnAJk -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.209 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=8113195f GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.240 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=64777ef5 GET /api/v1/invitations/tAkmnAJk -> 200 (12ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.356 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=f5ffab44 GET /uploads/b2e17f76-df6c-44bb-b572-df32f6132628.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.357 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=43be1068 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.406 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=a0210267 GET /api/v1/invitations/tAkmnAJk/images -> 200 (15ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.421 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=68c92394 GET /uploads/b394dc7b-8996-4784-851a-92f8e1f2f139.png -> 200 (7ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.423 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=a4c9f646 GET /uploads/762d4f9b-a757-4d21-ad43-b074d23543f1.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.425 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=c5a5a1bb GET /uploads/3ae8602a-65da-4d66-b939-747b7af0f3c0.png -> 200 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.427 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=f925c929 GET /uploads/b66cfb73-bca1-41cf-9f77-7cbd8d29b775.png -> 200 (7ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.430 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=1e17c369 GET /uploads/b2e17f76-df6c-44bb-b572-df32f6132628.png -> 200 (16ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.436 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=2b42889d GET /uploads/2c92fa30-b1f0-4bf2-ac77-7768fe4b1937.png -> 200 (13ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:31:01.438 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=8aa4d128 GET /uploads/0a05c21f-85f4-4a95-82c0-48b05d14f7bd.png -> 200 (7ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:33:02.238 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=732ae794 GET / -> 200 (6ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:33:06.209 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=8ff50187 GET /invitations/tAkmnAJk -> 404 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 01:33:06.225 [http-nio-8080-exec-9] ERROR org.thymeleaf.TemplateEngine - [THYMELEAF][http-nio-8080-exec-9] Exception processing template "error": Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1438)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:612)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:396)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:323)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:268)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:209)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:152)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-11-24 01:33:06.238 [http-nio-8080-exec-9] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] threw exception
+org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1438)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:612)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:396)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:323)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:268)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:209)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:152)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+2025-11-24 01:33:06.239 [http-nio-8080-exec-9] ERROR o.a.c.c.C.[Tomcat].[localhost] - Exception Processing [ErrorPage[errorCode=0, location=/error]]
+jakarta.servlet.ServletException: Request processing failed: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1022)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:101)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.ApplicationDispatcher.invoke(ApplicationDispatcher.java:612)
+	at org.apache.catalina.core.ApplicationDispatcher.processRequest(ApplicationDispatcher.java:396)
+	at org.apache.catalina.core.ApplicationDispatcher.doForward(ApplicationDispatcher.java:323)
+	at org.apache.catalina.core.ApplicationDispatcher.forward(ApplicationDispatcher.java:268)
+	at org.apache.catalina.core.StandardHostValve.custom(StandardHostValve.java:377)
+	at org.apache.catalina.core.StandardHostValve.status(StandardHostValve.java:209)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:152)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1776)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:975)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:493)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving template [error], template might not exist or might not be accessible by any of the configured Template Resolvers
+	at org.thymeleaf.engine.TemplateManager.resolveTemplate(TemplateManager.java:869)
+	at org.thymeleaf.engine.TemplateManager.parseAndProcess(TemplateManager.java:607)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1103)
+	at org.thymeleaf.TemplateEngine.process(TemplateEngine.java:1077)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:372)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1438)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	... 86 common frames omitted
+2025-11-24 01:37:10.613 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=fb4dbf30 GET /invitation/tAkmnAJk -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:10.671 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=a31c12d8 GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:10.680 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=796f72ab GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:10.728 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=c272c286 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:16.038 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:37:16.560 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:37:16.563 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:37:16.565 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:37:16.572 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:37:20.022 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:37:20.146 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 13304 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:37:20.148 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:37:21.237 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:37:21.377 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 121 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:37:22.315 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:37:22.327 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:37:22.330 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:37:22.330 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:37:22.395 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:37:22.396 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2146 ms
+2025-11-24 01:37:22.699 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:37:22.790 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:37:22.845 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:37:23.265 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:37:23.288 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:37:23.475 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@22e813fc
+2025-11-24 01:37:23.479 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:37:23.527 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:37:23.564 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:37:24.666 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:37:24.837 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:37:25.424 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:37:26.651 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:37:26.703 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:37:27.575 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:37:27.609 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:37:27.622 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 8.343 seconds (process running for 8.744)
+2025-11-24 01:37:38.020 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:37:38.021 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:37:38.022 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 01:37:38.571 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=fe911163 GET /invitation/tAkmnAJk -> 200 (500ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.587 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=39293d6f GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.615 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=2239658b GET /login -> 200 (14ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.913 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=d13adbf2 GET /api/v1/invitations/tAkmnAJk -> 200 (269ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.950 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=3fa1b4e5 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (31ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.965 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=0aa5c2b2 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.983 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=fca07a2a GET /api/v1/invitations/tAkmnAJk/images -> 200 (21ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:38.998 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=6921256f GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.002 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=5b78efb5 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.007 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=6f30551f GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.013 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=918c8306 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.017 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=9927a6c1 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.023 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=530be1ab GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:37:39.028 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=05537011 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:43.536 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=2e5117c3 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.339 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=827523bc GET /invitation/tAkmnAJk -> 200 (11ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.365 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=bee7c672 GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.373 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=51ba7a85 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.376 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=a207bca2 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.422 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=4810f1ba GET /api/v1/invitations/tAkmnAJk -> 200 (18ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.441 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=7d9a82f1 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (11ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.445 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=b4d89fe9 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.461 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=aa55847a GET /api/v1/invitations/tAkmnAJk/images -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.480 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=b77c4fd7 GET /login -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.480 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=fdbee68b GET /login -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.482 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=d620ade5 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.482 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=93831b21 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.482 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=9dc8e674 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.482 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=c5cbe5f1 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:38:45.498 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=ed00e6c8 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.701 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=909ace64 GET /invitation/tAkmnAJk -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.760 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=01cddc61 GET /api/v1/invitations/tAkmnAJk/images/main -> 404 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.775 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=456f394e GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.775 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=86a450cc GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.807 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=c0358afb GET /api/v1/invitations/tAkmnAJk -> 200 (15ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.826 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=706f46e8 GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.828 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=7ac30a19 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.844 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=6474fc79 GET /api/v1/invitations/tAkmnAJk/images -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.871 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=420affcc GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.871 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=cb468fe0 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.871 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=19fa222b GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.871 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=da2b8e08 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.871 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=878a594b GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.872 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=af1dea84 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:39:35.884 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=f72eff72 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:44:49.144 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:44:49.641 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:44:49.644 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:44:49.646 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:44:49.655 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:44:53.348 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:44:53.429 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 14520 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:44:53.430 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:44:54.342 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:44:54.453 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:44:55.381 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:44:55.394 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:44:55.396 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:44:55.397 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:44:55.485 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:44:55.486 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1993 ms
+2025-11-24 01:44:55.818 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:44:55.884 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:44:55.929 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:44:56.315 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:44:56.361 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:44:56.532 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@43a59289
+2025-11-24 01:44:56.535 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:44:56.570 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:44:56.612 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:44:57.667 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:44:57.890 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:44:58.414 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:44:59.754 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:44:59.810 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:45:00.698 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:45:00.735 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:45:00.746 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 8.035 seconds (process running for 8.462)
+2025-11-24 01:45:54.576 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:45:54.576 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:45:54.578 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-24 01:45:55.029 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=3c5cb41c GET / -> 200 (408ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.650 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=d87cc440 GET /invitation/tAkmnAJk -> 200 (160ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.912 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=5fc9bdb6 GET /api/v1/invitations/tAkmnAJk -> 200 (184ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.913 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=47f3ee81 GET /api/v1/invitations/tAkmnAJk/images/main -> 200 (241ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.929 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=90fc1226 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (11ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.967 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=2fe414b9 GET /api/v1/invitations/tAkmnAJk/images -> 404 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.969 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=6e2a248c GET /login -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:00.984 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=94b1f9e5 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:10.925 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=df874a1c GET /invitation/OyGvVR1L -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:10.958 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=1d2b3837 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:10.988 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=70f93df7 GET /api/v1/invitations/OyGvVR1L -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:11.004 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=3862bfe9 GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:11.012 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=17ab96fc GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (18ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:11.024 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=25a9b22a GET /api/v1/invitations/OyGvVR1L/images -> 404 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:11.032 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=5c000eaa GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.190 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=7d779c11 GET /invitation/OyGvVR1L -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.232 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=99e60f75 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (17ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.260 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=d550270b GET /api/v1/invitations/OyGvVR1L -> 200 (16ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.276 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=49a75a16 GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.281 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=065628ae GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (16ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.295 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=8b781ef8 GET /api/v1/invitations/OyGvVR1L/images -> 404 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:46:24.306 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=88810aba GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:28.682 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:51:29.193 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:51:29.197 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:51:29.199 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:51:29.206 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:51:31.333 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:51:31.420 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 11392 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:51:31.421 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:51:32.360 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:51:32.481 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 103 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:51:33.255 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:51:33.265 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:51:33.266 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:51:33.267 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:51:33.323 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:51:33.326 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1833 ms
+2025-11-24 01:51:33.627 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:51:33.716 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:51:33.759 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:51:34.133 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:51:34.163 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:51:34.317 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@59371066
+2025-11-24 01:51:34.319 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:51:34.343 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:51:34.362 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:51:35.266 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:51:35.438 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:51:36.011 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:51:37.282 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:51:37.362 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:51:38.145 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:51:38.192 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:51:38.208 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 7.524 seconds (process running for 8.011)
+2025-11-24 01:51:49.014 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:51:49.014 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:51:49.015 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 01:51:49.483 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=669b2fa5 GET / -> 200 (425ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:55.800 [http-nio-8080-exec-2] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [138] milliseconds.
+2025-11-24 01:51:55.817 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=de3f4f31 GET /invitation/d1ceUS2Z -> 200 (210ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:55.981 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=340716c2 GET /invitation/tAkmnAJk -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.063 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=ab552c8e GET /api/v1/invitations/tAkmnAJk -> 200 (32ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.063 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=2c93cfee GET /api/v1/invitations/d1ceUS2Z -> 200 (203ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.065 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=210a41d8 GET /api/v1/invitations/tAkmnAJk/images/main -> 200 (72ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.065 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=9ea9d174 GET /api/v1/invitations/d1ceUS2Z/images/main -> 200 (242ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.098 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=5f10b75f GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (14ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.158 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=94536563 GET /api/v1/invitations/tAkmnAJk/images/main -> 200 (9ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.159 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=de61cf65 GET /login -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.174 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=7a047946 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.179 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=3300a808 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.184 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=d433b1bd GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.189 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=4cb2aecc GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.194 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=97302f63 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:51:56.199 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=f63ce1f1 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:08.962 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=7a232d46 GET /invitation/OyGvVR1L -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.004 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=7a4f96ba GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.067 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=e0d996a9 GET /api/v1/invitations/OyGvVR1L -> 200 (19ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.086 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=403f50ec GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.097 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=50fb4f9c GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (25ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.111 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=5f9119d2 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (11ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.125 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=d3ed510b GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.130 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=373bb55a GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.135 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=474946a2 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.138 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=6ca6381b GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.145 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=3370120c GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:09.149 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=7273e028 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:22.885 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=3157bc40 GET /invitation/OyGvVR1L -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:22.924 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=007c3b16 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:22.964 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=544add16 GET /api/v1/invitations/OyGvVR1L -> 200 (15ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:22.980 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=13bb21d3 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:22.984 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=9ebcf93e GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (14ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.004 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=07b6463f GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.020 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=75c25fa1 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.028 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=5df0ca51 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.032 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=6c246e52 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.037 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=4d56a57c GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.045 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=ed5f02de GET /login -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:52:23.049 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=85844c2e GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:53:59.818 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=af085c09 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:05.852 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=5cfd8752 GET /invitation/OyGvVR1L -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:05.891 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=013ed803 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (11ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:05.931 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=e984a0be GET /api/v1/invitations/OyGvVR1L -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.076 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=5e78f2e3 GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.098 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=e137aac7 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.113 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=e10368a4 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (12ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.134 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=160186ba GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.142 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=ca3174df GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.153 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=2acb4def GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.165 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=074c7cfa GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.171 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=0af0b02c GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:54:06.181 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=3d183566 GET /login -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:33.552 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 01:55:34.057 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 01:55:34.062 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:55:34.064 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 01:55:34.073 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 01:55:36.269 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 01:55:36.351 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 10292 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 01:55:36.352 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 01:55:37.252 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 01:55:37.348 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 83 ms. Found 6 JPA repository interfaces.
+2025-11-24 01:55:38.349 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 01:55:38.368 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:55:38.373 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 01:55:38.374 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 01:55:38.492 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 01:55:38.495 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2082 ms
+2025-11-24 01:55:38.820 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 01:55:38.921 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 01:55:38.978 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 01:55:39.373 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 01:55:39.401 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 01:55:39.580 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@43a59289
+2025-11-24 01:55:39.582 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 01:55:39.624 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 01:55:39.654 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 01:55:40.673 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 01:55:40.853 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 01:55:41.502 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 01:55:42.585 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 01:55:42.640 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 01:55:43.504 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 01:55:43.530 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 01:55:43.542 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 7.925 seconds (process running for 8.378)
+2025-11-24 01:55:57.240 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 01:55:57.241 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 01:55:57.243 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-24 01:55:57.790 [http-nio-8080-exec-1] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [134] milliseconds.
+2025-11-24 01:55:57.871 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=ba77fe35 GET /invitation/OyGvVR1L -> 200 (583ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.117 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=aef4037e GET /api/v1/invitations/OyGvVR1L -> 200 (205ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.118 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=f4a5567f GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (243ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.228 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=a4b61f68 GET /api/v1/invitations/OyGvVR1L/guestbook -> 200 (26ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.239 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=7a034540 GET /api/v1/invitations/OyGvVR1L/images/main -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.244 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=42878fe7 GET /login -> 200 (16ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.266 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=2033721a GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.272 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=2a1a2072 GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.277 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=d344cd82 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.281 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=e93e98e1 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 01:55:58.286 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=bc6de7b6 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:01:36.261 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 02:01:36.730 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 02:01:36.734 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 02:01:36.737 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 02:01:36.749 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 02:01:40.131 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 02:01:40.235 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 18764 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 02:01:40.238 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 02:01:41.139 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 02:01:41.254 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 6 JPA repository interfaces.
+2025-11-24 02:01:42.439 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 02:01:42.456 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 02:01:42.464 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 02:01:42.464 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 02:01:42.575 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 02:01:42.577 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2269 ms
+2025-11-24 02:01:42.873 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 02:01:42.980 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 02:01:43.045 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 02:01:43.563 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 02:01:43.616 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 02:01:43.834 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4f3fec43
+2025-11-24 02:01:43.836 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 02:01:43.881 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 02:01:43.916 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 02:01:45.500 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 02:01:45.717 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 02:01:46.326 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 02:01:47.680 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 02:01:47.738 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 02:01:48.515 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 02:01:48.547 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 02:01:48.558 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 9.061 seconds (process running for 9.441)
+2025-11-24 02:01:59.083 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 02:01:59.084 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 02:01:59.085 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2025-11-24 02:01:59.565 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=6373536c GET / -> 200 (437ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:11.847 [http-nio-8080-exec-3] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [155] milliseconds.
+2025-11-24 02:02:11.863 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=46dd6eb3 GET /invitation/tAkmnAJk -> 200 (234ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.178 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=d02e454a GET /api/v1/invitations/tAkmnAJk -> 200 (237ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.206 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=b4bf9508 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (22ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.240 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=9fc83d48 GET /login -> 200 (16ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.248 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=0e7a23c0 GET /api/v1/invitations/tAkmnAJk/images -> 200 (24ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.266 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=fe20840d GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.273 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=c741fe9f GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.279 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=9f1970ca GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.284 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=a3b39306 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.289 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=334bfdf0 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.295 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=1fd65ea7 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:12.300 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=dafe00a7 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:23.921 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=e57838ab GET / -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:26.359 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=6eef9dbc GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:30.972 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=e88e3dad GET / -> 200 (6ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:32.305 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=c8a1205f GET /admin/invitations -> 200 (45ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:34.182 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=225d6003 GET /admin/invitations/new -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:58.951 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=4b8661f3 POST /api/v1/invitations -> 200 (134ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:02:59.095 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=b40b1b74 POST /admin/invitations/M7zRYnZh/images -> 200 (133ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.567 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=fceec829 GET /invitation/M7zRYnZh -> 200 (6ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.667 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=78c72fcb GET /api/v1/invitations/M7zRYnZh -> 200 (21ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.677 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=c52ce81e GET /invitation/- -> 200 (5ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.682 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=6d6f043f GET /api/v1/invitations/M7zRYnZh/guestbook -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.714 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=d01a3baa GET /api/v1/invitations/M7zRYnZh/images -> 200 (12ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.727 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=50043e76 GET /uploads/56425987-3f43-4d4f-bb8a-4125822dadac.png -> 200 (8ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.727 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=98555272 GET /uploads/d220b8c5-c88b-471a-87d4-2f1c9410c142.png -> 200 (8ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.727 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=cb86f765 GET /uploads/c59448b1-85b2-402a-9e97-37e349e33249.png -> 200 (8ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.728 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=1064a517 GET /uploads/c5e1ab71-283a-4a6c-9995-3afd05ebea52.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.728 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=1a535670 GET /uploads/db905418-485a-414d-8e2d-9985b67daf22.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.728 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=7848ca5c GET /uploads/efc4bee4-03e5-4e9f-8cf4-83f144501327.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:00.742 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=9098918f GET /uploads/92952c63-8a4e-4e98-af98-7f0b7bc9a31c.png -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:15.575 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=52a9c9fb GET / -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.651 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=70a57cec GET /invitation/M7zRYnZh -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.768 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=99052d52 GET /api/v1/invitations/M7zRYnZh -> 200 (13ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.780 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=04924cba GET /invitation/- -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.784 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=75b41c0a GET /api/v1/invitations/M7zRYnZh/guestbook -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.822 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=f9f9ce47 GET /api/v1/invitations/M7zRYnZh/images -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.840 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=c85afe97 GET /login -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.845 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=9302abf4 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.848 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=91474f17 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.853 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=442701d3 GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.858 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=f957b07d GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.864 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=bf94863a GET /login -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:22.868 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=27d57a87 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.401 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=23294704 GET /invitation/M7zRYnZh -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.468 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=66f130a3 GET /api/v1/invitations/M7zRYnZh -> 200 (14ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.480 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=3a44e502 GET /invitation/- -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.486 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=0ccff493 GET /api/v1/invitations/M7zRYnZh/guestbook -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.501 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=8a385744 GET /api/v1/invitations/M7zRYnZh/images -> 200 (9ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.516 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=99c4b5f6 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.519 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=4dc38513 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.527 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=17e89a1b GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.531 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=ed2ed996 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.535 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=47db5cae GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.545 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=665d4beb GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:03:29.548 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=f3714b65 GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:04:23.830 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=eac06351 GET /login -> 200 (6ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:03.115 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 02:06:03.594 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 02:06:03.597 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 02:06:03.599 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 02:06:03.605 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 02:06:06.763 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 02:06:06.852 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 15912 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 02:06:06.853 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 02:06:07.759 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 02:06:07.869 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 93 ms. Found 6 JPA repository interfaces.
+2025-11-24 02:06:08.749 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 02:06:08.758 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 02:06:08.760 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 02:06:08.760 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 02:06:08.816 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 02:06:08.818 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1902 ms
+2025-11-24 02:06:09.154 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 02:06:09.257 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 02:06:09.317 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 02:06:09.737 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 02:06:09.805 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 02:06:10.062 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@2d47b06
+2025-11-24 02:06:10.063 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 02:06:10.094 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 02:06:10.118 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 02:06:11.224 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 02:06:11.395 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 02:06:12.009 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 02:06:13.285 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 02:06:13.346 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 02:06:14.208 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 02:06:14.236 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 02:06:14.244 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 8.064 seconds (process running for 8.453)
+2025-11-24 02:06:49.447 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 02:06:49.449 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 02:06:49.450 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 02:06:49.911 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=35543c86 GET / -> 200 (421ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.304 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=ba13953c GET /invitation/tAkmnAJk -> 200 (161ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.638 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=c5ad3dc0 GET /api/v1/invitations/tAkmnAJk -> 200 (262ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.658 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=71ab9e7b GET /uploads/b2e17f76-df6c-44bb-b572-df32f6132628.png -> 200 (10ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.672 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=77741479 GET /api/v1/invitations/tAkmnAJk/guestbook -> 200 (28ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.715 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=64e2add6 GET /api/v1/invitations/tAkmnAJk/images -> 200 (26ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.724 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=2876c24b GET /uploads/b394dc7b-8996-4784-851a-92f8e1f2f139.png -> 200 (3ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.724 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=9fc083e3 GET /uploads/762d4f9b-a757-4d21-ad43-b074d23543f1.png -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.727 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=904d337b GET /uploads/b2e17f76-df6c-44bb-b572-df32f6132628.png -> 200 (7ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.729 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=892400c5 GET /uploads/2c92fa30-b1f0-4bf2-ac77-7768fe4b1937.png -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.729 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=55510d0c GET /uploads/3ae8602a-65da-4d66-b939-747b7af0f3c0.png -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.729 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=35bcbe13 GET /uploads/b66cfb73-bca1-41cf-9f77-7cbd8d29b775.png -> 200 (5ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:06:54.731 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=f572c162 GET /uploads/0a05c21f-85f4-4a95-82c0-48b05d14f7bd.png -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 02:09:07.961 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 02:09:08.448 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 02:09:08.452 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 02:09:08.455 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 02:09:08.464 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

@@ -98,7 +98,9 @@ public class InvitationApiController {
     public ResponseEntity<List<String>> getInvitationImages(@PathVariable("code") String code){
         List<InvitationImage> images = invitationImageService.getImagesByInvitationCode(code);
 
-        List<String> imageUrls = images.stream().map(InvitationImage::getImageUrl).toList();
+        List<String> imageUrls = images.stream()
+                                .map(InvitationImage::getImageUrl)
+                                .toList();
 
         return ResponseEntity.ok(imageUrls);
     }

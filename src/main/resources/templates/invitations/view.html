@@ -447,8 +447,11 @@
   <!-- 메인 히어로 (사진 + 한 줄 예식정보) -->
   <div class="hero-container">
     <div class="hero-image-wrap">
-      <img id="mainImage" alt="메인 이미지"
-           th:src="@{|/admin/invitations/${code}/images/main|}">
+<!--      <img id="mainImage" alt="메인 이미지"-->
+<!--           th:src="@{|/admin/invitations/${code}/images/main|}">-->
+<!--      <img id="mainImage" alt="메인 이미지"-->
+<!--           th:src="@{|/api/v1/invitations/${code}/images/main|}">-->
+      <img src="" id="mainImage" alt="메인 이미지">
     </div>
     <div class="hero-info-card">
       <div class="hero-names-row">
@@ -600,49 +603,58 @@
   }
 
   async function loadGalleryImages(code) {
-      const res = await fetch(`/api/v1/invitations/${code}/images`);
-      if (!res.ok) return;
+  const res = await fetch(`/api/v1/invitations/${code}/images`);
+  if (!res.ok) return;
 
-      const urls = await res.json();
-      console.log("Gallery URL:", urls);
+  const urls = await res.json();
+  console.log("Gallery URL:", urls);
 
-      if (!urls.length) return;
+  if (!urls.length) return;
 
-      const wrapper = document.getElementById("galleryWrapper");
-      wrapper.style.display = "block";
-
-      const grid = document.getElementById("galleryGrid");
-      const moreBtn = document.getElementById("galleryMoreBtn");
-
-      const MAX_INITIAL = 6;
-
-      urls.forEach((url, idx) => {
-          const box = document.createElement("div");
-          box.className = "gallery-item";
-          const img = document.createElement("img");
-          img.src = url;
-          img.alt = `gallery-${idx}`;
-          box.appendChild(img);
-
-          if (idx >= MAX_INITIAL) {
-              box.style.display = "none";
-              box.classList.add("hidden-gallery-item");
-          }
-
-          grid.appendChild(box);
-      });
-
-      if (urls.length > MAX_INITIAL) {
-          moreBtn.style.display = "inline-flex";
-          moreBtn.addEventListener("click", () => {
-              document.querySelectorAll(".hidden-gallery-item")
-                  .forEach(el => el.style.display = "block");
-              moreBtn.style.display = "none";
-          });
-      } else {
-          moreBtn.style.display = "none";
-      }
+  // 여기서 메인 이미지도 같이 지정
+  const mainImageEl = document.getElementById("mainImage");
+  if (mainImageEl) {
+      mainImageEl.src = urls[0];  // 첫 번째 이미지를 대표 이미지로
   }
+
+  const wrapper = document.getElementById("galleryWrapper");
+  wrapper.style.display = "block";
+
+  const grid = document.getElementById("galleryGrid");
+  const moreBtn = document.getElementById("galleryMoreBtn");
+
+  const MAX_INITIAL = 6;
+
+  urls.forEach((url, idx) => {
+      const box = document.createElement("div");
+      box.className = "gallery-item";
+
+      const img = document.createElement("img");
+      img.src = url;              // 썸네일도 같은 url 사용
+      img.alt = `gallery-${idx}`;
+
+      box.appendChild(img);
+
+      if (idx >= MAX_INITIAL) {
+          box.style.display = "none";
+          box.classList.add("hidden-gallery-item");
+      }
+
+      grid.appendChild(box);
+  });
+
+  if (urls.length > MAX_INITIAL) {
+      moreBtn.style.display = "inline-flex";
+      moreBtn.addEventListener("click", () => {
+          document.querySelectorAll(".hidden-gallery-item")
+              .forEach(el => el.style.display = "block");
+          moreBtn.style.display = "none";
+      });
+  } else {
+      moreBtn.style.display = "none";
+  }
+}
+
 
   // ---- 연락처 / 계좌 관련 헬퍼 ----
   function copyToClipboard(text) {

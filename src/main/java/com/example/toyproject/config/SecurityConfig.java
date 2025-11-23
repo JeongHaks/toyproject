@@ -40,14 +40,13 @@ public class SecurityConfig {
         http
                 // URL 접근 권한 (로그인 없이 접근 허용 가능한 URL)
                 .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/","/login","/auth/signup","/css/**","/js/**","/images/**").permitAll() // 로그인 없이 접근 허용
-                .requestMatchers(HttpMethod.GET, "/posts", "/posts/*").permitAll() // 목록/상세 공개
-                .requestMatchers(HttpMethod.GET, "/admin/invitations/*/images/**").permitAll()
-                .requestMatchers(HttpMethod.GET, "/admin/invitations/*/main-image/**").permitAll()
-                .requestMatchers("/invitation/**").permitAll()
-                .requestMatchers("/api/v1/invitations/*/images/**").permitAll()
-                .requestMatchers("/admin/**").authenticated()
-                .anyRequest().authenticated() // 이 외 로그인 인증 필요
+                        .requestMatchers("/","/login","/auth/signup","/css/**","/js/**","/images/**").permitAll() // 로그인 없이 접근 허용
+                        .requestMatchers(HttpMethod.GET, "/posts", "/posts/*").permitAll() // 목록/상세 공개
+                        .requestMatchers("/invitation/**").permitAll()
+                        .requestMatchers("/api/v1/invitations/**").permitAll()
+                        .requestMatchers(HttpMethod.GET,"/uploads/**").permitAll()
+                        .requestMatchers("/admin/**").authenticated()
+                        .anyRequest().authenticated() // 이 외 로그인 인증 필요
                 )
                 // 폼 로그인 설정 폼 로그인 의미(로그인 시도시 인증 받았던 사람인지 확인)
                 .formLogin(login -> login
