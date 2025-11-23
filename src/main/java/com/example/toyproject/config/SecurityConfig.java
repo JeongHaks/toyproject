@@ -44,6 +44,7 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.GET, "/posts", "/posts/*").permitAll() // 목록/상세 공개
                 .requestMatchers("/invitation/**").permitAll()
                 .requestMatchers("/api/v1/invitations/**").permitAll()
+                .requestMatchers("/api/v1/invitations/**").permitAll()
                 .requestMatchers("/admin/**").authenticated()
                 .anyRequest().authenticated() // 이 외 로그인 인증 필요
                 )
