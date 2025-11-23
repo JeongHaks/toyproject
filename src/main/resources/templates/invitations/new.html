@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>모바일 초대장 생성</title>
+
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <!-- 관리자용 간단 스타일 -->
+    <style>
+        body {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: sans-serif;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 15px;
+            display: block;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 4px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<h2>모바일 청첩장 생성</h2>
+
+<div>
+    <label>제목</label>
+    <input type="text" id="title" placeholder="예: 아무개남 ♥ 아무개녀 결혼식에 초대합니다">
+
+    <label>신랑 이름</label>
+    <input type="text" id="groomName">
+
+    <label>신부 이름</label>
+    <input type="text" id="brideName">
+
+    <label>예식 날짜</label>
+    <input type="date" id="weddingDate">
+
+    <label>예식 시간</label>
+    <input type="time" id="weddingTime">
+
+    <label>예식장명</label>
+    <input type="text" id="hallName" placeholder="예: OO웨딩컨벤션 3층 그랜드홀">
+
+    <label>주소</label>
+    <input type="text" id="address" placeholder="예: 서울시 OO구 OO로 123">
+
+    <label>지도 URL</label>
+    <input type="text" id="mapUrl" placeholder="카카오맵/네이버맵 링크">
+
+    <label>메인 이미지 URL</label>
+    <input type="text" id="mainImageUrl" placeholder="대표 사진 주소 (나중에 S3로 교체 가능)">
+
+    <label>인사말 메시지</label>
+    <textarea id="message" rows="4" placeholder="게스트에게 보여줄 인사말을 입력하세요."></textarea>
+
+    <label>연락처 정보</label>
+    <textarea id="contactInfo" name="contactInfo" row="5" style="width:100%" placeholder="예: 신랑 010-..., 신부 010-..."></textarea>
+
+    <!-- 갤러리 이미지 업로드 input 추가 -->
+    <label for="galleryImages">갤러리 이미지 (여러 장 선택 가능)</label>
+    <input type="file"
+           id="galleryImages"
+           multiple
+           accept="image/*"
+           style="margin-top:4px; margin-bottom:12px;">
+
+    <button onclick="createInvitation()">초대장 생성</button>
+</div>
+
+<script>
+    // 갤러리 이미지 업로드 함수
+    async function uploadGalleryImages(code) {
+        const fileInput = document.getElementById("galleryImages");
+        if (!fileInput) return;
+
+        const files = fileInput.files;
+
+        // 선택된 파일이 없으면 업로드 생략
+        if (!files || files.length === 0) {
+            console.log("갤러리 이미지 없음, 업로드 생략");
+            return;
+        }
+
+        const formData = new FormData();
+        for (const file of files) {
+            // 컨트롤러 @RequestParam("files") 와 이름 맞추기!
+            formData.append("files", file);
+        }
+
+        // CSRF
+        const csrfToken  = document.querySelector("meta[name='_csrf']").getAttribute("content");
+        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+        try {
+            const res = await fetch(`/admin/invitations/${code}/images`, {
+                method: "POST",
+                headers: {
+                    //  Content-Type 은 직접 지정하지 않는다 (multipart boundary 깨짐)
+                    [csrfHeader]: csrfToken
+                },
+                body: formData
+            });
+
+            if (!res.ok) {
+                console.error("갤러리 업로드 실패", res.status);
+                alert("갤러리 이미지 업로드에 실패했습니다.");
+            } else {
+                console.log("갤러리 업로드 성공");
+            }
+        } catch (e) {
+            console.error("갤러리 업로드 중 오류", e);
+            alert("갤러리 업로드 중 오류가 발생했습니다.");
+        }
+    }
+
+    /**
+     * 초대장 생성 API 호출
+     */
+    function createInvitation() {
+
+        // 1) 입력 값 수집
+        const data = {
+            title: document.getElementById("title").value,
+            groomName: document.getElementById("groomName").value,
+            brideName: document.getElementById("brideName").value,
+            weddingDate: document.getElementById("weddingDate").value,
+            weddingTime: document.getElementById("weddingTime").value,
+            hallName: document.getElementById("hallName").value,
+            address: document.getElementById("address").value,
+            mapUrl: document.getElementById("mapUrl").value,
+            mainImageUrl: document.getElementById("mainImageUrl").value,
+            message: document.getElementById("message").value,
+            contactInfo: document.getElementById("contactInfo").value
+        };
+
+        const csrfToken = document.querySelector("meta[name='_csrf']").getAttribute("content");
+        const csrfHeader = document.querySelector("meta[name='_csrf_header']").getAttribute("content");
+
+        // 2) 초대장 생성 요청
+        fetch("/api/v1/invitations", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                [csrfHeader]: csrfToken
+            },
+            body: JSON.stringify(data)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("서버 에러: " + response.status);
+            }
+            return response.json();
+        })
+        .then(async result => {
+            //  3) 먼저 갤러리 업로드 시도
+            await uploadGalleryImages(result.code);
+
+            //  4) 안내 후 손님용 초대장 페이지로 이동
+            alert(
+                "초대장 생성 완료!\n" +
+                "코드: " + result.code + "\n" +
+                "URL: /invitation/" + result.code
+            );
+            window.location.href = "/invitation/" + result.code;
+        })
+        .catch(err => {
+            console.error(err);
+            alert("초대장 생성 중 오류가 발생했습니다.");
+        });
+    }
+</script>
+
+</body>
+</html>

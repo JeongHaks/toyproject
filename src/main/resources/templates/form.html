@@ -19,14 +19,14 @@
         <div class="card-body">
           <h3 class="mb-3 fs-5">게시글 작성/수정</h3>
 
-          <!-- ✅ th:object 컨텍스트를 form에 둔다 -->
+          <!-- th:object 컨텍스트를 form에 둔다 -->
           <form th:object="${postForm}"
                 th:action="${postId} != null ? @{'/posts/' + ${postId} + '/edit'} : @{/posts/new}"
                 method="post">
 
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
-            <!-- ✅ 글로벌 에러: 폼 전체 에러 메시지 -->
+            <!-- 글로벌 에러: 폼 전체 에러 메시지 -->
             <div th:if="${#fields.hasGlobalErrors()}" class="alert alert-danger">
               <p th:each="err : ${#fields.globalErrors()}"
                  th:text="${err}"></p>

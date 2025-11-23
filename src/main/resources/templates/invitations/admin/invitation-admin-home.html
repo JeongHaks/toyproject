@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>모바일 청첩장 관리자</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #f1eee9;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #222;
+    }
+    .admin-container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 24px 16px 40px;
+    }
+    .page-title {
+        font-size: 22px;
+        font-weight: 600;
+        margin: 0 0 6px;
+    }
+    .page-subtitle {
+        font-size: 13px;
+        color: #666;
+        margin: 0 0 18px;
+    }
+
+    /* 상단 버튼 영역 */
+    .top-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 18px;
+        flex-wrap: wrap;
+    }
+    .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 14px;
+        background: #111827;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 999px;
+        font-size: 13px;
+        border: none;
+        cursor: pointer;
+    }
+    .primary-btn:hover {
+        background: #0f172a;
+    }
+
+    /* 카드 리스트 */
+    .card-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 12px;
+    }
+    .invite-card {
+        background: #fdfaf5;
+        border-radius: 12px;
+        padding: 14px 14px 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        border: 1px solid rgba(0,0,0,0.03);
+    }
+    .invite-title {
+        font-size: 15px;
+        font-weight: 600;
+        margin: 0 0 4px;
+    }
+    .invite-meta {
+        font-size: 12px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 6px;
+        white-space: pre-line;
+    }
+    .badge-row {
+        font-size: 11px;
+        margin-bottom: 8px;
+    }
+    .badge {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        font-size: 10px;
+        margin-right: 4px;
+        background: #e0f2fe;
+        color: #0f172a;
+    }
+
+    /* 액션 버튼 */
+    .card-actions {
+        margin-top: 4px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        font-size: 12px;
+    }
+    .card-btn {
+        flex: 1;
+        min-width: 90px;
+        text-align: center;
+        padding: 6px 8px;
+        border-radius: 999px;
+        border: 1px solid #e5d7c9;
+        background: #fbf7f2;
+        text-decoration: none;
+        color: #444;
+        cursor: pointer;
+    }
+    .card-btn:hover {
+        background: #f2e6d7;
+    }
+    .card-btn--secondary {
+        background: #fff;
+    }
+
+    .empty-text {
+        font-size: 13px;
+        color: #666;
+        margin-top: 18px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="admin-container">
+
+  <h1 class="page-title">모바일 청첩장 관리자</h1>
+  <p class="page-subtitle">
+    생성된 초대장을 한눈에 보고, 손님 화면·방명록·갤러리를 관리합니다.
+  </p>
+
+  <!-- 상단: 새 초대장 생성 버튼 -->
+  <div class="top-actions">
+    <a class="primary-btn" th:href="@{/admin/invitations/new}">
+      ➕ 새 초대장 생성
+    </a>
+  </div>
+
+  <!-- 초대장이 하나도 없을 때 -->
+  <div th:if="${#lists.isEmpty(invitations)}" class="empty-text">
+    아직 등록된 초대장이 없습니다. 먼저 초대장을 생성해 주세요.
+  </div>
+
+  <!-- 초대장 카드 리스트 -->
+  <div class="card-list" th:if="${!#lists.isEmpty(invitations)}">
+    <div class="invite-card" th:each="inv : ${invitations}">
+      <!-- 제목 -->
+      <p class="invite-title" th:text="${inv.title}">모바일 청첩장 제목</p>
+
+      <!-- 예식장 / 일시 -->
+      <p class="invite-meta">
+        <span th:text="${inv.hallName}">예식장 이름</span><br/>
+        <span th:text="${inv.weddingDate}">2025-10-10</span>
+        <span th:text="${inv.weddingTime}">14:00</span>
+      </p>
+
+      <!-- 코드 배지 -->
+      <div class="badge-row">
+        <span class="badge" th:text="'코드: ' + ${inv.code}">코드: ABC123</span>
+      </div>
+
+      <!-- 액션 버튼들 -->
+      <div class="card-actions">
+        <!-- 손님용 초대장 보기 -->
+        <a class="card-btn"
+           th:href="@{|/invitation/${inv.code}|}"
+           target="_blank">
+          손님 화면 보기
+        </a>
+
+        <!-- 방명록 관리 -->
+        <a class="card-btn card-btn--secondary"
+           th:href="@{|/admin/invitations/${inv.code}/guestbook|}">
+          방명록 관리
+        </a>
+
+        <!-- 갤러리 관리 -->
+        <a class="card-btn card-btn--secondary"
+           th:href="@{|/admin/invitations/${inv.code}/images-page|}">
+          갤러리 관리
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

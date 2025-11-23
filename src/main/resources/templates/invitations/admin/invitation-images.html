@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>갤러리 관리</title>
+
+  <!-- CSRF (PUT 요청에 필요) -->
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+  <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+        background: #f5f5f7;
+    }
+
+    .admin-wrapper {
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #ffffff;
+        min-height: 100vh;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+    }
+
+    h1 {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 18px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 10px;
+    }
+
+    .image-card {
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fafafa;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        position: relative;
+        padding-bottom: 6px;
+    }
+
+    .image-card img {
+        width: 100%;
+        height: 120px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .btn-main {
+        display: block;
+        width: calc(100% - 10px);
+        margin: 4px auto 0;
+        padding: 5px 0;
+        font-size: 11px;
+        border-radius: 8px;
+        border: none;
+        background: #4b5563;
+        color: #ffffff;
+        cursor: pointer;
+    }
+
+    .btn-main[disabled] {
+        background: #9ca3af;
+        cursor: default;
+    }
+
+    .badge-main {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        background: #facc15;
+        color: #111827;
+        font-size: 11px;
+        padding: 3px 6px;
+        border-radius: 999px;
+        font-weight: 600;
+    }
+
+    .bottom-links {
+        text-align: center;
+        margin-top: 18px;
+        font-size: 13px;
+    }
+
+    .bottom-links a {
+        color: #4b5563;
+        text-decoration: none;
+    }
+
+    .bottom-links a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="admin-wrapper" th:attr="data-code=${code}">
+  <h1>갤러리 관리</h1>
+
+  <div id="galleryGrid" class="gallery-grid">
+    <!-- JS로 채움 -->
+  </div>
+
+  <div class="bottom-links">
+    <a th:href="@{'/admin/invitations'}">◀ 초대장 목록으로 돌아가기</a>
+  </div>
+</div>
+
+<script>
+  async function loadGallery() {
+      const wrapper = document.querySelector('.admin-wrapper');
+      const code = wrapper.getAttribute('data-code');
+
+      const res = await fetch(`/api/v1/invitations/${code}/images`);
+      if (!res.ok) {
+          alert('갤러리 조회 실패');
+          return;
+      }
+
+      const urls = await res.json();
+      const grid = document.getElementById('galleryGrid');
+      grid.innerHTML = '';
+
+      if (!urls.length) {
+          grid.innerHTML = "<p style='grid-column:1/-1; text-align:center; font-size:13px; color:#777;'>업로드된 이미지가 없습니다.</p>";
+          return;
+      }
+
+      urls.forEach(url => {
+          const card = document.createElement('div');
+          card.className = 'image-card';
+          card.setAttribute('data-url', url);
+
+          card.innerHTML = `
+              <img src="${url}" alt="gallery">
+              <button type="button" class="btn-main">대표로 설정</button>
+          `;
+
+          const btn = card.querySelector('.btn-main');
+          btn.addEventListener('click', () => setMainImage(code, url));
+
+          grid.appendChild(card);
+      });
+
+      // 현재 대표 이미지 표시
+      highlightCurrentMainImage(code);
+  }
+
+  async function setMainImage(code, imageUrl) {
+      if (!confirm('이 이미지를 대표 이미지로 설정하시겠습니까?')) {
+          return;
+      }
+
+      const csrfToken  = document.querySelector('meta[name="_csrf"]').content;
+      const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+
+      const res = await fetch(`/admin/invitations/${code}/main-image?imageUrl=${encodeURIComponent(imageUrl)}`, {
+          method: 'PUT',
+          headers: {
+              [csrfHeader]: csrfToken
+          }
+      });
+
+      if (res.ok || res.status === 204) {
+          alert('대표 이미지가 변경되었습니다.');
+          await highlightCurrentMainImage(code);
+      } else {
+          alert('대표 이미지 설정 실패 (status: ' + res.status + ')');
+      }
+  }
+
+  async function highlightCurrentMainImage(code) {
+      const res = await fetch(`/api/v1/invitations/${code}`);
+      if (!res.ok) {
+          console.warn('대표 이미지 확인 실패');
+          return;
+      }
+
+      const data = await res.json();
+      const mainUrl = (data.mainImageUrl || '').trim();
+
+      const cards = document.querySelectorAll('.image-card');
+      cards.forEach(card => {
+          const url = card.getAttribute('data-url');
+          let badge = card.querySelector('.badge-main');
+          const btn = card.querySelector('.btn-main');
+
+          if (badge) {
+              badge.remove();
+          }
+
+          if (btn) {
+              btn.disabled = false;
+              btn.textContent = '대표로 설정';
+          }
+
+          if (mainUrl && url === mainUrl) {
+              // 배지 추가
+              badge = document.createElement('div');
+              badge.className = 'badge-main';
+              badge.textContent = '대표';
+              card.appendChild(badge);
+
+              if (btn) {
+                  btn.disabled = true;
+                  btn.textContent = '현재 대표';
+              }
+          }
+      });
+  }
+
+  document.addEventListener('DOMContentLoaded', loadGallery);
+</script>
+</body>
+</html>

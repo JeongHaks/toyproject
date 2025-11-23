@@ -27,7 +27,7 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    // 회원가입 처리 메서드
+    // 회원가입시 처리 메서드
     public String signup(SignupRequest req){
         // ID 중복검사
         if(userRepository.existsById(req.id)){
@@ -51,6 +51,7 @@ public class AuthService {
         // DB에 저장하기.
         userRepository.save(user);
 
+        // 회원가입한 User Id 정보를 가져온다.
         return user.getId();
     }
 }

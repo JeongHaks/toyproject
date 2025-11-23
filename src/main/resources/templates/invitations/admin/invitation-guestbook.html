@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>방명록 관리</title>
+
+  <!-- CSRF (이미 다른 템플릿에서도 쓰던 패턴) -->
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+  <style>
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 16px;
+        background: #f7f7f7;
+    }
+    h1 {
+        font-size: 20px;
+        margin-bottom: 16px;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        font-size: 13px;
+    }
+    th {
+        background: #f0f0f0;
+    }
+    button {
+        padding: 4px 8px;
+        font-size: 12px;
+        cursor: pointer;
+    }
+  </style>
+</head>
+<body th:attr="data-code=${code}">
+
+<h1>방명록 관리</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>이름</th>
+    <th>메시지</th>
+    <th>작성일</th>
+    <th>관리</th>
+  </tr>
+  </thead>
+  <tbody id="guestbookAdminTbody">
+  <!-- JS로 내용 채움 -->
+  </tbody>
+</table>
+
+<script>
+  function formatTime(str) {
+      if (!str) return "";
+      const d = new Date(str);
+      return d.toLocaleString("ko-KR").slice(0, -3);
+  }
+
+  async function loadGuestbooksAdmin(code) {
+      const res = await fetch(`/api/v1/invitations/${code}/guestbook`);
+      if (!res.ok) {
+          alert("방명록 조회 실패");
+          return;
+      }
+      const list = await res.json();
+      const tbody = document.getElementById("guestbookAdminTbody");
+      tbody.innerHTML = "";
+
+      if (!list.length) {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `<td colspan="5" style="text-align:center; color:#777;">방명록이 없습니다.</td>`;
+          tbody.appendChild(tr);
+          return;
+      }
+
+      list.forEach(item => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+              <td>${item.id}</td>
+              <td>${item.guestName}</td>
+              <td>${item.message}</td>
+              <td>${formatTime(item.createdAt)}</td>
+              <td>
+                  <button type="button" data-id="${item.id}">삭제</button>
+              </td>
+          `;
+          tbody.appendChild(tr);
+      });
+
+      // 삭제 버튼 클릭 이벤트 등록
+      tbody.querySelectorAll("button[data-id]").forEach(btn => {
+          btn.addEventListener("click", async (e) => {
+              const id = e.target.getAttribute("data-id");
+              if (!confirm(`ID ${id} 방명록을 삭제하시겠습니까?`)) {
+                  return;
+              }
+              await deleteGuestbookAdmin(code, id);
+          });
+      });
+  }
+
+  async function deleteGuestbookAdmin(code, guestbookId) {
+      const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+      const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+
+      const res = await fetch(`/admin/invitations/${code}/guestbook/${guestbookId}`, {
+          method: "DELETE",
+          headers: {
+              [csrfHeader]: csrfToken
+          }
+      });
+
+      if (res.ok || res.status === 204) {
+          alert("삭제되었습니다.");
+          loadGuestbooksAdmin(code); // 목록 다시 로딩
+      } else {
+          alert("삭제 실패 (status: " + res.status + ")");
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+      const code = document.body.getAttribute("data-code");
+      loadGuestbooksAdmin(code);
+  });
+</script>
+
+</body>
+</html>

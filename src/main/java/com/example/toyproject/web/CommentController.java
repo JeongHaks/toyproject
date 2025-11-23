@@ -119,7 +119,7 @@ public class CommentController {
             commentService.deleteComment(commentId, requester);
             ra.addFlashAttribute("msg", "댓글이 삭제되었습니다.");
         } catch (IllegalStateException ise) {
-            // ✅ 자식(대댓글) 존재로 인한 삭제 금지
+            // 자식(대댓글) 존재로 인한 삭제 금지
             ra.addFlashAttribute("err", ise.getMessage()); // "대댓글이 있어 삭제할 수 없습니다."
         } catch (SecurityException se) {
             ra.addFlashAttribute("err", "본인 댓글만 삭제할 수 있습니다.");

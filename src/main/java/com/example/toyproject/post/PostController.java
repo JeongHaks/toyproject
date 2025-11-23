@@ -31,6 +31,7 @@ public class PostController {
     private final PostService postService;
     private final CommentService commentService;
 
+    // 생성자 주입(의존성 주입(?))
     public PostController(PostService postService, CommentService commentService)
     {
         this.postService = postService;
@@ -39,34 +40,33 @@ public class PostController {
 
 
     /** 게시판 목록 (최신순, 페이징) */
-    // 게시판 이동 누르면 오늘 함수
+    // 게시판 이동 함수(게시글 목록을 보여준다.)
     @GetMapping
     public String list(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "10") int size,
                        @RequestParam(name = "keyword", required = false) String keyword,
                        Model model) {
+        // Keyword : 화면에서 게시글 목록 검색창에 입력한 값 전달 받는다.
         Page<Post> posts = postService.list(keyword, page, size);
-        System.out.printf("DEBUG page=%d, size=%d, totalElements=%d, totalPages=%d, contentSize=%d%n",
-                posts.getNumber(), posts.getSize(), posts.getTotalElements(), posts.getTotalPages(), posts.getContent().size());
+
+        // list 검색한 내용의 리스트 목록 전달 (키워드값, 리스트목록)
         model.addAttribute("posts", posts);
         model.addAttribute("keyword", keyword);
         return "list"; // templates/list.html
     }
 
-    /** 상세 */
+    /** 상세 목록보기 */
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Long id, Model model, Authentication auth) {
-        // 1. 게시글 단건 조회
+        // 1. 게시글 1건 조회 (해당 ID의 게시글 목록 내용 담기)
         Post post = postService.get(id);
 
         // 로그인 사용자 확인한 후 내 글 여부 판단한다.
         String currentUser = (auth != null) ? auth.getName() : null;
         boolean mine = currentUser != null && currentUser.equals(post.getUserId());
 
-        // 댓글 목록 조회
+        // 댓글 목록 조회(해당 ID가 쓴 댓글 리스크 가져오기)
         List<Comment> comments = commentService.getCommentsByPost(String.valueOf(id));
-
-
 
 
         // 모델에 담기.
@@ -78,7 +78,7 @@ public class PostController {
         return "detail"; // templates/detail.html
     }
 
-    /** 작성 폼 */
+    /** 수정시 작성 폼 */
     @GetMapping("/new")
     public String newForm(Model model) {
         if(!model.containsAttribute("postForm")){ // 이름 : postForm
@@ -87,7 +87,7 @@ public class PostController {
         return "form"; // templates/form.html
     }
 
-    /** 작성 처리 */
+    /** 작성 및 수정 처리 */
     @PostMapping("/new")
     public String create(@Valid @ModelAttribute("postForm") PostForm form,
                          RedirectAttributes ra,
@@ -125,7 +125,7 @@ public class PostController {
                          BindingResult bindingResult,
                          Authentication auth,
                          Model model) {
-        // ⚠️ 에러 시에도 postId를 다시 넣어줘야 form의 th:action 분기가 유지됨
+        // 에러 시에도 postId를 다시 넣어줘야 form의 th:action 분기가 유지됨
         // 유효성 검사
         if (bindingResult.hasErrors()) {
             model.addAttribute("postId", id);
@@ -146,7 +146,5 @@ public class PostController {
 
         return "redirect:/posts"; // 삭제 후 목록으로
     }
-
-    /** 댓글 목록 모델 추가*/
 
 }

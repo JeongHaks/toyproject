@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>모바일 청첩장</title>
+
+  <!-- 모바일 대응 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta name="_csrf" th:content="${_csrf.token}"/>
+  <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+  <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(180deg, #f3eee7, #fdfaf5);
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
+        color: #222;
+    }
+
+    .invite-container {
+        max-width: 520px;
+        margin: 0 auto;
+        background: #fdfaf5;
+        padding: 0 0 40px;
+        min-height: 100vh;
+        box-shadow: 0 6px 24px rgba(0,0,0,0.06);
+        border-radius: 16px;
+        overflow: hidden;
+    }
+
+    /* 상단 타이틀 */
+    .page-title-wrap {
+        padding: 16px 18px 8px;
+        text-align: center;
+    }
+
+    h1#title {
+        font-size: 18px;
+        margin: 0 0 4px;
+        letter-spacing: 0.08em;
+        color: #5b3b2a;
+    }
+
+    .title-sub {
+        font-size: 11px;
+        color: #a27c5b;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin: 0;
+    }
+
+    /* 메인 히어로 영역 (사진 + 간략 예식정보) */
+    .hero-container {
+        margin-top: 10px;
+    }
+
+    .hero-image-wrap {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    #mainImage {
+        width: 100%;
+        max-height: 420px;
+        object-fit: cover;
+        display: block;
+    }
+
+    .hero-info-card {
+        background: #fdf7ef;
+        border-top: 1px solid rgba(0,0,0,0.03);
+        padding: 18px 18px 20px;
+        text-align: center;
+        position: relative;
+    }
+
+    .hero-names-row {
+        font-size: 15px;
+        color: #40312a;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 26px;
+        margin-bottom: 10px;
+    }
+
+    .hero-names-row span {
+        white-space: nowrap;
+    }
+
+    .hero-date-center {
+        font-size: 13px;
+        color: #8b5a3c;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        margin-top: 6px;
+    }
+
+    .hero-hall {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #4a3b33;
+    }
+
+    .hero-divider-line {
+        width: 60%;
+        height: 1px;
+        background: #e6d4c5;
+        margin: 10px auto 0;
+    }
+
+    /* 본문 내용 패딩 */
+    .content-inner {
+        padding: 18px 18px 32px;
+    }
+
+    .section-title {
+        font-weight: 600;
+        margin-top: 22px;
+        margin-bottom: 8px;
+        font-size: 14px;
+        color: #8b5a3c;
+        letter-spacing: 0.04em;
+    }
+
+    .meta-row {
+        font-size: 14px;
+        line-height: 1.7;
+        white-space: pre-line;
+        word-break: break-word;
+        margin: 0;
+    }
+
+    /* 인사말 / 연락처 카드 */
+    .soft-card {
+        background: #f8f1ea;
+        border-radius: 14px;
+        padding: 12px 12px 10px;
+        border: 1px solid #f0e0ce;
+        margin-top: 6px;
+    }
+
+    .soft-card .meta-row {
+        font-size: 13px;
+    }
+
+    .contact-card {
+        background: #f9f4ec;
+        border-radius: 14px;
+        padding: 10px 12px 8px;
+        border: 1px dashed #e3d2bd;
+        margin-top: 6px;
+        font-size: 13px;
+    }
+
+    /* 연락처/계좌 줄 + 복사 버튼 */
+    .contact-line {
+        font-size: 13px;
+        line-height: 1.7;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 6px;
+        margin: 2px 0;
+    }
+    .contact-line-text {
+        white-space: pre-line;
+        word-break: break-word;
+        flex: 1;
+    }
+    .copy-btn {
+        flex-shrink: 0;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid #e0d0c0;
+        background: #fff;
+        font-size: 11px;
+        cursor: pointer;
+        color: #7b4b30;
+    }
+    .copy-btn:hover {
+        background: #f5eee7;
+    }
+
+    /* 예식 일정 캘린더 카드 */
+    .calendar-card {
+        background: #faf3ea;
+        border-radius: 18px;
+        padding: 18px 18px 16px;
+        border: 1px solid #eddccc;
+        margin-top: 6px;
+        text-align: center;
+    }
+    .calendar-header-date {
+        font-size: 18px;
+        color: #5b3b2a;
+        margin-bottom: 4px;
+    }
+    .calendar-header-time {
+        font-size: 13px;
+        color: #8b5a3c;
+        margin-bottom: 14px;
+    }
+    .calendar-divider {
+        height: 1px;
+        background: #e6d4c5;
+        margin: 6px auto 14px;
+        width: 70%;
+    }
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 4px;
+        font-size: 12px;
+        margin-bottom: 12px;
+    }
+    .calendar-day-name {
+        color: #b48b6d;
+        font-weight: 500;
+        padding: 2px 0 4px;
+    }
+    .calendar-day {
+        height: 26px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .calendar-day span {
+        display: inline-block;
+        padding: 4px 0;
+        width: 24px;
+        text-align: center;
+        border-radius: 999px;
+    }
+    .calendar-day.empty span {
+        opacity: 0;
+    }
+    .calendar-day.selected span {
+        background: #d8b08c;
+        color: #fff;
+    }
+    .calendar-footer-text {
+        font-size: 12px;
+        color: #a07064;
+        margin-top: 4px;
+    }
+
+    /* 지도 카드 */
+    .map-card {
+        border-radius: 18px;
+        overflow: hidden;
+        margin-top: 10px;
+        background: #f7f0e4;
+        border: 1px solid #ead8c3;
+    }
+
+    .map-card-header {
+        padding: 14px 16px 10px;
+        text-align: center;
+    }
+
+    .map-card-header h2 {
+        font-size: 15px;
+        margin: 0 0 6px;
+        color: #7b4b30;
+    }
+
+    .map-card-header p {
+        font-size: 12px;
+        color: #555;
+        margin: 0;
+        white-space: pre-line;
+        word-break: break-word;
+    }
+
+    .map-buttons {
+        display: flex;
+        gap: 8px;
+        padding: 10px 10px 12px;
+        justify-content: center;
+        background: #fbf7f2;
+        border-top: 1px solid #f0e3d4;
+    }
+
+    .map-btn {
+        padding: 7px 10px;
+        font-size: 12px;
+        background: #fff;
+        border-radius: 999px;
+        border: 1px solid #e5d7c9;
+        text-decoration: none;
+        color: #333;
+        flex: 1;
+        text-align: center;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    }
+
+    .map-btn:hover {
+        background: #f5eee7;
+    }
+
+    /* '오시는 방법' 안내 카드 */
+    .transport-card {
+        margin-top: 10px;
+        background: #f9f4ec;
+        border-radius: 14px;
+        padding: 12px 14px 10px;
+        border: 1px solid #f0e0ce;
+        font-size: 13px;
+        line-height: 1.7;
+        white-space: pre-line;
+        word-break: break-word;
+    }
+
+    /* 갤러리 섹션 */
+    #galleryWrapper {
+        margin-top: 8px;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .gallery-item img {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+        object-fit: cover;
+        aspect-ratio: 3 / 4;
+        background: #eee;
+    }
+
+    #galleryMoreBtn {
+        margin: 12px auto 0;
+        display: none;
+        padding: 7px 14px;
+        border-radius: 999px;
+        border: 1px solid #e5d7c9;
+        background: #fbf7f2;
+        font-size: 13px;
+        cursor: pointer;
+        color: #7b4b30;
+    }
+
+    #galleryMoreBtn:hover {
+        background: #f2e6d7;
+    }
+
+    /* 방명록 폼 */
+    #guestName,
+    #guestMessage {
+        width: 100%;
+        padding: 9px;
+        margin-bottom: 8px;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+        font-size: 14px;
+        background: #fff;
+    }
+
+    #guestMessage {
+        resize: none;
+        height: 80px;
+    }
+
+    #guestSubmitBtn {
+        width: 100%;
+        padding: 11px;
+        margin-top: 4px;
+        border-radius: 12px;
+        border: none;
+        background: #111827;
+        color: #fff;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    #guestSubmitBtn:hover {
+        background: #0f172a;
+    }
+
+    /* 방명록 리스트 */
+    .guestbook-wrapper {
+        margin-top: 6px;
+        border-radius: 14px;
+        background: #fbf7f2;
+        border: 1px solid #efe2d4;
+        padding: 8px 10px;
+    }
+
+    #guestbookList > div {
+        padding: 8px 0;
+        font-size: 13px;
+        border-bottom: 1px solid #f0e0d2;
+    }
+
+    #guestbookList > div:last-child {
+        border-bottom: none;
+    }
+
+    #guestbookList strong {
+        font-weight: 600;
+        color: #5b3b2a;
+    }
+
+    .time {
+        color: #999;
+        font-size: 11px;
+        margin-left: 6px;
+    }
+
+    hr {
+        border: none;
+        border-top: 1px solid #e3dfd8;
+        margin: 24px 0 18px;
+    }
+
+    .footer-note {
+        margin-top: 20px;
+        text-align: center;
+        font-size: 11px;
+        color: #a08a77;
+    }
+  </style>
+
+  <!-- 카카오 지도 SDK -->
+  <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a682e7903e1e2a73122644b71bb093a0&libraries=services"></script>
+</head>
+
+<body th:attr="data-code=${code}">
+<div class="invite-container">
+
+  <!-- 제목 영역 -->
+  <div class="page-title-wrap">
+    <h1 id="title">초대장 로딩 중...</h1>
+    <p class="title-sub">WE INVITE YOU TO OUR WEDDING DAY</p>
+  </div>
+
+  <!-- 메인 히어로 (사진 + 한 줄 예식정보) -->
+  <div class="hero-container">
+    <div class="hero-image-wrap">
+      <img id="mainImage" alt="메인 이미지"
+           th:src="@{|/admin/invitations/${code}/images/main|}">
+    </div>
+    <div class="hero-info-card">
+      <div class="hero-names-row">
+        <span id="heroGroomName"></span>
+        <span>│</span>
+        <span id="heroBrideName"></span>
+      </div>
+      <div class="hero-date-center" id="heroDateText"></div>
+      <div class="hero-hall" id="heroHallText"></div>
+      <div class="hero-divider-line"></div>
+    </div>
+  </div>
+
+  <!-- 본문 -->
+  <div class="content-inner" id="content" style="display:none;">
+
+    <!-- 예식 일정 (캘린더) -->
+    <p class="section-title">예식 일정</p>
+    <div id="calendarCard" class="calendar-card">
+      <div class="calendar-header-date" id="calendarHeaderDate"></div>
+      <div class="calendar-header-time" id="calendarHeaderTime"></div>
+      <div class="calendar-divider"></div>
+      <div class="calendar-grid" id="weddingCalendar"></div>
+      <div class="calendar-footer-text" id="calendarFooterText"></div>
+    </div>
+
+    <!-- 인사말 -->
+    <p class="section-title">인사말</p>
+    <div class="soft-card">
+      <p class="meta-row" id="message"></p>
+    </div>
+
+    <!-- 연락처 / 계좌 -->
+    <p class="section-title">연락처 / 계좌</p>
+    <div class="contact-card">
+      <div id="contactInfo"></div>
+    </div>
+
+    <!-- 오시는 길 (지도 + 주소 검색) -->
+    <p class="section-title">오시는 길</p>
+    <div id="mapSection" class="map-card">
+      <div class="map-card-header">
+        <h2 id="mapHallName"></h2>
+        <p id="mapAddress"></p>
+      </div>
+      <div id="mapCanvas" style="width:100%; height:240px;"></div>
+
+      <div class="map-buttons">
+        <a id="naverMapBtn" class="map-btn" target="_blank">네이버 지도</a>
+        <a id="kakaoMapBtn" class="map-btn" target="_blank">카카오 지도</a>
+      </div>
+    </div>
+
+    <!-- (옵션) 오시는 방법 텍스트 -->
+    <div id="transportInfoCard" class="transport-card" style="display:none;"></div>
+
+    <!-- 갤러리 -->
+    <p class="section-title">갤러리</p>
+    <div id="galleryWrapper" style="display:none;">
+      <div id="galleryGrid" class="gallery-grid"></div>
+      <button id="galleryMoreBtn">사진 더 보기</button>
+    </div>
+
+    <hr>
+
+    <!-- 방명록 -->
+    <p class="section-title">✍ 축하 메시지</p>
+    <input id="guestName" placeholder="이름을 입력해주세요">
+    <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요"></textarea>
+    <button id="guestSubmitBtn">등록</button>
+
+    <p class="section-title">🎉 방명록</p>
+    <div class="guestbook-wrapper">
+      <div id="guestbookList"></div>
+    </div>
+
+    <p class="footer-note">
+      두 사람의 새로운 시작을 축복해 주셔서 감사합니다.
+    </p>
+
+  </div>
+
+  <div id="error" style="text-align:center; color:red; display:none;"></div>
+</div>
+
+<script>
+  function formatTimeAgo(timeString) {
+      if (!timeString) return "";
+      const now = new Date();
+      const t = new Date(timeString);
+      const diff = (now - t) / 1000;
+      if (diff < 60) return "방금 전";
+      if (diff < 3600) return Math.floor(diff/60) + "분 전";
+      if (diff < 86400) return Math.floor(diff/3600) + "시간 전";
+      return t.toLocaleString("ko-KR").slice(0, -3);
+  }
+
+  async function loadGuestbooks(code) {
+      const res = await fetch(`/api/v1/invitations/${code}/guestbook`);
+      if (!res.ok) return;
+      const list = await res.json();
+
+      const el = document.getElementById("guestbookList");
+      el.innerHTML = "";
+
+      if (list.length === 0) {
+          el.innerHTML = "<p style='font-size:13px; color:#777; margin:6px 0;'>첫 축하메시지를 남겨주세요!</p>";
+          return;
+      }
+
+      list.forEach(item => {
+          const div = document.createElement("div");
+          div.innerHTML = `<strong>${item.guestName}</strong>
+                           <span class="time">${formatTimeAgo(item.createdAt)}</span>
+                           <br>${item.message}`;
+          el.appendChild(div);
+      });
+  }
+
+  async function addGuestbook(code) {
+      const nameEl = document.getElementById("guestName");
+      const msgEl = document.getElementById("guestMessage");
+
+      const name = nameEl.value.trim();
+      const message = msgEl.value.trim();
+
+      if (!name) return alert("이름을 입력해주세요!");
+      if (!message) return alert("메시지를 입력해주세요!");
+
+      const csrfToken = document.querySelector('meta[name="_csrf"]').content;
+      const csrfHeader = document.querySelector('meta[name="_csrf_header"]').content;
+
+      const res = await fetch(`/api/v1/invitations/${code}/guestbook`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+              [csrfHeader]: csrfToken
+          },
+          body: JSON.stringify({ guestName: name, message: message })
+      });
+
+      if (res.ok) {
+          nameEl.value = "";
+          msgEl.value = "";
+          loadGuestbooks(code);
+      } else {
+          alert("등록 실패");
+      }
+  }
+
+  async function loadGalleryImages(code) {
+      const res = await fetch(`/api/v1/invitations/${code}/images`);
+      if (!res.ok) return;
+
+      const urls = await res.json();
+      console.log("Gallery URL:", urls);
+
+      if (!urls.length) return;
+
+      const wrapper = document.getElementById("galleryWrapper");
+      wrapper.style.display = "block";
+
+      const grid = document.getElementById("galleryGrid");
+      const moreBtn = document.getElementById("galleryMoreBtn");
+
+      const MAX_INITIAL = 6;
+
+      urls.forEach((url, idx) => {
+          const box = document.createElement("div");
+          box.className = "gallery-item";
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = `gallery-${idx}`;
+          box.appendChild(img);
+
+          if (idx >= MAX_INITIAL) {
+              box.style.display = "none";
+              box.classList.add("hidden-gallery-item");
+          }
+
+          grid.appendChild(box);
+      });
+
+      if (urls.length > MAX_INITIAL) {
+          moreBtn.style.display = "inline-flex";
+          moreBtn.addEventListener("click", () => {
+              document.querySelectorAll(".hidden-gallery-item")
+                  .forEach(el => el.style.display = "block");
+              moreBtn.style.display = "none";
+          });
+      } else {
+          moreBtn.style.display = "none";
+      }
+  }
+
+  // ---- 연락처 / 계좌 관련 헬퍼 ----
+  function copyToClipboard(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text)
+              .then(() => alert("계좌번호가 복사되었습니다."))
+              .catch(() => alert("복사에 실패했습니다."));
+      } else {
+          const temp = document.createElement("textarea");
+          temp.value = text;
+          document.body.appendChild(temp);
+          temp.select();
+          try {
+              document.execCommand("copy");
+              alert("계좌번호가 복사되었습니다.");
+          } catch (e) {
+              alert("복사에 실패했습니다.");
+          }
+          document.body.removeChild(temp);
+      }
+  }
+
+  function renderContactInfo(raw) {
+      const container = document.getElementById("contactInfo");
+      container.innerHTML = "";
+
+      if (!raw) return;
+
+      const lines = raw.split(/\r?\n/);
+
+      lines.forEach(line => {
+          const trimmed = line.trim();
+          if (!trimmed) return;
+
+          const lineDiv = document.createElement("div");
+          lineDiv.className = "contact-line";
+
+          const textSpan = document.createElement("div");
+          textSpan.className = "contact-line-text";
+          textSpan.textContent = trimmed;
+          lineDiv.appendChild(textSpan);
+
+          const digits = trimmed.replace(/\D/g, "");
+          const isAccountLine = digits.length >= 10;
+
+          if (isAccountLine) {
+              const btn = document.createElement("button");
+              btn.type = "button";
+              btn.className = "copy-btn";
+              btn.textContent = "복사";
+              btn.addEventListener("click", () => copyToClipboard(digits));
+              lineDiv.appendChild(btn);
+          }
+
+          container.appendChild(lineDiv);
+      });
+  }
+
+  // ---- 예식 일정 캘린더 렌더링 ----
+  function renderCalendar(weddingDateStr, weddingTimeStr, groomName, brideName) {
+      const card = document.getElementById("calendarCard");
+      const headerDate = document.getElementById("calendarHeaderDate");
+      const headerTime = document.getElementById("calendarHeaderTime");
+      const grid = document.getElementById("weddingCalendar");
+      const footer = document.getElementById("calendarFooterText");
+
+      if (!weddingDateStr) {
+          card.style.display = "none";
+          return;
+      }
+
+      const parts = weddingDateStr.split("-");
+      if (parts.length !== 3) {
+          card.style.display = "none";
+          return;
+      }
+
+      const year = parseInt(parts[0], 10);
+      const month = parseInt(parts[1], 10);
+      const day = parseInt(parts[2], 10);
+
+      if (isNaN(year) || isNaN(month) || isNaN(day)) {
+          card.style.display = "none";
+          return;
+      }
+
+      const date = new Date(year, month - 1, day);
+      const yoilNames = ["일", "월", "화", "수", "목", "금", "토"];
+      const yoil = yoilNames[date.getDay()];
+
+      // 헤더 텍스트
+      const ymd = `${year}.${String(month).padStart(2, "0")}.${String(day).padStart(2, "0")}`;
+      headerDate.textContent = ymd;
+      headerTime.textContent = weddingTimeStr
+          ? `${yoil}요일 ${weddingTimeStr}`
+          : `${yoil}요일`;
+
+      // 캘린더 본문
+      grid.innerHTML = "";
+
+      // 요일 헤더
+      ["일","월","화","수","목","금","토"].forEach(name => {
+          const div = document.createElement("div");
+          div.className = "calendar-day-name";
+          div.textContent = name;
+          grid.appendChild(div);
+      });
+
+      const firstDay = new Date(year, month - 1, 1).getDay();
+      const lastDate = new Date(year, month, 0).getDate();
+
+      // 앞쪽 빈 칸
+      for (let i = 0; i < firstDay; i++) {
+          const div = document.createElement("div");
+          div.className = "calendar-day empty";
+          const span = document.createElement("span");
+          span.textContent = "";
+          div.appendChild(span);
+          grid.appendChild(div);
+      }
+
+      // 날짜 채우기
+      for (let d = 1; d <= lastDate; d++) {
+          const div = document.createElement("div");
+          div.className = "calendar-day" + (d === day ? " selected" : "");
+          const span = document.createElement("span");
+          span.textContent = d;
+          div.appendChild(span);
+          grid.appendChild(div);
+      }
+
+      // D-Day 문구
+      const today = new Date();
+      const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+      const ddayDate = new Date(year, month - 1, day);
+      const diffMs = todayMid - ddayDate;
+      const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+      const groom = groomName || "신랑";
+      const bride = brideName || "신부";
+
+      if (diffDays === 0) {
+          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 오늘입니다.`;
+      } else if (diffDays > 0) {
+          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${diffDays}일 지났습니다.`;
+      } else {
+          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${Math.abs(diffDays)}일 남았습니다.`;
+      }
+  }
+
+  document.addEventListener("DOMContentLoaded", async () => {
+      const code = document.body.getAttribute("data-code");
+
+      const response = await fetch(`/api/v1/invitations/${code}`);
+
+      if (!response.ok) {
+          document.getElementById("title").innerText = "초대장 조회 실패";
+          document.getElementById("error").style.display = "block";
+          return;
+      }
+
+      const data = await response.json();
+
+      // 제목
+      document.getElementById("title").innerText = data.title || "Wedding Invitation";
+
+      // 히어로 영역
+      document.getElementById("heroGroomName").innerText = data.groomName || "";
+      document.getElementById("heroBrideName").innerText = data.brideName || "";
+
+      const dateStr = data.weddingDate || "";
+      const timeStr = data.weddingTime || "";
+
+      let heroDateText = "";
+      if (dateStr && timeStr) {
+          heroDateText = `${dateStr} · ${timeStr}`;
+      } else if (dateStr) {
+          heroDateText = dateStr;
+      } else if (timeStr) {
+          heroDateText = timeStr;
+      }
+      document.getElementById("heroDateText").innerText = heroDateText;
+      document.getElementById("heroHallText").innerText = data.hallName || "";
+
+      // 인사말
+      const messageEl = document.getElementById("message");
+      messageEl.innerHTML  = (data.message || "").replace(/\n/g, "<br>");
+
+      // 연락처/계좌 (줄바꿈 + 계좌 복사 버튼)
+      renderContactInfo(data.contactInfo || "");
+
+      // 예식 일정 캘린더
+      renderCalendar(data.weddingDate, data.weddingTime, data.groomName, data.brideName);
+
+      // 오시는 방법 텍스트
+      if (data.transportInfo) {
+          const tCard = document.getElementById("transportInfoCard");
+          tCard.style.display = "block";
+          tCard.textContent = data.transportInfo;
+      }
+
+      document.getElementById("content").style.display = "block";
+
+      // 지도 셋업 (주소로 검색 URL 구성)
+      const mapSection   = document.getElementById("mapSection");
+      const mapHallName  = document.getElementById("mapHallName");
+      const mapAddress   = document.getElementById("mapAddress");
+      const mapCanvas    = document.getElementById("mapCanvas");
+      const naverMapBtn  = document.getElementById("naverMapBtn");
+      const kakaoMapBtn  = document.getElementById("kakaoMapBtn");
+
+      const safeAddress = (data.address || "").trim();
+      const safeMapUrl  = (data.mapUrl || "").trim();
+
+      mapHallName.innerText = data.hallName || "";
+      mapAddress.innerText  = safeAddress || "주소 정보가 등록되지 않았습니다.";
+
+      if (!safeAddress && !safeMapUrl) {
+          if (mapSection) {
+              mapSection.style.display = "none";
+          }
+      } else {
+          const hasAddress = !!safeAddress;
+          const encAddr    = hasAddress ? encodeURIComponent(safeAddress) : "";
+
+          const kakaoSearchUrl = hasAddress ? `https://map.kakao.com/?q=${encAddr}` : "";
+          const naverSearchUrl = hasAddress ? `https://map.naver.com/v5/search/${encAddr}` : "";
+
+          function setupMapButton(btn, url) {
+              if (!btn) return;
+              if (url) {
+                  btn.href = url;
+                  btn.style.display = "inline-flex";
+              } else {
+                  btn.style.display = "none";
+              }
+          }
+
+          // 주소로 지도 검색 가능한 버튼들
+          setupMapButton(kakaoMapBtn, safeMapUrl || kakaoSearchUrl);
+          setupMapButton(naverMapBtn, naverSearchUrl);
+
+          // 카카오 JS SDK 지도
+          if (mapCanvas && hasAddress && window.kakao && kakao.maps) {
+              const mapOption = {
+                  center: new kakao.maps.LatLng(37.566826, 126.9786567),
+                  level: 3
+              };
+              const map = new kakao.maps.Map(mapCanvas, mapOption);
+              const geocoder = new kakao.maps.services.Geocoder();
+
+              geocoder.addressSearch(safeAddress, function(result, status) {
+                  if (status === kakao.maps.services.Status.OK) {
+                      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                      new kakao.maps.Marker({
+                          map: map,
+                          position: coords
+                      });
+                      map.setCenter(coords);
+                  }
+              });
+          }
+      }
+
+      // 메인 이미지 API URL 있으면 덮어쓰기
+      if (data.mainImageUrl) {
+          document.getElementById("mainImage").src = data.mainImageUrl;
+      }
+
+      await loadGuestbooks(code);
+      await loadGalleryImages(code);
+
+      document.getElementById("guestSubmitBtn")
+          .addEventListener("click", () => addGuestbook(code));
+  });
+</script>
+
+</body>
+</html>

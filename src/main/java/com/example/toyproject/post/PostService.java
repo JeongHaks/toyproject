@@ -19,7 +19,7 @@ import org.springframework.data.domain.*;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
-// ✅ Spring의 @Transactional 사용 권장 (readOnly, rollbackFor 등 옵션이 풍부함)
+// Spring의 @Transactional 사용 권장 (readOnly, rollbackFor 등 옵션이 풍부함)
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
@@ -75,29 +75,31 @@ public class PostService {
     @Transactional(readOnly = true) // 읽기 트랜잭션: 영속성 컨텍스트는 유지하되 변경감지는 비활성화(최적화)
     public Post get(Long id) {
         return postRepository.findById(id)
-                // ❗ NoSuchElementException 대신 ResourceNotFoundException 사용 → 404 매핑
+                // NoSuchElementException 대신 ResourceNotFoundException 사용 → 404 매핑
                 .orElseThrow(() -> new ResourceNotFoundException("게시글이 존재하지 않습니다. id=" + id));
     }
 
     /**
+     * 게시글 목록 보기
      * 게시글 목록 조회 (최신순, 페이징)
      * - page: 0부터 시작 (음수 방지)
      * - size: 1~100으로 가드(과도한 페이지 크기 방지)
      * - 정렬: id DESC (작성 최신순)
      */
+    // 검색 했을 시 리스트화 목록 보기
     @Transactional(readOnly = true)
     public Page<Post> list(String keyword, int page, int size){
-        // 1) 파라미터 가드
+        // 1) 페이징하기 위한 값 전달.
         page = Math.max(page, 0);
         size = Math.min(Math.max(size, 1), 100); // 1~100 제한
 
-        // 2) 페이징/정렬 객체 구성
+        // 2) 페이징/정렬 객체 함수
         Pageable pageable = PageRequest.of(page, size, Sort.by(Sort.Direction.DESC, "id"));
 
-        // 3) 검색 여부 분기
+        // 3) 검색 여부 묻기(검색 내용이 있을경우)
         if (keyword != null && !keyword.isBlank()) {
-            return postRepository.search(keyword.trim(), pageable); // 🔍 검색용 쿼리 실행
-        } else {
+            return postRepository.search(keyword.trim(), pageable); // 검색용 쿼리 실행
+        } else { // 검색 내용이 없을 경우
             return postRepository.findAllByOrderByIdDesc(pageable); // 기본 목록
         }
     }

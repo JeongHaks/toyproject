@@ -10,6 +10,7 @@ package com.example.toyproject.auth.dto;
 * REST API 전용
 * 회원가입 여창 DTO
 *  : 클라이언트에서 보내는 JSON 데이터를 담는 곳이다.
+*  : 회원가입시 가입 정보를 변수에 담는다.
 * */
 public class SignupRequest {
     public String id; //사용자 ID
