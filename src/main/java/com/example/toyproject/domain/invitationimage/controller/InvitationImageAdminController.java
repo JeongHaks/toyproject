@@ -5,6 +5,8 @@ import com.example.toyproject.domain.invitation.entity.Invitation;
 import com.example.toyproject.domain.invitation.service.InvitationService;
 import com.example.toyproject.domain.invitationimage.service.InvitationImageService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,7 +25,9 @@ public class InvitationImageAdminController {
     private final InvitationImageService invitationImageService;
 
     // 프로젝트 루트 기준 uploads 폴더
-    private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+    //private static final String UPLOAD_DIR = System.getProperty("user.dir") + "/uploads/";
+    @Value("${file.upload-dir}")
+    private String uploadDir;
 
     /*
      * 갤러리 이미지 업로드 (관리자용)
@@ -37,7 +41,8 @@ public class InvitationImageAdminController {
         Invitation invitation = invitationService.getInvitationEntityByCode(code);
 
         // 2) 업로드 폴더 없으면 생성
-        Path uploadPath = Paths.get(UPLOAD_DIR);
+        //Path uploadPath = Paths.get(UPLOAD_DIR);
+        Path uploadPath = Paths.get(uploadDir);
         if (!Files.exists(uploadPath)) {
             Files.createDirectories(uploadPath);
         }
