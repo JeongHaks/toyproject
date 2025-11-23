@@ -53,6 +53,7 @@ public class AdminInvitationController {
      * - 아직은 단순히 "invitation/new" 라는 뷰 이름만 반환
      * - 나중에 templates/invitation/new.html 파일을 만들어서 이 뷰를 구현할 예정
      */
+    // 초대장 생성 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
 
@@ -87,6 +88,7 @@ public class AdminInvitationController {
         return "invitations/admin/invitation-images"; // templates/admin/invitation-images.html
     }
 
+    // 메인 이미지
     @PutMapping("/{code}/main-image")
     @ResponseBody
     public ResponseEntity<Void> updateMainImage(@PathVariable("code") String code,
