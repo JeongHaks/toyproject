@@ -10,21 +10,25 @@
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
-  <!-- 썸네일용 -->
+  <!-- 썸네일(공유 미리보기)용 -->
   <meta property="og:type" content="website">
   <meta property="og:title"
         th:content="${invitation.groomName} + ' ♥ ' + ${invitation.brideName} + ' 결혼식 초대장'"/>
   <meta property="og:description"
         th:content="${invitation.weddingDate} + ' · ' + ${invitation.hallName}"/>
 
+  <!-- ogImageUrl가 있으면 그걸, 없으면 invitation.mainImageUrl 사용 -->
   <meta property="og:image"
-        th:if="${ogImageUrl != null}"
-        th:content="${ogImageUrl}"/>
+        th:content="${ogImageUrl} ?: ${invitation.mainImageUrl}"/>
 
+  <!-- 카카오톡 등은 절대경로를 더 잘 인식해서, 도메인까지 포함 -->
   <meta property="og:url"
-        th:content="@{|/invitation/${code}|}"/>
+        th:content="@{|https://toyproject-zo8g.onrender.com/invitation/${code}|}"/>
 
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- 우아한 웨딩용 웹폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -35,8 +39,20 @@
         margin: 0;
         padding: 0;
         background: linear-gradient(180deg, #f3eee7, #fdfaf5);
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans KR', sans-serif;
-        color: #222;
+        font-family: 'Noto Serif KR', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #2a2220;
+        animation: bodyFadeIn 0.6s ease-out;
+    }
+
+    @keyframes bodyFadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(6px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .invite-container {
@@ -57,16 +73,19 @@
     }
 
     h1#title {
-        font-size: 18px;
+        font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
+        font-size: 20px;
         margin: 0 0 4px;
-        letter-spacing: 0.08em;
+        letter-spacing: 0.12em;
         color: #5b3b2a;
+        text-transform: uppercase;
     }
 
     .title-sub {
+        font-family: 'Cormorant Garamond', serif;
         font-size: 11px;
         color: #a27c5b;
-        letter-spacing: 0.16em;
+        letter-spacing: 0.18em;
         text-transform: uppercase;
         margin: 0;
     }
@@ -81,11 +100,22 @@
         overflow: hidden;
     }
 
+    /* 메인 이미지에 자연스러운 등장 애니메이션 */
     #mainImage {
         width: 100%;
         max-height: 420px;
         object-fit: cover;
         display: block;
+        background: #ddd;
+        opacity: 0;
+        transform: translateY(8px);
+        transition: opacity 0.7s ease, transform 0.7s ease;
+        border-bottom: 1px solid #ebdfd3;
+    }
+
+    #mainImage.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .hero-info-card {
@@ -94,6 +124,14 @@
         padding: 18px 18px 20px;
         text-align: center;
         position: relative;
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .hero-info-card.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .hero-names-row {
@@ -131,23 +169,45 @@
         margin: 10px auto 0;
     }
 
-    /* 본문 내용 패딩 */
+    /* 본문 내용 패딩 + 부드러운 페이드 인 */
     .content-inner {
         padding: 18px 18px 32px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
     }
 
+    .content-inner.show {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* 섹션 타이틀: 중앙 정렬 + 얇은 가로선 */
     .section-title {
+        font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
         font-weight: 600;
-        margin-top: 22px;
-        margin-bottom: 8px;
-        font-size: 14px;
+        margin-top: 26px;
+        margin-bottom: 12px;
+        font-size: 15px;
         color: #8b5a3c;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.12em;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 64px;
+        height: 1px;
+        background: #e2cdbb;
+        margin: 6px auto 0;
     }
 
     .meta-row {
         font-size: 14px;
-        line-height: 1.7;
+        line-height: 1.8;
         white-space: pre-line;
         word-break: break-word;
         margin: 0;
@@ -199,9 +259,12 @@
         font-size: 11px;
         cursor: pointer;
         color: #7b4b30;
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
     .copy-btn:hover {
         background: #f5eee7;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
     /* 예식 일정 캘린더 카드 */
@@ -315,10 +378,13 @@
         flex: 1;
         text-align: center;
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
 
     .map-btn:hover {
         background: #f5eee7;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
     /* '오시는 방법' 안내 카드 */
@@ -337,12 +403,26 @@
     /* 갤러리 섹션 */
     #galleryWrapper {
         margin-top: 8px;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    #galleryWrapper.show {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .gallery-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 6px;
+    }
+
+    .gallery-item {
+        position: relative;
+        overflow: hidden;
+        border-radius: 10px;
     }
 
     .gallery-item img {
@@ -352,6 +432,14 @@
         object-fit: cover;
         aspect-ratio: 3 / 4;
         background: #eee;
+        transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
+        cursor: pointer;
+    }
+
+    .gallery-item img:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+        filter: brightness(1.03);
     }
 
     #galleryMoreBtn {
@@ -364,10 +452,13 @@
         font-size: 13px;
         cursor: pointer;
         color: #7b4b30;
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
 
     #galleryMoreBtn:hover {
         background: #f2e6d7;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
     /* 방명록 폼 */
@@ -380,6 +471,14 @@
         border: 1px solid #ddd;
         font-size: 14px;
         background: #fff;
+        transition: box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+
+    #guestName:focus,
+    #guestMessage:focus {
+        outline: none;
+        border-color: #d2b79a;
+        box-shadow: 0 0 0 1px rgba(210,183,154,0.3);
     }
 
     #guestMessage {
@@ -397,10 +496,13 @@
         color: #fff;
         font-size: 14px;
         cursor: pointer;
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
 
     #guestSubmitBtn:hover {
         background: #0f172a;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.18);
     }
 
     /* 방명록 리스트 */
@@ -445,6 +547,86 @@
         font-size: 11px;
         color: #a08a77;
     }
+
+    /* === 라이트박스(갤러리 확대 보기) === */
+    #lightboxOverlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.25s ease;
+    }
+
+    #lightboxOverlay.open {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .lightbox-backdrop {
+        position: absolute;
+        inset: 0;
+    }
+
+    .lightbox-content {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        padding: 0 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: scale(0.96);
+        opacity: 0;
+        transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    #lightboxOverlay.open .lightbox-content {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    #lightboxImage {
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+    }
+
+    .lightbox-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        border: none;
+        background: rgba(0,0,0,0.5);
+        color: #fff;
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        border-radius: 999px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background 0.2s ease, transform 0.1s ease;
+    }
+
+    .lightbox-nav-btn:hover {
+        background: rgba(0,0,0,0.7);
+        transform: translateY(-50%) scale(1.05);
+    }
+
+    #lightboxPrev {
+        left: 8px;
+    }
+
+    #lightboxNext {
+        right: 8px;
+    }
   </style>
 
   <!-- 카카오 지도 SDK -->
@@ -463,13 +645,9 @@
   <!-- 메인 히어로 (사진 + 한 줄 예식정보) -->
   <div class="hero-container">
     <div class="hero-image-wrap">
-<!--      <img id="mainImage" alt="메인 이미지"-->
-<!--           th:src="@{|/admin/invitations/${code}/images/main|}">-->
-<!--      <img id="mainImage" alt="메인 이미지"-->
-<!--           th:src="@{|/api/v1/invitations/${code}/images/main|}">-->
       <img src="" id="mainImage" alt="메인 이미지">
     </div>
-    <div class="hero-info-card">
+    <div class="hero-info-card" id="heroInfoCard">
       <div class="hero-names-row">
         <span id="heroGroomName"></span>
         <span>│</span>
@@ -553,6 +731,16 @@
   <div id="error" style="text-align:center; color:red; display:none;"></div>
 </div>
 
+<!-- 갤러리 전체화면 라이트박스 -->
+<div id="lightboxOverlay">
+  <div class="lightbox-backdrop"></div>
+  <div class="lightbox-content">
+    <img id="lightboxImage" src="" alt="gallery-large">
+    <button type="button" id="lightboxPrev" class="lightbox-nav-btn">‹</button>
+    <button type="button" id="lightboxNext" class="lightbox-nav-btn">›</button>
+  </div>
+</div>
+
 <script>
   function formatTimeAgo(timeString) {
       if (!timeString) return "";
@@ -618,57 +806,87 @@
       }
   }
 
-  async function loadGalleryImages(code) {
-  const res = await fetch(`/api/v1/invitations/${code}/images`);
-  if (!res.ok) return;
+  // 라이트박스용 전역 상태
+  let currentGalleryIndex = 0;
+  let currentGalleryUrls = [];
 
-  const urls = await res.json();
-  console.log("Gallery URL:", urls);
-
-  if (!urls.length) return;
-
-  const wrapper = document.getElementById("galleryWrapper");
-  wrapper.style.display = "block";
-
-  const grid = document.getElementById("galleryGrid");
-  const moreBtn = document.getElementById("galleryMoreBtn");
-
-  const MAX_INITIAL = 6;
-
-  urls.forEach((url, idx) => {
-      const box = document.createElement("div");
-      box.className = "gallery-item";
-
-      const img = document.createElement("img");
-      img.src = url;              // 썸네일도 같은 url 사용
-      img.alt = `gallery-${idx}`;
-
-      box.appendChild(img);
-
-      if (idx >= MAX_INITIAL) {
-          box.style.display = "none";
-          box.classList.add("hidden-gallery-item");
-      }
-
-      grid.appendChild(box);
-  });
-
-  if (urls.length > MAX_INITIAL) {
-      moreBtn.style.display = "inline-flex";
-      moreBtn.addEventListener("click", () => {
-          document.querySelectorAll(".hidden-gallery-item")
-              .forEach(el => el.style.display = "block");
-          moreBtn.style.display = "none";
-      });
-  } else {
-      moreBtn.style.display = "none";
+  function openLightbox(index) {
+      if (!currentGalleryUrls.length) return;
+      currentGalleryIndex = index;
+      const overlay = document.getElementById("lightboxOverlay");
+      const img = document.getElementById("lightboxImage");
+      img.src = currentGalleryUrls[currentGalleryIndex];
+      overlay.classList.add("open");
   }
-}
 
+  function closeLightbox() {
+      const overlay = document.getElementById("lightboxOverlay");
+      overlay.classList.remove("open");
+  }
+
+  function showNext(delta) {
+      if (!currentGalleryUrls.length) return;
+      const len = currentGalleryUrls.length;
+      currentGalleryIndex = (currentGalleryIndex + delta + len) % len;
+      document.getElementById("lightboxImage").src = currentGalleryUrls[currentGalleryIndex];
+  }
+
+  async function loadGalleryImages(code) {
+      const res = await fetch(`/api/v1/invitations/${code}/images`);
+      if (!res.ok) return;
+
+      const urls = await res.json();
+      console.log("Gallery URL:", urls);
+
+      if (!urls.length) return;
+
+      currentGalleryUrls = urls.slice(); // 라이트박스용으로 저장
+
+      const wrapper = document.getElementById("galleryWrapper");
+      wrapper.style.display = "block";
+      requestAnimationFrame(() => wrapper.classList.add("show"));
+
+      const grid = document.getElementById("galleryGrid");
+      const moreBtn = document.getElementById("galleryMoreBtn");
+
+      const MAX_INITIAL = 6;
+
+      urls.forEach((url, idx) => {
+          const box = document.createElement("div");
+          box.className = "gallery-item";
+
+          const img = document.createElement("img");
+          img.src = url;
+          img.alt = `gallery-${idx}`;
+
+          box.appendChild(img);
+
+          // 클릭 시 전체 화면 라이트박스
+          box.addEventListener("click", () => openLightbox(idx));
+
+          if (idx >= MAX_INITIAL) {
+              box.style.display = "none";
+              box.classList.add("hidden-gallery-item");
+          }
+
+          grid.appendChild(box);
+      });
+
+      if (urls.length > MAX_INITIAL) {
+          moreBtn.style.display = "inline-flex";
+          moreBtn.addEventListener("click", () => {
+              document.querySelectorAll(".hidden-gallery-item")
+                  .forEach(el => el.style.display = "block");
+              moreBtn.style.display = "none";
+          });
+      } else {
+          moreBtn.style.display = "none";
+      }
+  }
 
   // ---- 연락처 / 계좌 관련 헬퍼 ----
   function copyToClipboard(text,label) {
-    const msg = (label || "내용") + "가 복사되었습니다.";
+      const msg = (label || "내용") + "가 복사되었습니다.";
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text)
@@ -688,7 +906,8 @@
           document.body.removeChild(temp);
       }
   }
- // 연락처 / 계좌 정보 복사
+
+  // 연락처 / 계좌 정보 복사
   function renderContactInfo(raw) {
       const container = document.getElementById("contactInfo");
       container.innerHTML = "";
@@ -772,7 +991,7 @@
       const ymd = `${year}.${String(month).padStart(2, "0")}.${String(day).padStart(2, "0")}`;
       headerDate.textContent = ymd;
       headerTime.textContent = weddingTimeStr
-          ? `${yoil}요일 ${weddingTimeStr}`
+          ? `${yoil}요일 ${weddingTime_str = weddingTimeStr}`
           : `${yoil}요일`;
 
       // 캘린더 본문
@@ -831,6 +1050,25 @@
   document.addEventListener("DOMContentLoaded", async () => {
       const code = document.body.getAttribute("data-code");
 
+      // 라이트박스 버튼 핸들러
+      const overlay = document.getElementById("lightboxOverlay");
+      const prevBtn = document.getElementById("lightboxPrev");
+      const nextBtn = document.getElementById("lightboxNext");
+      const backdrop = document.querySelector(".lightbox-backdrop");
+
+      if (prevBtn && nextBtn && backdrop && overlay) {
+          prevBtn.addEventListener("click", () => showNext(-1));
+          nextBtn.addEventListener("click", () => showNext(1));
+          backdrop.addEventListener("click", closeLightbox);
+
+          // ESC 키로 닫기
+          document.addEventListener("keydown", (e) => {
+              if (e.key === "Escape") {
+                  closeLightbox();
+              }
+          });
+      }
+
       const response = await fetch(`/api/v1/invitations/${code}`);
 
       if (!response.ok) {
@@ -879,7 +1117,9 @@
           tCard.textContent = data.transportInfo;
       }
 
-      document.getElementById("content").style.display = "block";
+      const contentEl = document.getElementById("content");
+      contentEl.style.display = "block";
+      requestAnimationFrame(() => contentEl.classList.add("show"));
 
       // 지도 셋업 (주소로 검색 URL 구성)
       const mapSection   = document.getElementById("mapSection");
@@ -942,9 +1182,20 @@
           }
       }
 
-      // 메인 이미지 API URL 있으면 덮어쓰기
+      // 메인 이미지 URL (S3) + 로딩 후 자연스러운 등장
+      const mainImageEl = document.getElementById("mainImage");
+      const heroInfoCard = document.getElementById("heroInfoCard");
+
       if (data.mainImageUrl) {
-          document.getElementById("mainImage").src = data.mainImageUrl;
+          mainImageEl.src = data.mainImageUrl;
+          mainImageEl.addEventListener("load", () => {
+              mainImageEl.classList.add("show");
+              heroInfoCard.classList.add("show");
+          });
+      } else {
+          // 이미지가 없어도 정보 카드는 자연스럽게 보이도록
+          mainImageEl.classList.add("show");
+          heroInfoCard.classList.add("show");
       }
 
       await loadGuestbooks(code);

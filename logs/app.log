@@ -1711,3 +1711,232 @@ Caused by: java.io.FileNotFoundException: C:\Users\ccmedia\AppData\Local\Temp\to
 2025-11-24 18:25:05.903 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2025-11-24 18:25:05.905 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2025-11-24 18:25:05.918 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 21:31:32.244 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 21:31:32.356 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 10140 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 21:31:32.358 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 21:31:33.653 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 21:31:33.778 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110 ms. Found 6 JPA repository interfaces.
+2025-11-24 21:31:35.085 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 21:31:35.101 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:31:35.103 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 21:31:35.104 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 21:31:35.191 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 21:31:35.193 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2737 ms
+2025-11-24 21:31:35.489 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 21:31:35.615 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 21:31:35.694 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 21:31:36.352 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 21:31:36.412 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 21:31:36.693 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@26865b57
+2025-11-24 21:31:36.697 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 21:31:36.769 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 21:31:36.817 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 21:31:38.402 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 21:31:38.680 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 21:31:40.110 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 21:31:41.700 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 21:31:41.762 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 21:31:42.708 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:31:42.754 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 21:31:42.768 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 11.456 seconds (process running for 12.149)
+2025-11-24 21:32:21.319 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 21:32:21.320 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 21:32:21.323 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-24 21:32:21.974 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=863e24f6 GET / -> 200 (606ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:22.799 [http-nio-8080-exec-3] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [182] milliseconds.
+2025-11-24 21:32:22.820 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=1baf4199 GET /login -> 200 (214ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:26.142 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=08eda6f0 GET /login -> 200 (8ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:26.348 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=1a46f1e3 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:31.324 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=2694b042 GET /login -> 200 (4ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:31.484 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=e8dd570e GET /login -> 200 (2ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:38.018 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=2ba2a76e GET / -> 200 (6ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:38.186 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=dd19a1d1 GET /favicon.ico -> 404 (12ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:32:39.772 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=02b0eaf9 GET /admin/invitations -> 200 (162ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:36:51.095 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=74ef001a GET /admin/invitations -> 200 (14ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:36:59.539 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=76663794 GET /admin/invitations/new -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:01.024 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=92719e6c POST /api/v1/invitations -> 200 (119ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:01.516 [http-nio-8080-exec-1] WARN  com.amazonaws.util.Base64 - JAXB is unavailable. Will fallback to SDK implementation which may be less performant.If you are using Java 9+, you will need to include javax.xml.bind:jaxb-api as a dependency.
+2025-11-24 21:38:02.034 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=fa3ce4a6 POST /admin/invitations/bS1ilJdR/images -> 200 (995ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:03.119 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=98add1ee GET /invitation/bS1ilJdR -> 200 (24ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:03.207 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=4e7e0b7a GET /api/v1/invitations/bS1ilJdR -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:03.368 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=dc229fb5 GET /api/v1/invitations/bS1ilJdR/guestbook -> 200 (41ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:03.418 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=b9d49d8e GET /api/v1/invitations/bS1ilJdR/images -> 200 (39ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:09.778 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=7bd038e0 GET /admin/invitations/new -> 200 (3ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:13.736 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=2a1c0d32 GET /admin/invitations -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:15.872 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=3fab9578 GET /admin/invitations/bS1ilJdR/images-page -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:15.906 [http-nio-8080-exec-10] INFO  c.e.t.common.RequestLoggingFilter - rid=571e7364 GET /api/v1/invitations/bS1ilJdR/images -> 200 (9ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:16.033 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=fda9bf74 GET /api/v1/invitations/bS1ilJdR -> 200 (16ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:21.346 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=094ffd00 PUT /admin/invitations/bS1ilJdR/main-image -> 204 (26ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:22.595 [http-nio-8080-exec-3] INFO  c.e.t.common.RequestLoggingFilter - rid=d14f9a1a GET /api/v1/invitations/bS1ilJdR -> 200 (13ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:24.643 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=0e97308f GET /admin/invitations -> 200 (15ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:26.059 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=2de0719a GET /invitation/bS1ilJdR -> 200 (13ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:26.139 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=ebcbc914 GET /api/v1/invitations/bS1ilJdR -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:26.840 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=9252bae5 GET /api/v1/invitations/bS1ilJdR/guestbook -> 200 (11ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:38:26.887 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=d44a5fa6 GET /api/v1/invitations/bS1ilJdR/images -> 200 (10ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:45:15.820 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 21:45:16.304 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 21:45:16.307 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 21:45:16.310 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 21:45:16.312 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 21:45:18.629 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 21:45:18.747 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 988 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 21:45:18.748 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 21:45:19.637 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 21:45:19.730 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 76 ms. Found 6 JPA repository interfaces.
+2025-11-24 21:45:20.590 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 21:45:20.600 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:45:20.602 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 21:45:20.602 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 21:45:20.675 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 21:45:20.677 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1861 ms
+2025-11-24 21:45:20.944 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 21:45:21.035 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 21:45:21.092 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 21:45:21.419 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 21:45:21.450 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 21:45:21.621 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@61993d18
+2025-11-24 21:45:21.623 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 21:45:21.660 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 21:45:21.701 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 21:45:22.702 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 21:45:22.852 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 21:45:23.775 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 21:45:24.840 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 21:45:24.896 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 21:45:25.636 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 21:45:25.660 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 21:45:25.669 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 7.651 seconds (process running for 8.232)
+2025-11-24 21:46:00.239 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 21:46:00.239 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 21:46:00.241 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2025-11-24 21:46:00.659 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=143ecc5b GET / -> 200 (377ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:05.383 [http-nio-8080-exec-2] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [152] milliseconds.
+2025-11-24 21:46:05.397 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=236c5b26 GET /login -> 200 (183ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:17.898 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=84371bf1 GET / -> 200 (4ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:19.696 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=4a9fd97a GET /admin/invitations -> 200 (85ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:21.711 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=68e9891e GET /invitation/bS1ilJdR -> 200 (59ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:21.831 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=fb51ab9c GET /api/v1/invitations/bS1ilJdR -> 200 (64ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:22.482 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=11cc5395 GET /api/v1/invitations/bS1ilJdR/guestbook -> 200 (30ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 21:46:22.516 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=be10cba1 GET /api/v1/invitations/bS1ilJdR/images -> 200 (19ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:01.513 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 22:06:02.021 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 22:06:02.028 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 22:06:02.029 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 22:06:02.034 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 22:06:05.221 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 22:06:05.346 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 17904 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 22:06:05.348 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 22:06:06.747 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 22:06:06.909 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 142 ms. Found 6 JPA repository interfaces.
+2025-11-24 22:06:08.177 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 22:06:08.189 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 22:06:08.192 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 22:06:08.193 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 22:06:08.294 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 22:06:08.296 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2823 ms
+2025-11-24 22:06:08.640 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 22:06:08.767 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 22:06:08.857 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 22:06:09.577 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 22:06:09.633 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 22:06:09.910 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@46a388cc
+2025-11-24 22:06:09.916 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 22:06:09.967 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 22:06:10.012 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 22:06:11.509 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 22:06:11.738 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 22:06:13.192 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 22:06:14.768 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 22:06:14.843 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 22:06:15.933 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 22:06:15.971 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 22:06:15.990 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 11.672 seconds (process running for 12.515)
+2025-11-24 22:06:28.103 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 22:06:28.104 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 22:06:28.106 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 22:06:28.544 [http-nio-8080-exec-1] INFO  c.e.t.common.RequestLoggingFilter - rid=d862d3d7 GET / -> 200 (396ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:31.300 [http-nio-8080-exec-2] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [179] milliseconds.
+2025-11-24 22:06:31.317 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=3ab3123d GET /login -> 200 (207ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:39.011 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=14669630 GET / -> 200 (7ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:42.298 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=99a91391 GET /admin/invitations -> 200 (101ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:43.820 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=6ee9fbe4 GET /invitation/bS1ilJdR -> 200 (66ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:43.946 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=c3516813 GET /api/v1/invitations/bS1ilJdR -> 200 (69ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:44.776 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=81acad62 GET /api/v1/invitations/bS1ilJdR/guestbook -> 200 (42ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:06:44.833 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=9a4414bd GET /api/v1/invitations/bS1ilJdR/images -> 200 (35ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:18:47.883 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 22:18:48.484 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 22:18:48.490 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 22:18:48.496 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 22:18:48.507 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2025-11-24 22:18:51.916 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 8.0.3.Final
+2025-11-24 22:18:52.035 [main] INFO  c.e.toyproject.ToyprojectApplication - Starting ToyprojectApplication using Java 17.0.14 with PID 2584 (C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject\out\production\classes started by ccmedia in C:\Users\ccmedia\Desktop\Spring Boot\toyproject\toyproject)
+2025-11-24 22:18:52.036 [main] INFO  c.e.toyproject.ToyprojectApplication - The following 1 profile is active: "dev"
+2025-11-24 22:18:53.440 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-11-24 22:18:53.590 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 121 ms. Found 6 JPA repository interfaces.
+2025-11-24 22:18:54.870 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2025-11-24 22:18:54.886 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-24 22:18:54.888 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2025-11-24 22:18:54.888 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.46]
+2025-11-24 22:18:54.993 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2025-11-24 22:18:54.996 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2849 ms
+2025-11-24 22:18:55.375 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-11-24 22:18:55.504 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.6.29.Final
+2025-11-24 22:18:55.602 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2025-11-24 22:18:56.126 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-11-24 22:18:56.158 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2025-11-24 22:18:56.367 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@460f1cdb
+2025-11-24 22:18:56.372 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2025-11-24 22:18:56.408 [main] WARN  org.hibernate.orm.deprecation - HHH90000025: PostgreSQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-24 22:18:56.450 [main] INFO  o.hibernate.orm.connections.pooling - HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.14
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-11-24 22:18:57.690 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-11-24 22:18:57.902 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 22:18:59.304 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-11-24 22:19:01.088 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-24 22:19:01.167 [main] INFO  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with UserDetailsService bean with name customUserDetailsService
+2025-11-24 22:19:02.384 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2025-11-24 22:19:02.432 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2025-11-24 22:19:02.457 [main] INFO  c.e.toyproject.ToyprojectApplication - Started ToyprojectApplication in 11.537 seconds (process running for 12.418)
+2025-11-24 22:19:07.976 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-24 22:19:07.976 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2025-11-24 22:19:07.978 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2025-11-24 22:19:08.152 [http-nio-8080-exec-1] WARN  o.a.c.util.SessionIdGeneratorBase - Creation of SecureRandom instance for session ID generation using [SHA1PRNG] took [109] milliseconds.
+2025-11-24 22:19:08.549 [http-nio-8080-exec-2] INFO  c.e.t.common.RequestLoggingFilter - rid=164d63e1 GET /login -> 200 (387ms) user=anonymous ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:17.726 [http-nio-8080-exec-4] INFO  c.e.t.common.RequestLoggingFilter - rid=dc199074 GET / -> 200 (29ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:22.617 [http-nio-8080-exec-5] INFO  c.e.t.common.RequestLoggingFilter - rid=85ff3136 GET /admin/invitations -> 200 (116ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:24.102 [http-nio-8080-exec-6] INFO  c.e.t.common.RequestLoggingFilter - rid=1b54002d GET /invitation/bS1ilJdR -> 200 (69ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:24.493 [http-nio-8080-exec-7] INFO  c.e.t.common.RequestLoggingFilter - rid=ff27175a GET /api/v1/invitations/bS1ilJdR -> 200 (56ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:25.093 [http-nio-8080-exec-8] INFO  c.e.t.common.RequestLoggingFilter - rid=e088393e GET /api/v1/invitations/bS1ilJdR/guestbook -> 200 (37ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:25.306 [http-nio-8080-exec-9] INFO  c.e.t.common.RequestLoggingFilter - rid=207c9bf9 GET /api/v1/invitations/bS1ilJdR/images -> 200 (36ms) user=jjj ip=0:0:0:0:0:0:0:1
+2025-11-24 22:19:44.383 [SpringApplicationShutdownHook] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2025-11-24 22:19:44.888 [tomcat-shutdown] INFO  o.s.b.w.e.tomcat.GracefulShutdown - Graceful shutdown complete
+2025-11-24 22:19:44.892 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-11-24 22:19:44.894 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2025-11-24 22:19:44.898 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
