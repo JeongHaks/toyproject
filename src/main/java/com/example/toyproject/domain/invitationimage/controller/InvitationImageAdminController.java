@@ -43,6 +43,6 @@ public class InvitationImageAdminController {
             invitationImageService.saveImage(invitation, imageUrl, sortOrder++);
         }
 
-        return ResponseEntity.ok("이미지 업로드 성공 (files=" + files.length + ")");
+        return ResponseEntity.ok("이미지 업로드 성공!! (files=" + files.length + ")");
     }
 }
