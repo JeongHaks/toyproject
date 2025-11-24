@@ -298,3 +298,6 @@ Caused by: org.thymeleaf.exceptions.TemplateInputException: Error resolving temp
 	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
 	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
 	... 86 common frames omitted
+2025-11-24 11:17:28.348 [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Connection to localhost:55433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+2025-11-24 11:17:30.326 [main] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Connection to localhost:55433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.
+2025-11-24 11:17:30.336 [main] ERROR o.s.o.j.LocalContainerEntityManagerFactoryBean - Failed to initialize JPA EntityManagerFactory: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.JDBCConnectionException: Unable to open JDBC Connection for DDL execution [Connection to localhost:55433 refused. Check that the hostname and port are correct and that the postmaster is accepting TCP/IP connections.] [n/a]

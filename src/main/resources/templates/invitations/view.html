@@ -6,9 +6,25 @@
 
   <!-- 모바일 대응 -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
+  <!-- CSRF 세션 권한 인증 인가 -->
   <meta name="_csrf" th:content="${_csrf.token}"/>
   <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+  <!-- 썸네일용 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title"
+        th:content="${invitation.groomName} + ' ♥ ' + ${invitation.brideName} + ' 결혼식 초대장'"/>
+  <meta property="og:description"
+        th:content="${invitation.weddingDate} + ' · ' + ${invitation.hallName}"/>
+
+  <meta property="og:image"
+        th:if="${ogImageUrl != null}"
+        th:content="${ogImageUrl}"/>
+
+  <meta property="og:url"
+        th:content="@{|/invitation/${code}|}"/>
+
+  <meta name="twitter:card" content="summary_large_image">
 
   <style>
     * {
