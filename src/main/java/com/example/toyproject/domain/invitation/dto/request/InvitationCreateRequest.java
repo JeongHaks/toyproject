@@ -36,7 +36,7 @@ public class InvitationCreateRequest {
     private String mapUrl;
 
     // 메인 이미지 URL (대표 사진 1장)
-   // private String mainImageUrl;
+    private String mainImageUrl;
 
     // 인사말 / 안내문
     private String message;
