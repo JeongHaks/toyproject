@@ -673,7 +673,7 @@
 
 
   // ---- 연락처 / 계좌 관련 헬퍼 ----
-  function copyToClipboard(text) {
+  function copyToClipboard(text,label) {
     const msg = (label || "내용") + "가 복사되었습니다.";
 
       if (navigator.clipboard && navigator.clipboard.writeText) {
