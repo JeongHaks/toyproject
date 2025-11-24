@@ -65,7 +65,7 @@ public class InvitationService {
                 .hallName(request.getHallName())
                 .address(request.getAddress())
                 .mapUrl(request.getMapUrl())
-                .mainImageUrl(request.getMainImageUrl())
+                //.mainImageUrl(request.getMainImageUrl())
                 .message(request.getMessage())
                 .contactInfo(request.getContactInfo())
                 .build();
@@ -94,7 +94,8 @@ public class InvitationService {
 
     // code로 초대장 조회 / Entity용
     public Invitation getInvitationEntityByCode(String code) {
-        return invitationRepository.findByCode(code).orElseThrow(()-> new IllegalArgumentException("초대장을 찾을 수 없습니다."));
+        //return invitationRepository.findByCode(code).orElseThrow(()-> new IllegalArgumentException("초대장을 찾을 수 없습니다."));
+        return invitationRepository.findByCode(code).orElse(null);
     }
 
 

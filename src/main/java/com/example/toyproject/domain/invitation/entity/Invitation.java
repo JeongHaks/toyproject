@@ -63,7 +63,7 @@ public class Invitation {
     private String mapUrl;
 
     // 메인 이미지 URL (가장 대표 사진 1장)
-    @Column(name = "main_image_url", length = 1000)
+    @Column(name = "main_image_url", nullable = true, length = 1000)
     private String mainImageUrl;
 
     // 인사말 / 안내문
