@@ -30,7 +30,7 @@ public class InvitationResponse {
     private final String address;
 
     private final String mapUrl;
-    private final String mainImageUrl;
+   // private final String mainImageUrl;
 
     private final String message;
     private final String contactInfo;
@@ -60,7 +60,7 @@ public class InvitationResponse {
         this.address = invitation.getAddress();
 
         this.mapUrl = invitation.getMapUrl();
-        this.mainImageUrl = invitation.getMainImageUrl();
+        //this.mainImageUrl = invitation.getMainImageUrl();
 
         this.message = invitation.getMessage();
         this.contactInfo = invitation.getContactInfo();
