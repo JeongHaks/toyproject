@@ -628,10 +628,10 @@
   if (!urls.length) return;
 
   // 여기서 메인 이미지도 같이 지정
-  const mainImageEl = document.getElementById("mainImage");
+  /*const mainImageEl = document.getElementById("mainImage");
   if (mainImageEl) {
       mainImageEl.src = urls[0];  // 첫 번째 이미지를 대표 이미지로
-  }
+  }*/
 
   const wrapper = document.getElementById("galleryWrapper");
   wrapper.style.display = "block";
@@ -674,9 +674,11 @@
 
   // ---- 연락처 / 계좌 관련 헬퍼 ----
   function copyToClipboard(text) {
+    const msg = (label || "내용") + "가 복사되었습니다.";
+
       if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text)
-              .then(() => alert("계좌번호가 복사되었습니다."))
+              .then(() => alert(msg))
               .catch(() => alert("복사에 실패했습니다."));
       } else {
           const temp = document.createElement("textarea");
@@ -685,14 +687,14 @@
           temp.select();
           try {
               document.execCommand("copy");
-              alert("계좌번호가 복사되었습니다.");
+              alert(msg);
           } catch (e) {
               alert("복사에 실패했습니다.");
           }
           document.body.removeChild(temp);
       }
   }
-
+ // 연락처 / 계좌 정보 복사
   function renderContactInfo(raw) {
       const container = document.getElementById("contactInfo");
       container.innerHTML = "";
@@ -713,15 +715,26 @@
           textSpan.textContent = trimmed;
           lineDiv.appendChild(textSpan);
 
+          // 숫자만 추출
           const digits = trimmed.replace(/\D/g, "");
-          const isAccountLine = digits.length >= 10;
 
-          if (isAccountLine) {
+          // 전화/계좌 판별 (간단하게 키워드 기반)
+          const isPhoneLine =
+              trimmed.includes("전화") || trimmed.includes("연락처");
+
+          const isAccountLine =
+              !isPhoneLine && digits.length >= 10;
+
+          // 버튼 생성 (둘 다 복사 가능)
+          if (isPhoneLine || isAccountLine) {
               const btn = document.createElement("button");
               btn.type = "button";
               btn.className = "copy-btn";
               btn.textContent = "복사";
-              btn.addEventListener("click", () => copyToClipboard(digits));
+
+              const label = isAccountLine ? "계좌번호" : "전화번호";
+              btn.addEventListener("click", () => copyToClipboard(digits, label));
+
               lineDiv.appendChild(btn);
           }
 
