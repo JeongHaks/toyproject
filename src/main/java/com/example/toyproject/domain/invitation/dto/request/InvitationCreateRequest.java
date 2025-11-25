@@ -44,7 +44,4 @@ public class InvitationCreateRequest {
     // 연락처 (신랑/신부/혼주 등)
     private String contactInfo;
 
-    // 👉 나중에 여기서 Entity로 변환하는 메서드를 추가할 수도 있음
-    //    (예: toEntity(String code) 형태)
-
 }

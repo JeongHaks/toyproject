@@ -15,7 +15,8 @@
   <meta property="og:title" th:content="${invitation.groomName} + ' ♥ ' + ${invitation.brideName} + ' 결혼식 초대장'"/>
   <meta property="og:description" th:content="${invitation.weddingDate} + ' · ' + ${invitation.hallName}"/>
   <!-- ogImageUrl가 있으면 그걸, 없으면 invitation.mainImageUrl 사용 -->
-  <meta property="og:image" th:content="${ogImageUrl} ?: ${invitation.mainImageUrl}"/>
+<!--  <meta property="og:image" th:content="${ogImageUrl} ?: ${invitation.mainImageUrl}"/>-->
+  <meta property="og:image" th:content="${invitation.mainImageUrl}"/>
 
   <!-- 카카오톡 등은 절대경로를 더 잘 인식해서, 도메인까지 포함 -->
   <meta property="og:url" th:content="@{|https://toyproject-zo8g.onrender.com/invitation/${code}|}"/>
