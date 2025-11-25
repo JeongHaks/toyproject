@@ -57,7 +57,16 @@ public class InvitationViewController {
         String baseUrl = request.getScheme() + "://" + request.getServerName() +
                 ((request.getServerPort() == 80 || request.getServerPort() == 443) ? "" : ":" + request.getServerPort());
 
-        if (invitation.getMainImageUrl() != null) {
+        if (invitation.getMainImageUrl() != null && invitation.getMainImageUrl().isBlank()) {
+            if(invitation.getMainImageUrl().startsWith("http://") || invitation.getMainImageUrl().startsWith("https://")){
+                model.addAttribute("ogImageUrl",invitation.getMainImageUrl());
+            }else{
+                if(!invitation.getMainImageUrl().startsWith("/")){
+                    String mainImageUrl = "/" + invitation.getMainImageUrl();
+                    model.addAttribute("ogImageUrl",baseUrl + mainImageUrl);
+                }
+            }
+        }else{
             model.addAttribute("ogImageUrl", baseUrl + invitation.getMainImageUrl());
         }
 
