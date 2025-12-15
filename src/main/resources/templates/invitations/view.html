@@ -14,46 +14,28 @@
   <meta property="og:type" content="website">
   <meta property="og:title" th:content="${invitation.groomName} + ' ♥ ' + ${invitation.brideName} + ' 결혼식 초대장'"/>
   <meta property="og:description" th:content="${invitation.weddingDate} + ' · ' + ${invitation.hallName}"/>
-  <!-- ogImageUrl가 있으면 그걸, 없으면 invitation.mainImageUrl 사용 -->
-<!--  <meta property="og:image" th:content="${ogImageUrl} ?: ${invitation.mainImageUrl}"/>-->
   <meta property="og:image" th:content="${invitation.mainImageUrl}"/>
-
-  <!-- 카카오톡 등은 절대경로를 더 잘 인식해서, 도메인까지 포함 -->
   <meta property="og:url" th:content="@{|https://toyproject-zo8g.onrender.com/invitation/${code}|}"/>
-
   <meta name="twitter:card" content="summary_large_image">
 
   <!-- 우아한 웨딩용 웹폰트 -->
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Noto+Serif+KR:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    * {
-        box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
-        margin: 0;
-        padding: 0;
+        margin: 0; padding: 0;
         background: linear-gradient(180deg, #f3eee7, #fdfaf5);
         font-family: 'Noto Serif KR', 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         color: #2a2220;
         animation: bodyFadeIn 0.6s ease-out;
     }
-
     @keyframes bodyFadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(6px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(6px); }
+        to { opacity: 1; transform: translateY(0); }
     }
-
     .invite-container {
-        max-width: 520px;
-        margin: 0 auto;
+        max-width: 520px; margin: 0 auto;
         background: #fdfaf5;
         padding: 0 0 40px;
         min-height: 100vh;
@@ -61,200 +43,111 @@
         border-radius: 16px;
         overflow: hidden;
     }
-
-    /* 상단 타이틀 */
-    .page-title-wrap {
-        padding: 16px 18px 8px;
-        text-align: center;
-    }
-
+    .page-title-wrap { padding: 16px 18px 8px; text-align: center; }
     h1#title {
         font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
-        font-size: 20px;
-        margin: 0 0 4px;
-        letter-spacing: 0.12em;
-        color: #5b3b2a;
+        font-size: 20px; margin: 0 0 4px;
+        letter-spacing: 0.12em; color: #5b3b2a;
         text-transform: uppercase;
     }
-
     .title-sub {
         font-family: 'Cormorant Garamond', serif;
-        font-size: 11px;
-        color: #a27c5b;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
+        font-size: 11px; color: #a27c5b;
+        letter-spacing: 0.18em; text-transform: uppercase;
         margin: 0;
     }
-
-    /* 메인 히어로 영역 (사진 + 간략 예식정보) */
-    .hero-container {
-        margin-top: 10px;
-    }
-
-    .hero-image-wrap {
-        width: 100%;
-        overflow: hidden;
-    }
-
-    /* 메인 이미지에 자연스러운 등장 애니메이션 */
+    .hero-container { margin-top: 10px; }
+    .hero-image-wrap { width: 100%; overflow: hidden; }
     #mainImage {
-        width: 100%;
-        max-height: 420px;
-        object-fit: cover;
-        display: block;
+        width: 100%; max-height: 420px;
+        object-fit: cover; display: block;
         background: #ddd;
-        opacity: 0;
-        transform: translateY(8px);
+        opacity: 0; transform: translateY(8px);
         transition: opacity 0.7s ease, transform 0.7s ease;
         border-bottom: 1px solid #ebdfd3;
     }
-
-    #mainImage.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    #mainImage.show { opacity: 1; transform: translateY(0); }
     .hero-info-card {
         background: #fdf7ef;
         border-top: 1px solid rgba(0,0,0,0.03);
         padding: 18px 18px 20px;
         text-align: center;
         position: relative;
-        opacity: 0;
-        transform: translateY(6px);
+        opacity: 0; transform: translateY(6px);
         transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
-    .hero-info-card.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
+    .hero-info-card.show { opacity: 1; transform: translateY(0); }
     .hero-names-row {
-        font-size: 15px;
-        color: #40312a;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 26px;
-        margin-bottom: 10px;
+        font-size: 15px; color: #40312a;
+        display: flex; justify-content: center; align-items: center;
+        gap: 26px; margin-bottom: 10px;
     }
-
-    .hero-names-row span {
-        white-space: nowrap;
-    }
-
+    .hero-names-row span { white-space: nowrap; }
     .hero-date-center {
-        font-size: 13px;
-        color: #8b5a3c;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
+        font-size: 13px; color: #8b5a3c;
+        letter-spacing: 0.16em; text-transform: uppercase;
         margin-top: 6px;
     }
-
-    .hero-hall {
-        margin-top: 10px;
-        font-size: 13px;
-        color: #4a3b33;
-    }
-
+    .hero-hall { margin-top: 10px; font-size: 13px; color: #4a3b33; }
     .hero-divider-line {
-        width: 60%;
-        height: 1px;
+        width: 60%; height: 1px;
         background: #e6d4c5;
         margin: 10px auto 0;
     }
-
-    /* 본문 내용 패딩 + 부드러운 페이드 인 */
     .content-inner {
         padding: 18px 18px 32px;
-        opacity: 0;
-        transform: translateY(10px);
+        opacity: 0; transform: translateY(10px);
         transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
-    .content-inner.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    /* 섹션 타이틀: 중앙 정렬 + 얇은 가로선 */
+    .content-inner.show { opacity: 1; transform: translateY(0); }
     .section-title {
         font-family: 'Cormorant Garamond', 'Noto Serif KR', serif;
         font-weight: 600;
-        margin-top: 26px;
-        margin-bottom: 12px;
-        font-size: 15px;
-        color: #8b5a3c;
-        letter-spacing: 0.12em;
-        text-align: center;
+        margin-top: 26px; margin-bottom: 12px;
+        font-size: 15px; color: #8b5a3c;
+        letter-spacing: 0.12em; text-align: center;
         text-transform: uppercase;
         position: relative;
     }
-
     .section-title::after {
         content: "";
         display: block;
-        width: 64px;
-        height: 1px;
+        width: 64px; height: 1px;
         background: #e2cdbb;
         margin: 6px auto 0;
     }
-
     .meta-row {
-        font-size: 14px;
-        line-height: 1.8;
-        white-space: pre-line;
-        word-break: break-word;
+        font-size: 14px; line-height: 1.8;
+        white-space: pre-line; word-break: break-word;
         margin: 0;
     }
-
-    /* 인사말 / 연락처 카드 */
     .soft-card {
-        background: #f8f1ea;
-        border-radius: 14px;
+        background: #f8f1ea; border-radius: 14px;
         padding: 12px 12px 10px;
         border: 1px solid #f0e0ce;
         margin-top: 6px;
     }
-
-    .soft-card .meta-row {
-        font-size: 13px;
-    }
-
+    .soft-card .meta-row { font-size: 13px; }
     .contact-card {
-        background: #f9f4ec;
-        border-radius: 14px;
+        background: #f9f4ec; border-radius: 14px;
         padding: 10px 12px 8px;
         border: 1px dashed #e3d2bd;
         margin-top: 6px;
         font-size: 13px;
     }
-
-    /* 연락처/계좌 줄 + 복사 버튼 */
     .contact-line {
-        font-size: 13px;
-        line-height: 1.7;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 6px;
-        margin: 2px 0;
+        font-size: 13px; line-height: 1.7;
+        display: flex; justify-content: space-between; align-items: center;
+        gap: 6px; margin: 2px 0;
     }
     .contact-line-text {
-        white-space: pre-line;
-        word-break: break-word;
-        flex: 1;
+        white-space: pre-line; word-break: break-word; flex: 1;
     }
     .copy-btn {
         flex-shrink: 0;
-        padding: 4px 8px;
-        border-radius: 999px;
-        border: 1px solid #e0d0c0;
-        background: #fff;
-        font-size: 11px;
-        cursor: pointer;
-        color: #7b4b30;
+        padding: 4px 8px; border-radius: 999px;
+        border: 1px solid #e0d0c0; background: #fff;
+        font-size: 11px; cursor: pointer; color: #7b4b30;
         transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
     .copy-btn:hover {
@@ -263,70 +156,24 @@
         box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
-    /* 예식 일정 캘린더 카드 */
     .calendar-card {
-        background: #faf3ea;
-        border-radius: 18px;
+        background: #faf3ea; border-radius: 18px;
         padding: 18px 18px 16px;
         border: 1px solid #eddccc;
         margin-top: 6px;
         text-align: center;
     }
-    .calendar-header-date {
-        font-size: 18px;
-        color: #5b3b2a;
-        margin-bottom: 4px;
-    }
-    .calendar-header-time {
-        font-size: 13px;
-        color: #8b5a3c;
-        margin-bottom: 14px;
-    }
-    .calendar-divider {
-        height: 1px;
-        background: #e6d4c5;
-        margin: 6px auto 14px;
-        width: 70%;
-    }
-    .calendar-grid {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 4px;
-        font-size: 12px;
-        margin-bottom: 12px;
-    }
-    .calendar-day-name {
-        color: #b48b6d;
-        font-weight: 500;
-        padding: 2px 0 4px;
-    }
-    .calendar-day {
-        height: 26px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    .calendar-day span {
-        display: inline-block;
-        padding: 4px 0;
-        width: 24px;
-        text-align: center;
-        border-radius: 999px;
-    }
-    .calendar-day.empty span {
-        opacity: 0;
-    }
-    .calendar-day.selected span {
-        background: #d8b08c;
-        color: #fff;
-    }
-    .calendar-footer-text {
-        font-size: 12px;
-        color: #a07064;
-        margin-top: 4px;
-    }
+    .calendar-header-date { font-size: 18px; color: #5b3b2a; margin-bottom: 4px; }
+    .calendar-header-time { font-size: 13px; color: #8b5a3c; margin-bottom: 14px; }
+    .calendar-divider { height: 1px; background: #e6d4c5; margin: 6px auto 14px; width: 70%; }
+    .calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; font-size: 12px; margin-bottom: 12px; }
+    .calendar-day-name { color: #b48b6d; font-weight: 500; padding: 2px 0 4px; }
+    .calendar-day { height: 26px; display: flex; justify-content: center; align-items: center; }
+    .calendar-day span { display: inline-block; padding: 4px 0; width: 24px; text-align: center; border-radius: 999px; }
+    .calendar-day.empty span { opacity: 0; }
+    .calendar-day.selected span { background: #d8b08c; color: #fff; }
+    .calendar-footer-text { font-size: 12px; color: #a07064; margin-top: 4px; }
 
-    /* 지도 카드 */
     .map-card {
         border-radius: 18px;
         overflow: hidden;
@@ -334,35 +181,53 @@
         background: #f7f0e4;
         border: 1px solid #ead8c3;
     }
-
-    .map-card-header {
-        padding: 14px 16px 10px;
-        text-align: center;
-    }
-
-    .map-card-header h2 {
-        font-size: 15px;
-        margin: 0 0 6px;
-        color: #7b4b30;
-    }
-
+    .map-card-header { padding: 14px 16px 10px; text-align: center; }
+    .map-card-header h2 { font-size: 15px; margin: 0 0 6px; color: #7b4b30; }
     .map-card-header p {
+        font-size: 12px; color: #555; margin: 0;
+        white-space: pre-line; word-break: break-word;
+    }
+
+    /* ✅ 주소 검색 UI 추가 */
+    .address-tools {
+        display: flex;
+        gap: 8px;
+        padding: 10px 12px 0;
+        background: #fbf7f2;
+    }
+    #addressInput {
+        flex: 1;
+        padding: 9px 10px;
+        border-radius: 12px;
+        border: 1px solid #e5d7c9;
+        background: #fff;
         font-size: 12px;
-        color: #555;
-        margin: 0;
-        white-space: pre-line;
-        word-break: break-word;
+    }
+    #addressSearchBtn {
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid #e5d7c9;
+        background: #fff;
+        cursor: pointer;
+        font-size: 12px;
+        color: #333;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+        transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
+        white-space: nowrap;
+    }
+    #addressSearchBtn:hover {
+        background: #f5eee7;
+        transform: translateY(-1px);
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
     .map-buttons {
-        display: flex;
-        gap: 8px;
+        display: flex; gap: 8px;
         padding: 10px 10px 12px;
         justify-content: center;
         background: #fbf7f2;
         border-top: 1px solid #f0e3d4;
     }
-
     .map-btn {
         padding: 7px 10px;
         font-size: 12px;
@@ -376,14 +241,12 @@
         box-shadow: 0 1px 4px rgba(0,0,0,0.04);
         transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
-
     .map-btn:hover {
         background: #f5eee7;
         transform: translateY(-1px);
         box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
-    /* '오시는 방법' 안내 카드 */
     .transport-card {
         margin-top: 10px;
         background: #f9f4ec;
@@ -396,31 +259,15 @@
         word-break: break-word;
     }
 
-    /* 갤러리 섹션 */
     #galleryWrapper {
         margin-top: 8px;
         opacity: 0;
         transform: translateY(10px);
         transition: opacity 0.5s ease, transform 0.5s ease;
     }
-
-    #galleryWrapper.show {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .gallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-    }
-
-    .gallery-item {
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-    }
-
+    #galleryWrapper.show { opacity: 1; transform: translateY(0); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; }
     .gallery-item img {
         width: 100%;
         display: block;
@@ -431,13 +278,11 @@
         transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
         cursor: pointer;
     }
-
     .gallery-item img:hover {
         transform: scale(1.03);
         box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
         filter: brightness(1.03);
     }
-
     #galleryMoreBtn {
         margin: 12px auto 0;
         display: none;
@@ -450,16 +295,13 @@
         color: #7b4b30;
         transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
-
     #galleryMoreBtn:hover {
         background: #f2e6d7;
         transform: translateY(-1px);
         box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
 
-    /* 방명록 폼 */
-    #guestName,
-    #guestMessage {
+    #guestName, #guestMessage {
         width: 100%;
         padding: 9px;
         margin-bottom: 8px;
@@ -469,19 +311,12 @@
         background: #fff;
         transition: box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
-    #guestName:focus,
-    #guestMessage:focus {
+    #guestName:focus, #guestMessage:focus {
         outline: none;
         border-color: #d2b79a;
         box-shadow: 0 0 0 1px rgba(210,183,154,0.3);
     }
-
-    #guestMessage {
-        resize: none;
-        height: 80px;
-    }
-
+    #guestMessage { resize: none; height: 80px; }
     #guestSubmitBtn {
         width: 100%;
         padding: 11px;
@@ -494,14 +329,11 @@
         cursor: pointer;
         transition: background 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
     }
-
     #guestSubmitBtn:hover {
         background: #0f172a;
         transform: translateY(-1px);
         box-shadow: 0 4px 10px rgba(0,0,0,0.18);
     }
-
-    /* 방명록 리스트 */
     .guestbook-wrapper {
         margin-top: 6px;
         border-radius: 14px;
@@ -509,42 +341,18 @@
         border: 1px solid #efe2d4;
         padding: 8px 10px;
     }
-
     #guestbookList > div {
         padding: 8px 0;
         font-size: 13px;
         border-bottom: 1px solid #f0e0d2;
     }
+    #guestbookList > div:last-child { border-bottom: none; }
+    #guestbookList strong { font-weight: 600; color: #5b3b2a; }
+    .time { color: #999; font-size: 11px; margin-left: 6px; }
 
-    #guestbookList > div:last-child {
-        border-bottom: none;
-    }
+    hr { border: none; border-top: 1px solid #e3dfd8; margin: 24px 0 18px; }
+    .footer-note { margin-top: 20px; text-align: center; font-size: 11px; color: #a08a77; }
 
-    #guestbookList strong {
-        font-weight: 600;
-        color: #5b3b2a;
-    }
-
-    .time {
-        color: #999;
-        font-size: 11px;
-        margin-left: 6px;
-    }
-
-    hr {
-        border: none;
-        border-top: 1px solid #e3dfd8;
-        margin: 24px 0 18px;
-    }
-
-    .footer-note {
-        margin-top: 20px;
-        text-align: center;
-        font-size: 11px;
-        color: #a08a77;
-    }
-
-    /* === 라이트박스(갤러리 확대 보기) === */
     #lightboxOverlay {
         position: fixed;
         inset: 0;
@@ -557,17 +365,8 @@
         pointer-events: none;
         transition: opacity 0.25s ease;
     }
-
-    #lightboxOverlay.open {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .lightbox-backdrop {
-        position: absolute;
-        inset: 0;
-    }
-
+    #lightboxOverlay.open { opacity: 1; pointer-events: auto; }
+    .lightbox-backdrop { position: absolute; inset: 0; }
     .lightbox-content {
         position: relative;
         max-width: 100%;
@@ -580,19 +379,13 @@
         opacity: 0;
         transition: transform 0.25s ease, opacity 0.25s ease;
     }
-
-    #lightboxOverlay.open .lightbox-content {
-        transform: scale(1);
-        opacity: 1;
-    }
-
+    #lightboxOverlay.open .lightbox-content { transform: scale(1); opacity: 1; }
     #lightboxImage {
         max-width: 100%;
         max-height: 100%;
         border-radius: 12px;
         box-shadow: 0 8px 30px rgba(0,0,0,0.5);
     }
-
     .lightbox-nav-btn {
         position: absolute;
         top: 50%;
@@ -610,35 +403,28 @@
         cursor: pointer;
         transition: background 0.2s ease, transform 0.1s ease;
     }
-
     .lightbox-nav-btn:hover {
         background: rgba(0,0,0,0.7);
         transform: translateY(-50%) scale(1.05);
     }
-
-    #lightboxPrev {
-        left: 8px;
-    }
-
-    #lightboxNext {
-        right: 8px;
-    }
+    #lightboxPrev { left: 8px; }
+    #lightboxNext { right: 8px; }
   </style>
 
   <!-- 카카오 지도 SDK -->
   <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=a682e7903e1e2a73122644b71bb093a0&libraries=services"></script>
+  <!-- ✅ 다음(카카오) 우편번호 주소 검색 API -->
+  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 <body th:attr="data-code=${code}">
 <div class="invite-container">
 
-  <!-- 제목 영역 -->
   <div class="page-title-wrap">
     <h1 id="title">초대장 로딩 중...</h1>
     <p class="title-sub">WE INVITE YOU TO OUR WEDDING DAY</p>
   </div>
 
-  <!-- 메인 히어로 (사진 + 한 줄 예식정보) -->
   <div class="hero-container">
     <div class="hero-image-wrap">
       <img src="" id="mainImage" alt="메인 이미지">
@@ -655,10 +441,8 @@
     </div>
   </div>
 
-  <!-- 본문 -->
   <div class="content-inner" id="content" style="display:none;">
 
-    <!-- 예식 일정 (캘린더) -->
     <p class="section-title">예식 일정</p>
     <div id="calendarCard" class="calendar-card">
       <div class="calendar-header-date" id="calendarHeaderDate"></div>
@@ -668,25 +452,29 @@
       <div class="calendar-footer-text" id="calendarFooterText"></div>
     </div>
 
-    <!-- 인사말 -->
     <p class="section-title">인사말</p>
     <div class="soft-card">
       <p class="meta-row" id="message"></p>
     </div>
 
-    <!-- 연락처 / 계좌 -->
     <p class="section-title">연락처 / 계좌</p>
     <div class="contact-card">
       <div id="contactInfo"></div>
     </div>
 
-    <!-- 오시는 길 (지도 + 주소 검색) -->
     <p class="section-title">오시는 길</p>
     <div id="mapSection" class="map-card">
       <div class="map-card-header">
         <h2 id="mapHallName"></h2>
         <p id="mapAddress"></p>
       </div>
+
+      <!-- ✅ 주소 검색/선택 UI -->
+      <div class="address-tools">
+        <input id="addressInput" type="text" placeholder="주소를 선택/검색해주세요" readonly>
+        <button id="addressSearchBtn" type="button">주소 검색</button>
+      </div>
+
       <div id="mapCanvas" style="width:100%; height:240px;"></div>
 
       <div class="map-buttons">
@@ -695,10 +483,8 @@
       </div>
     </div>
 
-    <!-- (옵션) 오시는 방법 텍스트 -->
     <div id="transportInfoCard" class="transport-card" style="display:none;"></div>
 
-    <!-- 갤러리 -->
     <p class="section-title">갤러리</p>
     <div id="galleryWrapper" style="display:none;">
       <div id="galleryGrid" class="gallery-grid"></div>
@@ -707,7 +493,6 @@
 
     <hr>
 
-    <!-- 방명록 -->
     <p class="section-title">✍ 축하 메시지</p>
     <input id="guestName" placeholder="이름을 입력해주세요">
     <textarea id="guestMessage" placeholder="따뜻한 축하 메시지를 남겨주세요"></textarea>
@@ -718,16 +503,12 @@
       <div id="guestbookList"></div>
     </div>
 
-    <p class="footer-note">
-      두 사람의 새로운 시작을 축복해 주셔서 감사합니다.
-    </p>
-
+    <p class="footer-note">두 사람의 새로운 시작을 축복해 주셔서 감사합니다.</p>
   </div>
 
   <div id="error" style="text-align:center; color:red; display:none;"></div>
 </div>
 
-<!-- 갤러리 전체화면 라이트박스 -->
 <div id="lightboxOverlay">
   <div class="lightbox-backdrop"></div>
   <div class="lightbox-content">
@@ -802,7 +583,6 @@
       }
   }
 
-  // 라이트박스용 전역 상태
   let currentGalleryIndex = 0;
   let currentGalleryUrls = [];
 
@@ -816,8 +596,7 @@
   }
 
   function closeLightbox() {
-      const overlay = document.getElementById("lightboxOverlay");
-      overlay.classList.remove("open");
+      document.getElementById("lightboxOverlay").classList.remove("open");
   }
 
   function showNext(delta) {
@@ -832,11 +611,9 @@
       if (!res.ok) return;
 
       const urls = await res.json();
-      console.log("Gallery URL:", urls);
-
       if (!urls.length) return;
 
-      currentGalleryUrls = urls.slice(); // 라이트박스용으로 저장
+      currentGalleryUrls = urls.slice();
 
       const wrapper = document.getElementById("galleryWrapper");
       wrapper.style.display = "block";
@@ -856,8 +633,6 @@
           img.alt = `gallery-${idx}`;
 
           box.appendChild(img);
-
-          // 클릭 시 전체 화면 라이트박스
           box.addEventListener("click", () => openLightbox(idx));
 
           if (idx >= MAX_INITIAL) {
@@ -880,10 +655,8 @@
       }
   }
 
-  // ---- 연락처 / 계좌 관련 헬퍼 ----
   function copyToClipboard(text,label) {
       const msg = (label || "내용") + "가 복사되었습니다.";
-
       if (navigator.clipboard && navigator.clipboard.writeText) {
           navigator.clipboard.writeText(text)
               .then(() => alert(msg))
@@ -903,15 +676,12 @@
       }
   }
 
-  // 연락처 / 계좌 정보 복사
   function renderContactInfo(raw) {
       const container = document.getElementById("contactInfo");
       container.innerHTML = "";
-
       if (!raw) return;
 
       const lines = raw.split(/\r?\n/);
-
       lines.forEach(line => {
           const trimmed = line.trim();
           if (!trimmed) return;
@@ -924,17 +694,10 @@
           textSpan.textContent = trimmed;
           lineDiv.appendChild(textSpan);
 
-          // 숫자만 추출
           const digits = trimmed.replace(/\D/g, "");
+          const isPhoneLine = trimmed.includes("전화") || trimmed.includes("연락처");
+          const isAccountLine = !isPhoneLine && digits.length >= 10;
 
-          // 전화/계좌 판별 (간단하게 키워드 기반)
-          const isPhoneLine =
-              trimmed.includes("전화") || trimmed.includes("연락처");
-
-          const isAccountLine =
-              !isPhoneLine && digits.length >= 10;
-
-          // 버튼 생성 (둘 다 복사 가능)
           if (isPhoneLine || isAccountLine) {
               const btn = document.createElement("button");
               btn.type = "button";
@@ -943,7 +706,6 @@
 
               const label = isAccountLine ? "계좌번호" : "전화번호";
               btn.addEventListener("click", () => copyToClipboard(digits, label));
-
               lineDiv.appendChild(btn);
           }
 
@@ -951,7 +713,6 @@
       });
   }
 
-  // ---- 예식 일정 캘린더 렌더링 ----
   function renderCalendar(weddingDateStr, weddingTimeStr, groomName, brideName) {
       const card = document.getElementById("calendarCard");
       const headerDate = document.getElementById("calendarHeaderDate");
@@ -959,41 +720,26 @@
       const grid = document.getElementById("weddingCalendar");
       const footer = document.getElementById("calendarFooterText");
 
-      if (!weddingDateStr) {
-          card.style.display = "none";
-          return;
-      }
+      if (!weddingDateStr) { card.style.display = "none"; return; }
 
       const parts = weddingDateStr.split("-");
-      if (parts.length !== 3) {
-          card.style.display = "none";
-          return;
-      }
+      if (parts.length !== 3) { card.style.display = "none"; return; }
 
       const year = parseInt(parts[0], 10);
       const month = parseInt(parts[1], 10);
       const day = parseInt(parts[2], 10);
 
-      if (isNaN(year) || isNaN(month) || isNaN(day)) {
-          card.style.display = "none";
-          return;
-      }
+      if (isNaN(year) || isNaN(month) || isNaN(day)) { card.style.display = "none"; return; }
 
       const date = new Date(year, month - 1, day);
       const yoilNames = ["일", "월", "화", "수", "목", "금", "토"];
       const yoil = yoilNames[date.getDay()];
 
-      // 헤더 텍스트
       const ymd = `${year}.${String(month).padStart(2, "0")}.${String(day).padStart(2, "0")}`;
       headerDate.textContent = ymd;
-      headerTime.textContent = weddingTimeStr
-          ? `${yoil}요일 ${weddingTime_str = weddingTimeStr}`
-          : `${yoil}요일`;
+      headerTime.textContent = weddingTimeStr ? `${yoil}요일 ${weddingTimeStr}` : `${yoil}요일`;
 
-      // 캘린더 본문
       grid.innerHTML = "";
-
-      // 요일 헤더
       ["일","월","화","수","목","금","토"].forEach(name => {
           const div = document.createElement("div");
           div.className = "calendar-day-name";
@@ -1004,7 +750,6 @@
       const firstDay = new Date(year, month - 1, 1).getDay();
       const lastDate = new Date(year, month, 0).getDate();
 
-      // 앞쪽 빈 칸
       for (let i = 0; i < firstDay; i++) {
           const div = document.createElement("div");
           div.className = "calendar-day empty";
@@ -1014,7 +759,6 @@
           grid.appendChild(div);
       }
 
-      // 날짜 채우기
       for (let d = 1; d <= lastDate; d++) {
           const div = document.createElement("div");
           div.className = "calendar-day" + (d === day ? " selected" : "");
@@ -1024,7 +768,6 @@
           grid.appendChild(div);
       }
 
-      // D-Day 문구
       const today = new Date();
       const todayMid = new Date(today.getFullYear(), today.getMonth(), today.getDate());
       const ddayDate = new Date(year, month - 1, day);
@@ -1034,12 +777,27 @@
       const groom = groomName || "신랑";
       const bride = brideName || "신부";
 
-      if (diffDays === 0) {
-          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 오늘입니다.`;
-      } else if (diffDays > 0) {
-          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${diffDays}일 지났습니다.`;
+      if (diffDays === 0) footer.textContent = `${groom} ♥ ${bride}의 결혼식이 오늘입니다.`;
+      else if (diffDays > 0) footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${diffDays}일 지났습니다.`;
+      else footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${Math.abs(diffDays)}일 남았습니다.`;
+  }
+
+  // ✅ 주소 기반 지도/버튼 업데이트 (공통)
+  function buildMapUrlsFromAddress(address) {
+      const enc = encodeURIComponent(address);
+      return {
+          kakaoSearchUrl: `https://map.kakao.com/?q=${enc}`,
+          naverSearchUrl: `https://map.naver.com/v5/search/${enc}`
+      };
+  }
+
+  function setupMapButton(btn, url) {
+      if (!btn) return;
+      if (url) {
+          btn.href = url;
+          btn.style.display = "inline-flex";
       } else {
-          footer.textContent = `${groom} ♥ ${bride}의 결혼식이 ${Math.abs(diffDays)}일 남았습니다.`;
+          btn.style.display = "none";
       }
   }
 
@@ -1056,17 +814,10 @@
           prevBtn.addEventListener("click", () => showNext(-1));
           nextBtn.addEventListener("click", () => showNext(1));
           backdrop.addEventListener("click", closeLightbox);
-
-          // ESC 키로 닫기
-          document.addEventListener("keydown", (e) => {
-              if (e.key === "Escape") {
-                  closeLightbox();
-              }
-          });
+          document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
       }
 
       const response = await fetch(`/api/v1/invitations/${code}`);
-
       if (!response.ok) {
           document.getElementById("title").innerText = "초대장 조회 실패";
           document.getElementById("error").style.display = "block";
@@ -1075,38 +826,27 @@
 
       const data = await response.json();
 
-      // 제목
       document.getElementById("title").innerText = data.title || "Wedding Invitation";
 
-      // 히어로 영역
       document.getElementById("heroGroomName").innerText = data.groomName || "";
       document.getElementById("heroBrideName").innerText = data.brideName || "";
 
       const dateStr = data.weddingDate || "";
       const timeStr = data.weddingTime || "";
-
       let heroDateText = "";
-      if (dateStr && timeStr) {
-          heroDateText = `${dateStr} · ${timeStr}`;
-      } else if (dateStr) {
-          heroDateText = dateStr;
-      } else if (timeStr) {
-          heroDateText = timeStr;
-      }
+      if (dateStr && timeStr) heroDateText = `${dateStr} · ${timeStr}`;
+      else if (dateStr) heroDateText = dateStr;
+      else if (timeStr) heroDateText = timeStr;
+
       document.getElementById("heroDateText").innerText = heroDateText;
       document.getElementById("heroHallText").innerText = data.hallName || "";
 
-      // 인사말
       const messageEl = document.getElementById("message");
       messageEl.innerHTML  = (data.message || "").replace(/\n/g, "<br>");
 
-      // 연락처/계좌 (줄바꿈 + 계좌 복사 버튼)
       renderContactInfo(data.contactInfo || "");
-
-      // 예식 일정 캘린더
       renderCalendar(data.weddingDate, data.weddingTime, data.groomName, data.brideName);
 
-      // 오시는 방법 텍스트
       if (data.transportInfo) {
           const tCard = document.getElementById("transportInfoCard");
           tCard.style.display = "block";
@@ -1117,68 +857,105 @@
       contentEl.style.display = "block";
       requestAnimationFrame(() => contentEl.classList.add("show"));
 
-      // 지도 셋업 (주소로 검색 URL 구성)
+      // ===== 지도/주소 =====
       const mapSection   = document.getElementById("mapSection");
       const mapHallName  = document.getElementById("mapHallName");
       const mapAddress   = document.getElementById("mapAddress");
       const mapCanvas    = document.getElementById("mapCanvas");
       const naverMapBtn  = document.getElementById("naverMapBtn");
       const kakaoMapBtn  = document.getElementById("kakaoMapBtn");
+      const addressInput = document.getElementById("addressInput");
+      const addressSearchBtn = document.getElementById("addressSearchBtn");
 
       const safeAddress = (data.address || "").trim();
       const safeMapUrl  = (data.mapUrl || "").trim();
 
       mapHallName.innerText = data.hallName || "";
       mapAddress.innerText  = safeAddress || "주소 정보가 등록되지 않았습니다.";
+      addressInput.value    = safeAddress || "";
 
-      if (!safeAddress && !safeMapUrl) {
-          if (mapSection) {
-              mapSection.style.display = "none";
-          }
-      } else {
-          const hasAddress = !!safeAddress;
-          const encAddr    = hasAddress ? encodeURIComponent(safeAddress) : "";
+      // 카카오 지도 객체/지오코더 재사용
+      let kakaoMap = null;
+      let kakaoGeocoder = null;
+      let kakaoMarker = null;
 
-          const kakaoSearchUrl = hasAddress ? `https://map.kakao.com/?q=${encAddr}` : "";
-          const naverSearchUrl = hasAddress ? `https://map.naver.com/v5/search/${encAddr}` : "";
+      function initKakaoMapIfNeeded() {
+          if (!mapCanvas || !(window.kakao && kakao.maps)) return;
+          if (kakaoMap) return;
 
-          function setupMapButton(btn, url) {
-              if (!btn) return;
-              if (url) {
-                  btn.href = url;
-                  btn.style.display = "inline-flex";
-              } else {
-                  btn.style.display = "none";
+          const mapOption = {
+              center: new kakao.maps.LatLng(37.566826, 126.9786567),
+              level: 3
+          };
+          kakaoMap = new kakao.maps.Map(mapCanvas, mapOption);
+          kakaoGeocoder = new kakao.maps.services.Geocoder();
+      }
+
+      function updateKakaoMapByAddress(address) {
+          if (!address) return;
+          initKakaoMapIfNeeded();
+          if (!kakaoGeocoder || !kakaoMap) return;
+
+          kakaoGeocoder.addressSearch(address, function(result, status) {
+              if (status === kakao.maps.services.Status.OK) {
+                  const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+                  if (kakaoMarker) kakaoMarker.setMap(null);
+                  kakaoMarker = new kakao.maps.Marker({ map: kakaoMap, position: coords });
+
+                  kakaoMap.setCenter(coords);
               }
+          });
+      }
+
+      function updateMapUiWithAddress(address) {
+          const addr = (address || "").trim();
+          mapAddress.innerText = addr || "주소 정보가 등록되지 않았습니다.";
+          addressInput.value = addr;
+
+          if (!addr) {
+              setupMapButton(kakaoMapBtn, safeMapUrl || "");
+              setupMapButton(naverMapBtn, "");
+              return;
           }
 
-          // 주소로 지도 검색 가능한 버튼들
+          const { kakaoSearchUrl, naverSearchUrl } = buildMapUrlsFromAddress(addr);
           setupMapButton(kakaoMapBtn, safeMapUrl || kakaoSearchUrl);
           setupMapButton(naverMapBtn, naverSearchUrl);
 
-          // 카카오 JS SDK 지도
-          if (mapCanvas && hasAddress && window.kakao && kakao.maps) {
-              const mapOption = {
-                  center: new kakao.maps.LatLng(37.566826, 126.9786567),
-                  level: 3
-              };
-              const map = new kakao.maps.Map(mapCanvas, mapOption);
-              const geocoder = new kakao.maps.services.Geocoder();
-
-              geocoder.addressSearch(safeAddress, function(result, status) {
-                  if (status === kakao.maps.services.Status.OK) {
-                      const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-                      new kakao.maps.Marker({
-                          map: map,
-                          position: coords
-                      });
-                      map.setCenter(coords);
-                  }
-              });
-          }
+          updateKakaoMapByAddress(addr);
       }
 
-      // 메인 이미지 URL (S3) + 로딩 후 자연스러운 등장
+      // 기본 값으로 한 번 셋업
+      if (!safeAddress && !safeMapUrl) {
+          if (mapSection) mapSection.style.display = "none";
+      } else {
+          // 버튼 링크 초기화 + 지도 표시
+          updateMapUiWithAddress(safeAddress);
+      }
+
+      // ✅ 주소 검색 버튼 → 다음 우편번호 API
+      if (addressSearchBtn) {
+          addressSearchBtn.addEventListener("click", () => {
+              if (!window.daum || !daum.Postcode) {
+                  alert("주소 검색 API 로딩에 실패했습니다.");
+                  return;
+              }
+
+              new daum.Postcode({
+                  oncomplete: function(data) {
+                      // 도로명/지번 중 도로명이 있으면 우선 사용
+                      const selected = (data.roadAddress || data.jibunAddress || "").trim();
+                      if (!selected) return;
+
+                      // 선택된 주소로 UI/지도/버튼 즉시 업데이트
+                      updateMapUiWithAddress(selected);
+                  }
+              }).open();
+          });
+      }
+
+      // 메인 이미지 로딩 애니메이션
       const mainImageEl = document.getElementById("mainImage");
       const heroInfoCard = document.getElementById("heroInfoCard");
 
@@ -1189,7 +966,6 @@
               heroInfoCard.classList.add("show");
           });
       } else {
-          // 이미지가 없어도 정보 카드는 자연스럽게 보이도록
           mainImageEl.classList.add("show");
           heroInfoCard.classList.add("show");
       }
