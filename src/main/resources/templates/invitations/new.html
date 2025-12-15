@@ -7,6 +7,9 @@
     <meta name="_csrf" th:content="${_csrf.token}"/>
     <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 
+    <!-- 다음(카카오) 우편번호 주소검색 API -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
     <!-- 관리자용 간단 스타일 -->
     <style>
         body {
@@ -50,6 +53,25 @@
         button:hover {
             background: #45a049;
         }
+
+        /* 주소 검색 영역 버튼/배치 */
+        .address-row {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .address-row input {
+            flex: 1;
+        }
+        .address-row button {
+            width: 140px;
+            margin-top: 4px;
+            padding: 10px;
+            background: #2196F3;
+        }
+        .address-row button:hover {
+            background: #1e87e5;
+        }
     </style>
 </head>
 <body>
@@ -75,22 +97,31 @@
     <label>예식장명</label>
     <input type="text" id="hallName" placeholder="예: OO웨딩컨벤션 3층 그랜드홀">
 
+    <!-- 주소 API 적용 -->
     <label>주소</label>
-    <input type="text" id="address" placeholder="예: 서울시 OO구 OO로 123">
+
+    <label style="font-weight:normal; margin-top:6px;">우편번호</label>
+    <div class="address-row">
+        <input type="text" id="zonecode" placeholder="우편번호" readonly>
+        <button type="button" onclick="execDaumPostcode()">주소 검색</button>
+    </div>
+
+    <label style="font-weight:normal; margin-top:10px;">기본주소</label>
+    <input type="text" id="address" placeholder="주소 검색을 눌러 입력" readonly>
+
+    <label style="font-weight:normal; margin-top:10px;">상세주소</label>
+    <input type="text" id="addressDetail" placeholder="예: 101동 1001호">
 
     <label>지도 URL</label>
     <input type="text" id="mapUrl" placeholder="카카오맵/네이버맵 링크">
-
-<!--    <label>메인 이미지 URL</label>-->
-<!--    <input type="text" id="mainImageUrl" placeholder="대표 사진 주소 (나중에 S3로 교체 가능)">-->
 
     <label>인사말 메시지</label>
     <textarea id="message" rows="4" placeholder="게스트에게 보여줄 인사말을 입력하세요."></textarea>
 
     <label>연락처 정보</label>
-    <textarea id="contactInfo" name="contactInfo" row="5" style="width:100%" placeholder="예: 신랑 010-..., 신부 010-..."></textarea>
+    <textarea id="contactInfo" name="contactInfo" rows="5" style="width:100%" placeholder="예: 신랑 010-..., 신부 010-..."></textarea>
 
-    <!-- 갤러리 이미지 업로드 input 추가 -->
+    <!-- 갤러리 이미지 업로드 -->
     <label for="galleryImages">갤러리 이미지 (여러 장 선택 가능)</label>
     <input type="file"
            id="galleryImages"
@@ -102,6 +133,29 @@
 </div>
 
 <script>
+    /**
+     * 다음 우편번호 주소검색 팝업
+     */
+    function execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // data.zonecode: 우편번호
+                // data.roadAddress: 도로명주소
+                // data.jibunAddress: 지번주소
+                const zonecode = data.zonecode || "";
+                const baseAddress = data.roadAddress && data.roadAddress.length > 0
+                    ? data.roadAddress
+                    : (data.jibunAddress || "");
+
+                document.getElementById("zonecode").value = zonecode;
+                document.getElementById("address").value = baseAddress;
+
+                // 상세주소로 포커스
+                document.getElementById("addressDetail").focus();
+            }
+        }).open();
+    }
+
     // 갤러리 이미지 업로드 함수
     async function uploadGalleryImages(code) {
         const fileInput = document.getElementById("galleryImages");
@@ -129,7 +183,7 @@
             const res = await fetch(`/admin/invitations/${code}/images`, {
                 method: "POST",
                 headers: {
-                    //  Content-Type 은 직접 지정하지 않는다 (multipart boundary 깨짐)
+                    // Content-Type 직접 지정 금지 (multipart boundary 깨짐)
                     [csrfHeader]: csrfToken
                 },
                 body: formData
@@ -152,6 +206,11 @@
      */
     function createInvitation() {
 
+        // 주소 합치기 (기본주소 + 상세주소)
+        const baseAddr = document.getElementById("address").value.trim();
+        const detailAddr = document.getElementById("addressDetail").value.trim();
+        const zonecode = document.getElementById("zonecode").value.trim();
+
         // 1) 입력 값 수집
         const data = {
             title: document.getElementById("title").value,
@@ -160,7 +219,10 @@
             weddingDate: document.getElementById("weddingDate").value,
             weddingTime: document.getElementById("weddingTime").value,
             hallName: document.getElementById("hallName").value,
-            address: document.getElementById("address").value,
+
+            // 서버 DTO가 address 하나만 받는다고 가정: "우편번호) 기본주소 상세주소" 형태로 전송
+            address: (zonecode ? `(${zonecode}) ` : "") + baseAddr + (detailAddr ? ` ${detailAddr}` : ""),
+
             mapUrl: document.getElementById("mapUrl").value,
             message: document.getElementById("message").value,
             contactInfo: document.getElementById("contactInfo").value
@@ -185,10 +247,10 @@
             return response.json();
         })
         .then(async result => {
-            //  3) 먼저 갤러리 업로드 시도
+            // 3) 먼저 갤러리 업로드 시도
             await uploadGalleryImages(result.code);
 
-            //  4) 안내 후 손님용 초대장 페이지로 이동
+            // 4) 안내 후 손님용 초대장 페이지로 이동
             alert(
                 "초대장 생성 완료!\n" +
                 "코드: " + result.code + "\n" +
