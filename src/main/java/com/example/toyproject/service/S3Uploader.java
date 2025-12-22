@@ -16,6 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.UUID;
 
+//@Profile("prod") // 추가 작성(로컬 전용)
 @Service
 @RequiredArgsConstructor
 public class S3Uploader {

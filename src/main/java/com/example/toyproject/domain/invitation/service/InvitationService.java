@@ -35,7 +35,7 @@ public class InvitationService {
     }
 
     // 랜덤 코드 생성을 위한 문자 집합 변수 생성
-    // 표준 랜덤 코드 문자 집합이다. (만국 공통)
+    // 표준 랜덤 코드 문자 집합이다.
     private static final String CODE_CHAR_SET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final int CODE_LENGTH = 8;
     private static final SecureRandom RANDOM = new SecureRandom();

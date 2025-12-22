@@ -8,6 +8,7 @@ import com.example.toyproject.service.S3Uploader;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,6 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+//@Profile("prod") // 추가 작성(로컬 전용)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/invitations")
