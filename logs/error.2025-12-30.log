@@ -1,0 +1,15 @@
+2025-12-30 18:04:03.454 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 2 of constructor in com.example.toyproject.domain.invitationimage.controller.InvitationImageAdminController required a bean of type 'com.example.toyproject.service.S3Uploader' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'com.example.toyproject.service.S3Uploader' in your configuration.
+
