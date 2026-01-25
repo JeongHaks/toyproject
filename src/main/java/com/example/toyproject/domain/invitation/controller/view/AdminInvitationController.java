@@ -36,6 +36,7 @@ public class AdminInvitationController {
     // 모바일 청첩장 관리
     @GetMapping
     public String invitationAdminHome(Model model){
+        System.out.println("모바일 초대장 순서 AdminInvitationController 1");
 
         List<Invitation> invitatins = invitationService.findAll();
 
@@ -56,7 +57,7 @@ public class AdminInvitationController {
     // 초대장 생성 
     @GetMapping("/new")
     public String showCreateForm(Model model) {
-
+        System.out.println("모바일 초대장 순서 AdminInvitationController 2");
         // 화면 단에 기본 값, 폼 객체 등을 넘기고 싶으면 여기서 model.addAttribute() 사용
         // 예) model.addAttribute("form", new InvitationCreateForm());
 
@@ -68,6 +69,8 @@ public class AdminInvitationController {
     @DeleteMapping("/{code}/guestbook/{guestid}")
     public ResponseEntity<Void> deleteGuestbook(@PathVariable("code") String code
                                                ,@PathVariable("guestid") Long guestid){
+        System.out.println("모바일 초대장 순서 AdminInvitationController 3 : " + code);
+        System.out.println("모바일 초대장 순서 AdminInvitationController 3 : " + guestid);
         guestbookService.deleteGuestbook(code,guestid);
         return ResponseEntity.noContent().build();
     }
@@ -75,6 +78,7 @@ public class AdminInvitationController {
     // 관리용
     @GetMapping("/{code}/guestbook")
     public String showGuestbookAdminPage(@PathVariable("code") String code, Model model){
+        System.out.println("모바일 초대장 순서 AdminInvitationController 5 : " + code);
         model.addAttribute("code",code);
         return "invitations/admin/invitation-guestbook";
     }
@@ -84,6 +88,7 @@ public class AdminInvitationController {
      */
     @GetMapping("/{code}/images-page")
     public String galleryAdmin(@PathVariable("code") String code, Model model) {
+        System.out.println("모바일 초대장 순서 AdminInvitationController 6 : " + code);
         model.addAttribute("code", code);
         return "invitations/admin/invitation-images"; // templates/admin/invitation-images.html
     }
@@ -93,6 +98,8 @@ public class AdminInvitationController {
     @ResponseBody
     public ResponseEntity<Void> updateMainImage(@PathVariable("code") String code,
                                                 @RequestParam("imageUrl") String imageUrl) {
+        System.out.println("모바일 초대장 순서 AdminInvitationController 7 : " + code);
+        System.out.println("모바일 초대장 순서 AdminInvitationController 7 : " + imageUrl);
         invitationService.updateMainImageUrl(code, imageUrl);
         // 바디 없이 204 No Content
         return ResponseEntity.noContent().build();

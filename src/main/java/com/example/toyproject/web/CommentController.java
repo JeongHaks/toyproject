@@ -49,10 +49,11 @@ public class CommentController {
                              @RequestParam("content") String content,
                              @RequestParam(value="parentid",required = false) String parentid,
                              Authentication auth) {
-        String cleanParentId = (parentid == null || parentid.isBlank() || "null".equalsIgnoreCase(parentid))
-                ? null : parentid;
+        // 댓글 ID를 가져오기 위함(대댓글을 달았을 경우)
+        String cleanParentId = (parentid == null || parentid.isBlank() || "null".equalsIgnoreCase(parentid)) ? null : parentid;
         // 클라이언트가 보내는 userid는 신뢰하지 않고, 서버에서 추출한다.
         String userid = (auth != null) ? auth.getName() : null;
+
         if(userid == null || userid.isBlank()){
             // 미인증 사용자는 로그인 페이지로 유도하거나 에러 표시
             return "redirect:/login";
@@ -62,8 +63,8 @@ public class CommentController {
         //var newId = commentService.addRootComment(postid, userid, content);
 
         Comment saved = (cleanParentId == null)
-                ? commentService.addRootComment(postid, userid, content)
-                : commentService.addChildComment(postid, cleanParentId, userid, content);
+                ? commentService.addRootComment(postid, userid, content) // 댓글 작성
+                : commentService.addChildComment(postid, cleanParentId, userid, content); // 대댓글 작성
 
         // 등록 후 해당 게시글 상세 페이지로 이동
         return "redirect:/posts/" + postid + "#c-" + saved.getId();

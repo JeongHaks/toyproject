@@ -25,6 +25,7 @@ public class GuestbookService {
      * 방명록 조회
      */
     public List<GuestbookResponse> getGuestbooks(String code) {
+        System.out.println("모바일 초대장 순서 GuestbookService 1 : " + code);
         List<Guestbook> list = guestbookRepository.findByInvitation_CodeOrderByCreatedAtDesc(code);
 
         return list.stream()
@@ -37,6 +38,8 @@ public class GuestbookService {
      */
     @Transactional
     public GuestbookResponse addGuestbook(String code, GuestbookCreateRequest request) {
+        System.out.println("모바일 초대장 순서 GuestbookService 2 : " + code);
+        System.out.println("모바일 초대장 순서 GuestbookService 2 : " + request);
         // 초대장 찾기
         Invitation invitation = invitationRepository.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("초대장을 찾을 수 없습니다. code=" + code));
@@ -56,6 +59,8 @@ public class GuestbookService {
     // 방명록 삭제
     @Transactional
     public void deleteGuestbook(String code, Long guestid){
+        System.out.println("모바일 초대장 순서 GuestbookService 3 : " + code);
+        System.out.println("모바일 초대장 순서 GuestbookService 3 : " + guestid);
         Guestbook gb = guestbookRepository.findByIdAndInvitation_Code(guestid,code)
                 .orElseThrow(()->new IllegalArgumentException("해당 방명록이 존재하지 않습니다."));
 

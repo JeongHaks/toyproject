@@ -62,6 +62,7 @@ public class InvitationApiController {
     * */
     @PostMapping
     public ResponseEntity<InvitationResponse> createInvitation(@RequestBody InvitationCreateRequest request){
+        System.out.println("모바일 초대장 순서 InvitationApiController 1 : " + request);
         // 서비스 계층에 위임하여 초대장을 생성한다.
         InvitationResponse response = invitationService.createInvitation(request);
 
@@ -84,6 +85,7 @@ public class InvitationApiController {
      */
     @GetMapping("/{code}")
     public ResponseEntity<InvitationResponse> getInvitation(@PathVariable("code") String code) {
+        System.out.println("모바일 초대장 순서 InvitationApiController 2 : " +  code);
         // 서비스 계층에서 code로 초대장을 조회해서 초대장을 보여준다.
         InvitationResponse response = invitationService.getInvitationByCode(code);
         return ResponseEntity.ok(response);
@@ -96,6 +98,7 @@ public class InvitationApiController {
     * */
     @GetMapping("/{code}/images")
     public ResponseEntity<List<String>> getInvitationImages(@PathVariable("code") String code){
+        System.out.println("모바일 초대장 순서 InvitationApiController 3 : " + code);
         List<InvitationImage> images = invitationImageService.getImagesByInvitationCode(code);
 
         List<String> imageUrls = images.stream()

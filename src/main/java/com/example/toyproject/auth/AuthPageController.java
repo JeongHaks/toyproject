@@ -47,14 +47,16 @@ public class AuthPageController {
         // 회원가입 실패시 회원가입 화면으로 이동
         if (bindingResult.hasErrors()) return "signup";
 
-        // SignupForm form html에서 입력한 정보가 담긴 값
+        // SignupForm form html에서 입력한 회원 정보가 담긴 값
         try {
+            // SignupRequest 클래스에 회원 정보 값 담기.
             SignupRequest req = new SignupRequest();
-            req.id = form.getId();
-            req.password = form.getPassword();
-            req.nickname = form.getNickname();
-            authService.signup(req);
+            req.id = form.getId(); // 아이디
+            req.password = form.getPassword(); // 비밀번호
+            req.nickname = form.getNickname(); // 닉네임
+            authService.signup(req); // 회원 정보 데이터를 비즈니스 로직에 전달
         } catch (IllegalArgumentException e) {
+            // 회원가입 실패시 에러메시지 전달
             bindingResult.reject("signupFail", e.getMessage());
             return "signup";
         }

@@ -11,7 +11,9 @@ package com.example.toyproject.post;
 
 import com.example.toyproject.common.ResourceNotFoundException; // ← 우리 전역 404 매핑용 커스텀 예외
 import com.example.toyproject.domain.Post;
+import com.example.toyproject.repository.PostLikeRepository;
 import com.example.toyproject.repository.PostRepository;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,12 +27,18 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class PostService {
 
+    // 로깅
     private static final Logger log = LoggerFactory.getLogger(PostService.class);
     private final PostRepository postRepository;
 
+    //지역변수 생성
+    private final PostLikeRepository postLikeRepository;
+
     // 생성자 주입: 테스트/DI 친화적
-    public PostService(PostRepository postRepository){
+    public PostService(PostRepository postRepository, PostLikeRepository postLikeRepository){
+
         this.postRepository = postRepository;
+        this.postLikeRepository = postLikeRepository;
     }
 
     /**
@@ -43,6 +51,10 @@ public class PostService {
      */
     @Transactional // 쓰기 트랜잭션: INSERT 수행
     public long create(String title, String content, String writerId){
+        System.out.println("게시판 순서 PostService 1 : " + title);
+        System.out.println("게시판 순서 PostService 1 : " + content);
+        System.out.println("게시판 순서 PostService 1 : " + writerId);
+
         // 1) 파라미터 1차 검증 (Controller @Valid와 별개로 Service에서도 방어적 검증)
         if (isBlank(title) || isBlank(content) || isBlank(writerId)) {
             throw new IllegalArgumentException("제목/본문/작성자는 필수입니다."); // → GlobalExceptionHandler에서 500.html 처리
@@ -74,6 +86,7 @@ public class PostService {
      */
     @Transactional(readOnly = true) // 읽기 트랜잭션: 영속성 컨텍스트는 유지하되 변경감지는 비활성화(최적화)
     public Post get(Long id) {
+        System.out.println("게시판 순서 PostService 2 : " + id);
         return postRepository.findById(id)
                 // NoSuchElementException 대신 ResourceNotFoundException 사용 → 404 매핑
                 .orElseThrow(() -> new ResourceNotFoundException("게시글이 존재하지 않습니다. id=" + id));
@@ -89,6 +102,9 @@ public class PostService {
     // 검색 했을 시 리스트화 목록 보기
     @Transactional(readOnly = true)
     public Page<Post> list(String keyword, int page, int size){
+        System.out.println("게시판 순서 PostService 3 : " + keyword);
+        System.out.println("게시판 순서 PostService 3 : " + page);
+        System.out.println("게시판 순서 PostService 3 : " + size);
         // 1) 페이징하기 위한 값 전달.
         page = Math.max(page, 0);
         size = Math.min(Math.max(size, 1), 100); // 1~100 제한
@@ -114,10 +130,15 @@ public class PostService {
      */
     @Transactional // 쓰기 트랜잭션: Dirty Checking으로 UPDATE 반영
     public void update(Long id, String title, String content, String currentUser) {
+        System.out.println("게시판 순서 PostService 4 : " + id);
+        System.out.println("게시판 순서 PostService 4 : " + title);
+        System.out.println("게시판 순서 PostService 4 : " + content);
+        System.out.println("게시판 순서 PostService 4 : " + currentUser);
+
         // 1) 존재 확인 (없으면 404)
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("게시글이 존재하지 않습니다. id=" + id));
-
+        System.out.println("게시판 순서 PostService 4 : " + postRepository.findById(id));
         // 2) 권한 확인 (작성자 일치 여부) → 불일치면 403
         if (!post.getUserId().equals(currentUser)) {
             // 이 예외는 Spring Security의 AccessDenied 예외로 403.html로 라우팅됨
@@ -145,6 +166,8 @@ public class PostService {
      */
     @Transactional
     public void delete(Long id, String currentUser) {
+        System.out.println("게시판 순서 PostService 5 : " + id);
+        System.out.println("게시판 순서 PostService 5 : " + currentUser);
         // 1) 존재 확인
         Post post = postRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("게시글이 존재하지 않습니다. id=" + id));
@@ -169,5 +192,18 @@ public class PostService {
      */
     private boolean isBlank(String s){
         return s == null || s.trim().isEmpty();
+    }
+
+    // 게시글 좋아요 표시
+    // 전체 좋아요 수
+    @Transactional(readOnly = true)
+    public long countByPostId(Long postId) {
+        return postLikeRepository.countByPostId(postId);
+    }
+
+    // 현재 로그인 사용자가 좋아요 눌렀는지
+    @Transactional(readOnly = true)
+    public boolean isLiked(Long postId, String userId) {
+        return postLikeRepository.existsByPostIdAndUserId(postId, userId);
     }
 }

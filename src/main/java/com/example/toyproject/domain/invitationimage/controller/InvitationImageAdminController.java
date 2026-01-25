@@ -31,6 +31,8 @@ public class InvitationImageAdminController {
     @PostMapping("/{code}/images")
     public ResponseEntity<String> uploadImages(@PathVariable("code") String code,
                                                @RequestParam("files") MultipartFile[] files) throws Exception {
+        System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + code);
+        System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + files);
 
         Invitation invitation = invitationService.getInvitationEntityByCode(code);
 

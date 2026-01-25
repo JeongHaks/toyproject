@@ -36,7 +36,7 @@ public class SecurityConfig {
     * */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
-
+        System.out.println("SpringSecurity : " + http);
         http
                 // URL 접근 권한 (로그인 없이 접근 허용 가능한 URL)
                 .authorizeHttpRequests(auth -> auth
@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .formLogin(login -> login
                 .loginPage("/login") // GET /login --> login.html 렌더(우리가 만든 페이지)
                 .loginProcessingUrl("/login") //POST /login --> 시큐리티가 인증 처리 해준다.(인증 완료하면 아래 페이지로 이동)
-                .defaultSuccessUrl("/", true) // 로그인 성공 후 home.html 이동 경로 (게시글 작성 페이지...수정)
+                .defaultSuccessUrl("/", true) // 로그인 성공 후 main.html 이동 경로 (게시글 작성 페이지...수정)
                 .permitAll()
                 )
                 // 로그아웃은 기본값 사용 (/logout)
