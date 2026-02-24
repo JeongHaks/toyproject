@@ -128,3 +128,80 @@ REST API 기반으로 설계 및 구현한 서비스입니다.
 - Gradle
 - GitHub
 
+
+## 3. RAG 기반 문서 질의응답 시스템 (RAG Q&A Service)
+PDF 문서를 업로드하면 문서 내용을 기반으로 답변을 생성하는  
+RAG(Retrieval-Augmented Generation) 구조의 질의응답 시스템입니다.
+
+단순히 LLM을 호출하는 것이 아니라,  
+문서 임베딩 → 벡터 저장 → 유사도 검색 → 프롬프트 구성 → 답변 생성까지  
+전체 파이프라인을 직접 설계하고 구현하였습니다.
+
+### 시스템 아키텍처 흐름
+1. PDF 업로드
+2. 텍스트 추출
+3. 800자 기준 Chunk 분할 + 150자 Overlap 적용
+4. Ollama 기반 임베딩 생성
+5. PostgreSQL(pgvector)에 벡터 저장
+6. 사용자 질문 입력
+7. 벡터 유사도 연산 기반 Top-K 검색
+8. 검색된 문맥을 포함하여 LLM 프롬프트 구성
+9. 근거 기반 답변 생성
+
+### Chunk 전략
+- Chunk Size: 800자
+- Overlap: 150자
+
+#### 설계 의도
+- 문맥 유지와 토큰 비용의 균형 고려
+- Chunk 경계에서 문장 단절 방지
+- 검색 정확도 향상
+
+### 벡터 검색 설계
+- pgvector 확장 사용
+- 코사인 유사도 기반 Top-K 검색
+- 질문과 가장 유사한 문맥만 LLM에 전달
+> 전체 문서를 그대로 전달하지 않고,  
+> 검색된 문맥만 전달하여 응답 정확도 및 효율성 개선
+
+### hallucination 제어
+
+#### 문제 상황
+LLM이 문서와 무관한 내용을 그럴듯하게 생성하는 현상 발생
+
+#### 해결 전략
+- 프롬프트에 "문서 기반으로만 답변" 규칙 명시
+- 문서에 근거가 없을 경우  
+  → "문서에서 찾을 수 없습니다." 출력하도록 정책 설정
+- weak context 판단 기준 적용
+> LLM의 생성 특성을 이해하고 제어 로직을 설계한 경험
+
+### 트러블슈팅
+#### 1.pgvector 오류
+- `type "vector" does not exist` 오류 발생
+- pgvector 확장 설치 및 DDL 수정으로 해결
+
+#### 2.임베딩 구조 전환
+- 외부 임베딩 API 비용/토큰 제약 문제 발생
+- 로컬 Ollama 기반 임베딩 구조로 전환
+- 개발 환경에서 재현 가능한 구조로 개선
+
+### 기술 스택
+**Backend**
+- Java 17
+- Spring Boot
+- Spring Data JPA
+
+**Database**
+- PostgreSQL
+- pgvector
+
+**AI / LLM**
+- Ollama (Local)(경량)
+
+**View**
+- Thymeleaf
+
+**Build / Tool**
+- Gradle
+- GitHub
