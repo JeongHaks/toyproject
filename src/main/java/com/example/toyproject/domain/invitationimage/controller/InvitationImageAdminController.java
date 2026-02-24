@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-//@Profile("prod") // 추가 작성(로컬 전용)
+@Profile("prod") // 추가 작성(로컬 전용)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/invitations")
@@ -31,6 +31,8 @@ public class InvitationImageAdminController {
     @PostMapping("/{code}/images")
     public ResponseEntity<String> uploadImages(@PathVariable("code") String code,
                                                @RequestParam("files") MultipartFile[] files) throws Exception {
+        System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + code);
+        System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + files);
 
         Invitation invitation = invitationService.getInvitationEntityByCode(code);
 

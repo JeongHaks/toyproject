@@ -18,6 +18,7 @@ public class PageController {
     // login.html 이동
     @GetMapping("/login")
     public String login(){
+        System.out.println("로그인시 여기로 이동?");
         return "login";
     }
 

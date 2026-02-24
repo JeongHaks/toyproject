@@ -27,7 +27,7 @@ public class AuthService {
         this.userRepository = userRepository;
     }
 
-    // 회원가입시 처리 메서드
+    // 회원가입시 정보 받아서 처리하는 메서드 함수(비즈니스 로직)
     public String signup(SignupRequest req){
         // ID 중복검사
         if(userRepository.existsById(req.id)){
@@ -40,7 +40,7 @@ public class AuthService {
         }
 
         // User 엔티티 생성 및 값 설정하는 곳
-        // User 객체 생성
+        // User 객체 생성 후 회원가입 정보 저장
         User user = new User();
         user.setId(req.id);
         // 비밀번호는 반드시 해시(암호화)해서 저장해야 한다

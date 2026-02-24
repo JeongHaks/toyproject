@@ -31,6 +31,7 @@ public class InvitationService {
     private final InvitationRepository invitationRepository;
 
     public List<Invitation> findAll() {
+        System.out.println("모바일 초대장 순서 InvitationService 1");
         return invitationRepository.findAll();
     }
 
@@ -50,6 +51,7 @@ public class InvitationService {
      */
     @Transactional
     public InvitationResponse createInvitation(InvitationCreateRequest request){
+        System.out.println("모바일 초대장 순서 InvitationService 2");
 
         // 공유용 코드 생성(중복XX) 랜덤으로 생성한 코드값을 변수에 저장
         String code = generateUniqueCode();
@@ -86,6 +88,7 @@ public class InvitationService {
      */
     @Transactional(readOnly = true)
     public InvitationResponse getInvitationByCode(String code) {
+        System.out.println("모바일 초대장 순서 InvitationService 3 : " + code);
         Invitation invitation = invitationRepository.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 초대장 코드입니다. code=" + code));
 
@@ -94,6 +97,7 @@ public class InvitationService {
 
     // code로 초대장 조회 / Entity용
     public Invitation getInvitationEntityByCode(String code) {
+        System.out.println("모바일 초대장 순서 InvitationService 4 : " + code);
         //return invitationRepository.findByCode(code).orElseThrow(()-> new IllegalArgumentException("초대장을 찾을 수 없습니다."));
         return invitationRepository.findByCode(code).orElse(null);
     }
@@ -108,6 +112,7 @@ public class InvitationService {
      *  예) aZ3kP9xQ 같은 형태
      */
     private String generateUniqueCode() {
+        System.out.println("모바일 초대장 순서 InvitationService 5");
         while (true) {
             String code = generateRandomCode();
             boolean exists = invitationRepository.existsByCode(code);
@@ -124,6 +129,7 @@ public class InvitationService {
      * 코드가 단순하면 보안상 위험, 랜덤코드 생성해서 URL로 넘겨서 초대
      */
     private String generateRandomCode() {
+        System.out.println("모바일 초대장 순서 InvitationService 6");
         StringBuilder sb = new StringBuilder(CODE_LENGTH);
         for (int i = 0; i < CODE_LENGTH; i++) {
             int index = RANDOM.nextInt(CODE_CHAR_SET.length());
@@ -135,6 +141,8 @@ public class InvitationService {
     // 초대장 코드 기준으로 메인이미지 URL 설정
     @Transactional
     public void updateMainImageUrl(String code, String imageUrl) {
+        System.out.println("모바일 초대장 순서 InvitationService 7 : " + code);
+        System.out.println("모바일 초대장 순서 InvitationService 7 : " + imageUrl);
         Invitation invitation = invitationRepository.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("초대장을 찾을 수 없습니다. code=" + code));
 

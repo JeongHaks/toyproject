@@ -12,6 +12,7 @@ package com.example.toyproject.post;
 import com.example.toyproject.domain.Comment;
 import com.example.toyproject.domain.Post;
 import com.example.toyproject.post.dto.PostForm;
+import com.example.toyproject.postlike.PostLikeService;
 import com.example.toyproject.service.CommentService;
 import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
@@ -30,17 +31,19 @@ public class PostController {
 
     private final PostService postService;
     private final CommentService commentService;
+    private final PostLikeService postLikeService;
 
     // 생성자 주입(의존성 주입(?))
-    public PostController(PostService postService, CommentService commentService)
+    public PostController(PostService postService, CommentService commentService, PostLikeService postLikeService)
     {
         this.postService = postService;
         this.commentService =commentService;
+        this.postLikeService = postLikeService;
     }
 
 
     /** 게시판 목록 (최신순, 페이징) */
-    // 게시판 이동 함수(게시글 목록을 보여준다.)
+    // 게시판 목록 (메인에서 게시판 클릭시 첫화면에 보여주는 데이터)
     @GetMapping
     public String list(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "10") int size,
@@ -55,10 +58,10 @@ public class PostController {
         return "list"; // templates/list.html
     }
 
-    /** 상세 목록보기 */
+    /** 사용자 계정별 상세 목록보기 */
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Long id, Model model, Authentication auth) {
-        // 1. 게시글 1건 조회 (해당 ID의 게시글 목록 내용 담기)
+        // 1. 로그인한 사용자 정보 가져오기
         Post post = postService.get(id);
 
         // 로그인 사용자 확인한 후 내 글 여부 판단한다.
@@ -68,6 +71,11 @@ public class PostController {
         // 댓글 목록 조회(해당 ID가 쓴 댓글 리스크 가져오기)
         List<Comment> comments = commentService.getCommentsByPost(String.valueOf(id));
 
+        // ✅ 좋아요 초기 표시용 값 세팅
+        long likeCount = postLikeService.countByPostId(id);
+        // 비로그인일 수도 있으니, 로그인 안 했으면 liked=false로 처리
+        boolean liked = (currentUser != null) && postLikeService.isLiked(id, currentUser);
+
 
         // 모델에 담기.
         model.addAttribute("post", post);
@@ -75,10 +83,14 @@ public class PostController {
         model.addAttribute("comments", comments);  // 댓글 목록
         model.addAttribute("commentsCount", comments.size()); // 댓글 수
 
+        // ✅ 템플릿(detail.html)에서 쓰는 값
+        model.addAttribute("likeCount", likeCount);
+        model.addAttribute("liked", liked);
+
         return "detail"; // templates/detail.html
     }
 
-    /** 수정시 작성 폼 */
+    /** 새 글 작성 폼 이동 */
     @GetMapping("/new")
     public String newForm(Model model) {
         if(!model.containsAttribute("postForm")){ // 이름 : postForm
@@ -93,6 +105,7 @@ public class PostController {
                          RedirectAttributes ra,
                          BindingResult bindingResult,
                          Authentication auth) {
+        System.out.println("게시판 순서 PostController 4 : ");
         // BindingResult는 @ModelAttribute 바로 다음에 위치해야 유효성 에러가 바인딩됨
         // 유효성 검사
         if (bindingResult.hasErrors()) return "form";
@@ -103,9 +116,11 @@ public class PostController {
         return "redirect:/posts/" + id; // 작성 후 상세로
     }
 
-    /** 수정 폼 */
+    /** 수정 폼 이동 */
     @GetMapping("/{id}/edit")
     public String editForm(@PathVariable("id") Long id, Model model, Authentication auth) {
+        System.out.println("게시판 순서 PostController 5 : " + id);
+        System.out.println("게시판 순서 PostController 5 : " + auth);
         // 유효성 검사
         if (!model.containsAttribute("post")) {
             var post = postService.get(id); // Post 반환 (title, content 있음)
@@ -125,6 +140,8 @@ public class PostController {
                          BindingResult bindingResult,
                          Authentication auth,
                          Model model) {
+        System.out.println("게시판 순서 PostController 6 : " + id);
+        System.out.println("게시판 순서 PostController 6 : " + auth);
         // 에러 시에도 postId를 다시 넣어줘야 form의 th:action 분기가 유지됨
         // 유효성 검사
         if (bindingResult.hasErrors()) {
@@ -140,8 +157,10 @@ public class PostController {
     public String delete(@PathVariable("id") Long id
                        , Authentication auth
                        , RedirectAttributes ra) {
+        System.out.println("게시판 순서 PostController 5 : " + id);
+        System.out.println("게시판 순서 PostController 5 : " + auth);
         postService.delete(id, auth.getName());
-        // 유효성 검사
+        // 유효성 검사(메시지 오픈)
         ra.addFlashAttribute("msg","게시글이 삭제되었습니다.");
 
         return "redirect:/posts"; // 삭제 후 목록으로

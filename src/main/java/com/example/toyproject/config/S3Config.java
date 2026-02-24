@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-//@Profile("prod") // 추가 작성(로컬 전용)
+@Profile("prod") // 추가 작성(로컬 전용)
 public class S3Config {
     //@Value("${AWS_REGION}")
     @Value("${cloud.aws.region.static}")

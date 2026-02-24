@@ -20,6 +20,7 @@ public class GuestbookApiController {
      */
     @GetMapping
     public List<GuestbookResponse> getGuestbooks(@PathVariable("code") String code) {
+        System.out.println("모바일 초대장 순서 GuestbookApiController 1 : " + code);
         return guestbookService.getGuestbooks(code);
     }
 
@@ -29,6 +30,8 @@ public class GuestbookApiController {
     @PostMapping
     public GuestbookResponse addGuestbook(@PathVariable("code") String code,
                                           @RequestBody GuestbookCreateRequest request) {
+        System.out.println("모바일 초대장 순서 GuestbookApiController 2 : " + code);
+        System.out.println("모바일 초대장 순서 GuestbookApiController 3 : " + request);
         return guestbookService.addGuestbook(code, request);
     }
 }
