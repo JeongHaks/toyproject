@@ -62,3 +62,69 @@ Spring Boot 기반으로 인증 보안 중심 구, CRUD, 동시성 제어를 구
 **View / Build**
 - Thymeleaf
 - Gradle
+
+
+## 2. 모바일 청첩장 생성 서비스 (Mobile Wedding Invitation Service)
+
+사용자가 모바일 청첩장을 생성하고 관리할 수 있도록  
+REST API 기반으로 설계 및 구현한 서비스입니다.  
+실제 배포 환경에서 동작하도록 구성하여, 로컬 개발을 넘어  
+운영 환경 이슈까지 경험한 프로젝트입니다.
+
+### 주요 기능
+- 청첩장 생성 / 수정 / 삭제 (REST API 설계)
+- 사용자 입력 데이터 기반 동적 화면 렌더링
+- 이미지 업로드 및 외부 접근 처리
+- 배포 환경 구성 및 외부 접속 테스트
+
+### 도메인 설계
+- JPA 기반 Entity 설계
+- 연관 관계 매핑을 통한 도메인 모델 구성
+- 사용자(User) - 청첩장(Invitation) 구조 설계
+- 생성/수정/조회 흐름에 맞춘 계층 분리 (Controller / Service / Repository)
+> 단순 CRUD가 아닌, 실제 서비스 흐름을 고려하여 도메인 중심으로 설계하였습니다.
+
+### 이미지 업로드 구조
+#### 문제 상황
+로컬 환경에서는 이미지가 정상 표시되었으나,  
+배포 환경에서는 서버 내부 저장 경로 문제로 인해 이미지가 노출되지 않는 이슈 발생
+
+#### 해결 전략
+- 로컬 파일 저장 방식 → AWS S3 저장 구조로 전환
+- 외부 접근 가능한 URL 기반 조회 구조로 변경
+- 서버 환경에 종속되지 않는 저장 방식으로 개선
+
+> 저장소 분리 전략을 통해 배포 환경에서도 안정적으로 이미지 제공 가능하도록 개선하였습니다.
+
+### 배포 및 환경 분리
+- Render 무료 호스팅 환경에 배포
+- GitHub 연동 자동 배포 구성
+- application-local / application-prod 프로파일 분리
+- 환경 변수 기반 DB 설정 적용
+
+> 로컬과 운영 환경을 분리하여 설정 충돌 문제를 해결하고,
+> 실제 서비스 환경에서 동작하는 구조를 경험하였습니다.
+
+### 기술 스택
+
+**Backend**
+- Java 17
+- Spring Boot
+- Spring Data JPA
+
+**Database**
+- PostgreSQL
+
+**Cloud / Storage**
+- AWS S3
+
+**Deployment**
+- Render (GitHub 연동 자동 배포)
+
+**View**
+- Thymeleaf
+
+**Build / Tool**
+- Gradle
+- GitHub
+
