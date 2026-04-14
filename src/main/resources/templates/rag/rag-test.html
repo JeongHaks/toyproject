@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>RAG Demo Test</title>
+
+  <!-- Spring Security CSRF 토큰
+    - 서버가 CSRF를 켜둔 경우, POST/PUT/DELETE 요청 시 헤더로 토큰을 보내야 한다.
+    - th:content="${_csrf.token}" : 서버가 HTML 렌더링시 토큰 문자열을 꽂아준다.
+    - th:name="${_csrf.headerName}" : 서버가 요구하는 헤더이름을 담아서 보낸다. (ex) X-CSRF-TOKEN
+   -->
+  <meta name="_csrf" th:content="${_csrf.token}">
+  <meta name="_csrf_header" th:content="${_csrf.headerName}">
+
+  <!-- css 스타일 적용 -->
+  <style>
+    :root{
+      --bg:#f6f7fb;
+      --card:#ffffff;
+      --line:#e8eaf0;
+      --text:#111827;
+      --muted:#6b7280;
+      --blue:#1677ff;
+      --blue-weak:#eaf2ff;
+      --green-weak:#ecfdf5;
+      --shadow: 0 10px 25px rgba(17,24,39,.08);
+      --shadow-sm: 0 6px 14px rgba(17,24,39,.06);
+      --radius: 14px;
+      --radius-lg: 18px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans KR", Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 20% 0%, #eef2ff 0%, transparent 50%),
+                  radial-gradient(1200px 600px at 80% 0%, #eaf2ff 0%, transparent 50%),
+                  var(--bg);
+      color: var(--text);
+    }
+    .page {
+      max-width: 1180px;
+      margin: 22px auto;
+      padding: 0 14px 24px;
+    }
+    .topbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom: 12px;
+    }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:2px;
+    }
+    .brand h2{
+      margin:0;
+      font-size: 18px;
+      letter-spacing: -0.2px;
+    }
+    .brand .sub{
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .pill {
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      font-size:12px;
+      padding: 6px 10px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255,255,255,.7);
+      backdrop-filter: blur(8px);
+      box-shadow: var(--shadow-sm);
+      color: #374151;
+      user-select:none;
+      white-space:nowrap;
+    }
+    .pill .dot{
+      width:8px;height:8px;border-radius:999px;background:#9ca3af;
+    }
+    .pill.good .dot{ background:#22c55e; }
+    .pill.warn .dot{ background:#f59e0b; }
+    .pill.blue .dot{ background: var(--blue); }
+
+    .layout{
+      display:grid;
+      grid-template-columns: 280px 1fr;
+      gap: 14px;
+      align-items:start;
+    }
+    .card{
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+    }
+    .card .hd{
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid var(--line);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .card .hd .title{
+      font-weight: 800;
+      font-size: 13px;
+      letter-spacing: -0.2px;
+    }
+    .card .bd{
+      padding: 12px 14px 14px;
+    }
+
+    /* Buttons */
+    .btn{
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: #fff;
+      cursor:pointer;
+      font-weight: 700;
+      font-size: 12px;
+      transition: transform .06s ease, background .15s ease, border-color .15s ease, opacity .15s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .btn:hover{ background:#f9fafb; }
+    .btn:active{ transform: translateY(1px); }
+    .btn.primary{
+      border-color: rgba(22,119,255,.35);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f7ff 100%);
+    }
+    .btn.primary:hover{ background: linear-gradient(180deg, #ffffff 0%, #eaf2ff 100%); }
+    .btn:disabled{
+      opacity:.55;
+      cursor:not-allowed;
+      box-shadow:none;
+    }
+    .btn.icon{
+      padding: 8px 10px;
+      border-radius: 12px;
+      font-weight: 800;
+    }
+
+    /* LNB */
+    .lnb-actions{ display:flex; gap:8px; }
+    .convo-list{
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .convo-item{
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 10px;
+      cursor:pointer;
+      background: #fff;
+      transition: background .15s ease, border-color .15s ease, transform .06s ease;
+    }
+    .convo-item:hover{ background:#f9fafb; }
+    .convo-item:active{ transform: translateY(1px); }
+    .convo-item.active{
+      border-color: rgba(22,119,255,.35);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f7ff 100%);
+    }
+    .convo-item .t{
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      overflow:hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .convo-item .s{
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      justify-content:space-between;
+      gap:8px;
+    }
+
+    /* Upload */
+    .row{
+      margin: 10px 0 0;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+    }
+    .row input[type="file"]{ flex: 1; }
+    .mono{
+      font-family: var(--mono);
+      font-size: 12px;
+      background: #0b1020;
+      color: #d1d5db;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.08);
+      padding: 12px;
+      margin-top: 12px;
+      max-height: 220px;
+      overflow:auto;
+      white-space: pre-wrap;
+    }
+
+    /* Chat */
+    .chat-head{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+    }
+    .chat-title{
+      font-weight: 900;
+      font-size: 14px;
+      letter-spacing: -0.2px;
+      line-height: 1.2;
+    }
+    .chat-sub{
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .chat-log{
+      height: 480px;
+      overflow:auto;
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(800px 300px at 30% 0%, rgba(22,119,255,.07), transparent 50%),
+        #fbfbfd;
+    }
+    .msg{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      margin: 10px 0 14px;
+    }
+    .msg.user{ align-items:flex-end; }
+    .msg.assistant{ align-items:flex-start; }
+    .msg.error{ align-items:flex-start; }
+
+    .bubble{
+      max-width: 84%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: #fff;
+      line-height: 1.55;
+      box-shadow: var(--shadow-sm);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .msg.user .bubble{
+      background: linear-gradient(180deg, #ffffff 0%, var(--blue-weak) 100%);
+      border-color: rgba(22,119,255,.25);
+    }
+    .msg.assistant .bubble{
+      background: #fff;
+    }
+    .msg.error .bubble{
+      background: #fff1f2;
+      border-color: rgba(244,63,94,.25);
+    }
+
+    .msg-meta{
+      max-width: 84%;
+      font-size: 12px;
+      color: var(--muted);
+      display:flex;
+      gap:8px;
+      align-items:center;
+    }
+    .toggle{
+      border:none;
+      background: transparent;
+      color: var(--blue);
+      cursor:pointer;
+      font-weight: 800;
+      padding: 0;
+      font-size: 12px;
+    }
+    .toggle:hover{ text-decoration: underline; }
+
+    .evidence{
+      max-width: 84%;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      overflow:hidden;
+      transition: max-height .2s ease, opacity .2s ease;
+      opacity: 1;
+    }
+    .evidence.hidden{
+      max-height: 0;
+      opacity: 0;
+      border-width: 0;
+      padding: 0;
+      margin: 0;
+    }
+    .evidence .ev-hd{
+      padding: 10px 12px;
+      background: #f9fafb;
+      border-bottom: 1px solid var(--line);
+      font-weight: 900;
+      font-size: 12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+    }
+    .evidence .ev-bd{
+      padding: 10px 12px 12px;
+    }
+    .chunk{ margin: 10px 0 12px; }
+    .chunk-meta{
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+    .chunk-body{
+      margin: 0;
+      font-family: var(--mono);
+      font-size: 12px;
+      background: #0b1020;
+      color: #d1d5db;
+      border-radius: 12px;
+      padding: 10px;
+      border: 1px solid rgba(255,255,255,.08);
+      overflow:auto;
+      max-height: 180px;
+      white-space: pre-wrap;
+    }
+
+    .chat-form{
+      display:flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+    .chat-form textarea{
+      flex: 1;
+      resize: none;
+      min-height: 44px;
+      max-height: 120px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      outline: none;
+      box-shadow: var(--shadow-sm);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+    .chat-form textarea:focus{
+      border-color: rgba(22,119,255,.35);
+    }
+    .chat-form input[type="number"]{
+      width: 90px;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+    }
+    .chat-form .send{
+      min-width: 84px;
+    }
+
+    /* Loading skeleton inside bubble */
+    .skeleton{
+      width: 220px;
+      height: 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.1s ease-in-out infinite;
+      margin: 6px 0;
+    }
+    .skeleton.w2{ width: 300px; }
+    .skeleton.w3{ width: 160px; }
+    @keyframes shimmer{
+      0%{ background-position: 0% 0; }
+      100%{ background-position: 200% 0; }
+    }
+
+    .hint{
+      margin-top: 10px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    @media (max-width: 980px){
+      .layout{ grid-template-columns: 1fr; }
+    }
+     /* 채팅 삭제(X) 버튼 */
+  .convo-item{
+    position: relative;
+  }
+  .convo-delete{
+    position:absolute;
+    top:6px;
+    right:6px;
+    width:28px;
+    height:28px;
+    border:none;
+    border-radius:999px;
+    background:#f3f4f6;
+    color:#6b7280;
+    font-weight:900;
+    cursor:pointer;
+    opacity:0;
+    transition:opacity .15s ease, background .15s ease;
+  }
+  .convo-item:hover .convo-delete{
+    opacity:1;
+  }
+  .convo-delete:hover{
+    background:#fee2e2;
+    color:#dc2626;
+  }
+  </style>
+</head>
+
+<body>
+
+<!-- 상단 바  -->
+<div class="page">
+  <div class="topbar">
+    <div class="brand">
+      <h2>RAG 데모 테스트</h2>
+      <div class="sub">UI2(대화 저장) 자동 감지 + RAG 근거 토글</div>
+    </div> <!-- brand -->
+    <div class="pill blue" id="apiModePill"><span class="dot"></span>API: RAG(/rag/query)</div>
+  </div> <!-- topbar -->
+
+  <div class="layout">
+
+    <!-- LNB 새 채팅 열기, 채팅방 목록 -->
+    <div class="card">
+      <div class="hd">
+        <div class="title">채팅방</div>
+        <div class="lnb-actions">
+          <button id="btnNewChat" class="btn icon primary" type="button">+ 새 채팅</button>
+          <button id="btnRefreshList" class="btn icon" type="button">새로고침</button>
+        </div> <!-- lnb-actions -->
+      </div> <!-- hd -->
+
+      <div class="bd">
+        <div id="conversationList" class="convo-list"></div>
+        <div class="hint">
+          ※ UI2 API가 준비되면 자동으로 대화방/기록 저장을 사용합니다.
+        </div> <!-- hint -->
+      </div> <!-- bd -->
+    </div> <!-- card -->
+
+    <!-- Main -->
+    <div style="display:flex; flex-direction:column; gap:14px;">
+
+      <!-- 1) PDF 업로드 -->
+      <div class="card">
+        <div class="hd">
+          <div class="title">1) PDF 업로드</div>
+          <div class="pill" id="uploadPill"><span class="dot"></span>대기</div>
+        </div> <!-- hd -->
+        <div class="bd">
+          <div class="row">
+            <input type="file" id="file" />
+            <button id="uploadBtn" class="btn primary" type="button">업로드</button>
+          </div> <!-- row -->
+          <pre id="uploadResult" class="mono">(업로드 결과가 여기 표시됩니다)</pre>
+        </div> <!-- bd -->
+      </div> <!-- card -->
+
+      <!-- 2) Chat -->
+      <div class="card">
+        <div class="hd">
+          <div class="title">2) 질문</div>
+          <div class="pill good" id="chatStatusPill"><span class="dot"></span>준비됨</div>
+        </div> <!-- hd -->
+        <div class="bd">
+          <div class="chat-head">
+            <div>
+              <div id="chatTitle" class="chat-title">새 채팅</div>
+              <div class="chat-sub">Enter 전송 · Shift+Enter 줄바꿈 · TopK 근거 개수</div>
+            </div>
+          </div> <!-- chat-head -->
+
+          <!-- 채팅 메시지가 계속 append 되는 내용을 보여주는 영역 -->
+          <div id="chatLog" class="chat-log"></div>
+
+          <!--  (채팅 메시지창) -->
+          <form id="chatForm" class="chat-form">
+            <textarea id="question" placeholder="예: CSRF가 뭐야? / 게시판 좋아요 동시성 처리 설명해줘" autocomplete="off"></textarea>
+            <!-- 검색에 되는 근거 몇 개 가져올지 정하는거. 제일 유사한 결과값 표출  -->
+            <input type="number" id="topK" value="3" min="1" max="10" />
+            <button id="askBtn" class="btn primary send" type="submit">전송</button>
+          </form> <!-- chatForm -->
+        </div> <!-- bd -->
+      </div> <!-- card -->
+
+    </div> <!-- Main -->
+  </div>
+</div>
+
+<script>
+  // =========================
+  // CSRF & Utils
+  // =========================
+  function csrf() {
+    const tokenEl = document.querySelector('meta[name="_csrf"]');
+    const headerEl = document.querySelector('meta[name="_csrf_header"]');
+    const token = tokenEl ? tokenEl.getAttribute('content') : null;
+    const headerName = headerEl ? headerEl.getAttribute('content') : null;
+    return { token, headerName };
+  }
+  function csrfHeaders() {
+    const { token, headerName } = csrf();
+    if (token && headerName) return { [headerName]: token };
+    return {};
+  }
+  function scrollToBottom() {
+    const chatLog = document.getElementById('chatLog');
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+  function escapeHtml(s) {
+    return (s ?? "").toString()
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+  // 기능 비활성화
+  function setButtonsDisabled(disabled) {
+    document.getElementById('askBtn').disabled = disabled;
+    document.getElementById('uploadBtn').disabled = disabled;
+    document.getElementById('btnNewChat').disabled = disabled;
+    document.getElementById('btnRefreshList').disabled = disabled;
+    document.getElementById('question').disabled = disabled;
+    document.getElementById('topK').disabled = disabled;
+  }
+
+  function setPill(elId, text, mode) {
+    const el = document.getElementById(elId);
+    if (!el) return;
+    el.textContent = text;
+    el.className = 'pill ' + (mode || '');
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    el.prepend(dot);
+  }
+
+
+  function formatRelativeTime(iso) {
+    if (!iso) return '';
+      const d = new Date(iso);
+    if (isNaN(d.getTime())) return String(iso);
+      const diff = Date.now() - d.getTime();
+      const sec = Math.floor(diff / 1000);
+    if (sec < 10) return '방금';
+    if (sec < 60) return `${sec}초 전`;
+      const min = Math.floor(sec / 60);
+    if (min < 60) return `${min}분 전`;
+      const hr = Math.floor(min / 60);
+    if (hr < 24) return `${hr}시간 전`;
+      const day = Math.floor(hr / 24);
+    return `${day}일 전`;
+  }
+
+  // =========================
+  // Chat UI rendering
+  // =========================
+  function appendMessage({ role, text, results, loading=false, isError=false }) {
+    const chatLog = document.getElementById('chatLog');
+
+    const wrap = document.createElement('div');
+    wrap.className = `msg ${isError ? 'error' : role}`;
+
+    const bubble = document.createElement('div');
+    bubble.className = 'bubble';
+
+    if (loading) {
+      bubble.innerHTML = `
+        <div style="font-weight:900; margin-bottom:6px;">답변 생성 중…</div>
+        <div class="skeleton w2"></div>
+        <div class="skeleton"></div>
+        <div class="skeleton w3"></div>
+      `;
+    } else {
+      bubble.textContent = text ?? '';
+    }
+
+    wrap.appendChild(bubble);
+
+    const meta = document.createElement('div');
+    meta.className = 'msg-meta';
+    meta.textContent = role === 'user' ? 'USER' : (isError ? 'ERROR' : 'ASSISTANT');
+    wrap.appendChild(meta);
+
+    // 근거 토글
+    if (!loading && results && Array.isArray(results) && results.length > 0) {
+      const toggleBtn = document.createElement('button');
+      toggleBtn.type = 'button';
+      toggleBtn.className = 'toggle';
+      toggleBtn.textContent = `근거 보기 (${results.length})`;
+
+      const box = document.createElement('div');
+      box.className = 'evidence hidden';
+
+      const evHd = document.createElement('div');
+      evHd.className = 'ev-hd';
+      evHd.innerHTML = `<span>근거(Top-K)</span><span style="color:#6b7280;">총 ${results.length}개</span>`;
+
+      const evBd = document.createElement('div');
+      evBd.className = 'ev-bd';
+      evBd.innerHTML = results.map(r => {
+        const chunkIndex = r.chunkIndex ?? r.chunk_index ?? r.chunk ?? '';
+        const documentId = r.documentId ?? r.document_id ?? '';
+        const distance = r.distance ?? r.similarity ?? r.score ?? '';
+        const preview = r.contentPreview ?? r.content_preview ?? r.preview ?? r.content ?? '';
+        const distText = distance !== '' ? ` · dist ${escapeHtml(distance)}` : '';
+        return `
+          <div class="chunk">
+            <div class="chunk-meta">doc ${escapeHtml(documentId)} · chunk ${escapeHtml(chunkIndex)}${distText}</div>
+            <pre class="chunk-body">${escapeHtml(preview)}</pre>
+          </div>
+        `;
+      }).join('');
+
+      box.appendChild(evHd);
+      box.appendChild(evBd);
+
+      toggleBtn.addEventListener('click', () => {
+        const nowHidden = box.classList.toggle('hidden');
+        toggleBtn.textContent = nowHidden ? `근거 보기 (${results.length})` : '근거 숨기기';
+        if (!nowHidden) setTimeout(scrollToBottom, 50);
+      });
+
+      meta.appendChild(document.createTextNode(' · '));
+      meta.appendChild(toggleBtn);
+      wrap.appendChild(box);
+    }
+
+    chatLog.appendChild(wrap);
+    scrollToBottom();
+    return wrap;
+  }
+
+  function clearChatLog() {
+    document.getElementById('chatLog').innerHTML = '';
+  }
+
+  function setChatTitle(t) {
+    document.getElementById('chatTitle').textContent = t ?? '새 채팅';
+  }
+
+  // =========================
+  // RAG (existing)
+  // =========================
+  // 파일 업로드 버튼 및 업로드 여부 확인 결과 표시
+  async function uploadPdf() {
+      const fileInput = document.getElementById('file');
+      const file = fileInput.files[0];
+      if (!file) {
+        alert("PDF 파일을 선택하세요.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', file);
+
+      setButtonsDisabled(true); // 버튼 활성화
+      setPill('uploadPill', '업로드/인덱싱 중…', 'warn');
+      document.getElementById('uploadResult').innerText = "업로드/인덱싱 중...";
+
+      try {
+          // documentId = 1, UPLOADED 텍스트값 전달
+          const res = await fetch('/rag/document', {
+              method: 'POST',
+              headers: { ...csrfHeaders() },
+              body: formData
+          });
+          // documentId = 1, UPLOADED 텍스트값 결과 표시
+          const text = await res.text();
+          document.getElementById('uploadResult').innerText = text;
+          setPill('uploadPill', res.ok ? '완료' : '실패', res.ok ? 'good' : 'warn');
+      } catch (e) {
+        document.getElementById('uploadResult').innerText = "업로드 실패: " + e;
+        setPill('uploadPill', '실패', 'warn');
+      } finally {
+        setButtonsDisabled(false);
+      }
+  } // uploadpdf()
+
+// 질문에 대한 답변 전달 받기
+  async function askViaRagQuery(question, topK) {
+    const res = await fetch('/rag/query', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...csrfHeaders()
+      },
+      body: JSON.stringify({ question, topK })
+    });
+
+    const raw = await res.text();
+    if (!res.ok) throw new Error(`오류: ${res.status}\n${raw}`);
+
+    let data = null;
+    try { data = JSON.parse(raw); } catch (e) {}
+    const answer = data?.answer ? data.answer : raw;
+    const results = data?.results ? data.results : [];
+
+    return { answer, results };
+  }
+
+  // =========================
+  // UI2 API (optional; auto-detect)
+  // UI2 - 일반 LLM 대화 모드
+  // RAG - 문서 기반 답변 모드
+  // =========================
+  const API = {
+    mode: 'RAG', // 'UI2' or 'RAG'
+    currentConversationId: null,
+    conversationsCache: []
+  };
+
+  async function apiCreateConversation() {
+    const res = await fetch('/api/conversations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...csrfHeaders() }
+    });
+    if (!res.ok) throw new Error(await res.text());
+    return await res.json(); // {id, title}
+  }
+
+  async function apiListConversations() {
+    const res = await fetch('/api/conversations', { method: 'GET' });
+    if (!res.ok) throw new Error(await res.text());
+    return await res.json(); // [{id, title, updatedAt}, ...]
+  }
+
+  async function apiGetConversation(id) {
+    const res = await fetch(`/api/conversations/${id}`, { method: 'GET' });
+    if (!res.ok) throw new Error(await res.text());
+    return await res.json(); // { conversation, messages }
+  }
+
+// 채팅 입력 후 내용 + 근거 개수 전달
+  async function apiAsk(conversationId, question, topK) {
+    const res = await fetch(`/api/conversations/${conversationId}/ask`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', ...csrfHeaders() },
+      body: JSON.stringify({ question, topK })
+    });
+    if (!res.ok) throw new Error(await res.text());
+    return await res.json(); // { answer, results }
+  }
+
+// 생성형AI 페이지 이동시 두 번째 함수
+  async function detectApiMode() {
+    try {
+      const res = await fetch('/api/conversations', { method: 'GET' });
+      if (res.ok) {
+        API.mode = 'UI2';
+        document.getElementById('apiModePill').innerHTML = `<span class="dot"></span>API: UI2(/api/conversations)`;
+        document.getElementById('apiModePill').className = 'pill blue';
+      } else {
+        API.mode = 'RAG';
+        document.getElementById('apiModePill').innerHTML = `<span class="dot"></span>API: RAG(/rag/query)`;
+        document.getElementById('apiModePill').className = 'pill';
+      }
+    } catch (e) {
+      API.mode = 'RAG';
+      document.getElementById('apiModePill').innerHTML = `<span class="dot"></span>API: RAG(/rag/query)`;
+      document.getElementById('apiModePill').className = 'pill';
+    }
+  }
+
+  // =========================
+  // LNB & Conversation Actions
+  // =========================
+  function renderConversationList(items, activeId) {
+    const list = document.getElementById('conversationList');
+    list.innerHTML = '';
+
+    if (!items || items.length === 0) {
+      const empty = document.createElement('div');
+      empty.style.fontSize = '12px';
+      empty.style.color = '#6b7280';
+      empty.textContent = '채팅방이 없습니다. + 새 채팅을 눌러 시작하세요.';
+      list.appendChild(empty);
+      return;
+    }
+
+    items.forEach(c => {
+      const div = document.createElement('div');
+      div.className = 'convo-item' + (String(c.id) === String(activeId) ? ' active' : '');
+
+      const t = document.createElement('div');
+      t.className = 't';
+      t.textContent = c.title ?? '새 채팅';
+
+      const s = document.createElement('div');
+      s.className = 's';
+
+      const timeIso = c.updatedAt ?? c.updated_at ?? c.createdAt ?? c.created_at ?? '';
+      const left = document.createElement('span');
+      left.textContent = timeIso ? formatRelativeTime(timeIso) : `#${c.id}`;
+
+      const right = document.createElement('span');
+      right.textContent = `#${c.id}`;
+
+      s.appendChild(left);
+      s.appendChild(right);
+
+      /* 삭제 버튼 */
+      const delBtn = document.createElement('button');
+      delBtn.className = 'convo-delete';
+      delBtn.textContent = '×';
+      delBtn.title = '채팅 삭제';
+
+      delBtn.addEventListener('click', async (e) => {
+        e.preventDefault();
+        e.stopPropagation(); // 채팅 선택 방지
+
+        const ok = confirm('이 채팅을 삭제할까요?');
+        if (!ok) return;
+
+        try {
+          await apiDeleteConversation(c.id);
+
+          // 현재 열려있는 채팅이면 → 새 채팅 생성
+          if (String(API.currentConversationId) === String(c.id)) {
+            await startNewChat();
+          } else {
+            await refreshConversationList();
+          }
+        } catch (err) {
+          alert('삭제 실패: ' + err.message);
+        }
+      });
+
+      div.appendChild(t);
+      div.appendChild(s);
+      div.appendChild(delBtn);
+
+      div.addEventListener('click', () => loadConversation(c.id));
+      list.appendChild(div);
+    });
+  }
+
+  async function refreshConversationList() {
+    if (API.mode !== 'UI2') {
+      const local = loadLocalConversations();
+      API.conversationsCache = local;
+      renderConversationList(local, API.currentConversationId);
+      return;
+    }
+
+    const items = await apiListConversations();
+    API.conversationsCache = items;
+    renderConversationList(items, API.currentConversationId);
+  }
+
+  async function startNewChat() {
+    clearChatLog();
+    setChatTitle('새 채팅');
+    API.currentConversationId = null;
+
+    if (API.mode === 'UI2') {
+      const convo = await apiCreateConversation();
+      API.currentConversationId = convo.id;
+      setChatTitle(convo.title ?? '새 채팅');
+      await refreshConversationList();
+      return;
+    }
+
+    const localConvo = createLocalConversation();
+    API.currentConversationId = localConvo.id;
+    setChatTitle(localConvo.title);
+    await refreshConversationList();
+  }
+
+  async function loadConversation(id) {
+    clearChatLog();
+    API.currentConversationId = id;
+
+    if (API.mode === 'UI2') {
+      const data = await apiGetConversation(id);
+      setChatTitle(data.conversation?.title ?? '새 채팅');
+
+      (data.messages ?? []).forEach(m => {
+        const role = (m.role ?? '').toLowerCase() === 'user' ? 'user' : 'assistant';
+        const results = parseSources(m.sourcesJson ?? m.sources_json);
+        appendMessage({ role, text: m.content ?? '', results });
+      });
+
+      await refreshConversationList();
+      return;
+    }
+
+    const local = loadLocalConversationDetail(id);
+    setChatTitle(local.title);
+    (local.messages ?? []).forEach(m => {
+      appendMessage({ role: m.role, text: m.text, results: m.results });
+    });
+    await refreshConversationList();
+  }
+
+  function parseSources(sourcesJson) {
+    if (!sourcesJson) return [];
+    try {
+      const parsed = typeof sourcesJson === 'string' ? JSON.parse(sourcesJson) : sourcesJson;
+      return Array.isArray(parsed) ? parsed : [];
+    } catch (e) {
+      return [];
+    }
+  }
+
+  // =========================
+  // 답변 생성 흐름
+  // =========================
+  // 질문 내용 전달 ( await onAsk(q, topK); )
+  async function onAsk(question, topK) {
+    appendMessage({ role: 'user', text: question });
+    //토글
+    setPill('chatStatusPill', '답변 생성 중…', 'warn');
+    const loadingEl = appendMessage({ role: 'assistant', loading: true });
+
+    // 버튼 비활성화(답변 생성중일 때 검색 버튼 비활성화)
+    setButtonsDisabled(true);
+
+    try {
+          // API - RAG 모드 상태
+          if (API.mode === 'UI2' && API.currentConversationId) {
+              const data = await apiAsk(API.currentConversationId, question, topK);
+              const answer = data.answer ?? '(no answer)';
+              const results = data.results ?? data.sources ?? [];
+              loadingEl.remove();
+              appendMessage({ role: 'assistant', text: answer, results });
+              await refreshConversationList();
+              setPill('chatStatusPill', '완료', 'good');
+              return;
+          }
+          const { answer, results } = await askViaRagQuery(question, topK);
+
+          loadingEl.remove();
+          appendMessage({ role: 'assistant', text: answer, results });
+
+          saveLocalMessage(API.currentConversationId, { role:'user', text:question });
+          saveLocalMessage(API.currentConversationId, { role:'assistant', text:answer, results });
+
+          setPill('chatStatusPill', '완료', 'good');
+
+    } catch (e) {
+      loadingEl.remove();
+      appendMessage({ role: 'assistant', text: "요청 실패: " + (e.message || e), isError: true });
+      setPill('chatStatusPill', '오류', 'warn');
+    } finally {
+      setButtonsDisabled(false);
+    }
+  }
+
+  // =========================
+  // Local fallback (RAG-only mode)
+  // =========================
+  const LS_KEY = 'rag_demo_conversations_v1';
+
+  function loadLocalConversations() {
+    try {
+      const raw = localStorage.getItem(LS_KEY);
+      const arr = raw ? JSON.parse(raw) : [];
+      return Array.isArray(arr) ? arr : [];
+    } catch (e) {
+      return [];
+    }
+  }
+  function saveLocalConversations(arr) {
+    localStorage.setItem(LS_KEY, JSON.stringify(arr));
+  }
+  function createLocalConversation() {
+    const list = loadLocalConversations();
+    const newId = Date.now();
+    const convo = {
+      id: newId,
+      title: '새 채팅',
+      updatedAt: new Date().toISOString(),
+      messages: []
+    };
+    list.unshift(convo);
+    saveLocalConversations(list);
+    return convo;
+  }
+  function loadLocalConversationDetail(id) {
+    const list = loadLocalConversations();
+    const convo = list.find(c => String(c.id) === String(id));
+    return convo || { id, title: '새 채팅', messages: [] };
+  }
+  function saveLocalMessage(conversationId, msg) {
+    if (!conversationId) return;
+    const list = loadLocalConversations();
+    const idx = list.findIndex(c => String(c.id) === String(conversationId));
+    if (idx < 0) return;
+
+    const convo = list[idx];
+    convo.messages = convo.messages || [];
+    convo.messages.push(msg);
+    convo.updatedAt = new Date().toISOString();
+
+    if (convo.title === '새 채팅' && msg.role === 'user') {
+      convo.title = (msg.text || '새 채팅').slice(0, 24);
+    }
+
+    list.splice(idx, 1);
+    list.unshift(convo);
+    saveLocalConversations(list);
+  }
+
+  // =========================
+  // Init / Events
+  // =========================
+  document.getElementById('uploadBtn').addEventListener('click', uploadPdf);
+
+  // Enter 채팅 전송, Shift+Enter 줄바꿈(답변 요청 및 질문 전송)(2)
+  const qEl = document.getElementById('question');
+  qEl.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById('chatForm').requestSubmit();
+      }
+  });
+
+  // 채팅 질문 값 입력(1)
+  document.getElementById('chatForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = document.getElementById('question').value.trim(); // 질문 내용
+      const topK = parseInt(document.getElementById('topK').value, 10) || 3; // 답변 근거 개수
+
+      if (!q) {
+        alert("질문을 입력하세요.");
+        return;
+      }
+      // 질문 후 질문 내용 비우기
+      document.getElementById('question').value = "";
+      await onAsk(q, topK);
+  });
+
+  document.getElementById('btnNewChat').addEventListener('click', async () => {
+    try {
+      setButtonsDisabled(true);
+      await startNewChat();
+    } catch (e) {
+      alert('새 채팅 실패: ' + e.message);
+    } finally {
+      setButtonsDisabled(false);
+    }
+  });
+
+  document.getElementById('btnRefreshList').addEventListener('click', async () => {
+    try {
+      setButtonsDisabled(true);
+      await refreshConversationList();
+    } catch (e) {
+      alert('목록 새로고침 실패: ' + e.message);
+    } finally {
+      setButtonsDisabled(false);
+    }
+  });
+
+  function addWelcomeMessage() {
+    appendMessage({
+      role: 'assistant',
+      text: "PDF 업로드 후 질문을 입력해보세요.\n예: CSRF가 뭐야? / 게시판 좋아요 동시성 처리 설명해줘"
+    });
+  }
+  // 생성형 AI 페이지 이동시 첫 번째 함수
+  (async function boot() {
+    await detectApiMode();
+
+    try { await refreshConversationList(); } catch (e) {}
+
+    try {
+      await startNewChat();
+      } catch (e) {
+        API.mode = 'RAG';
+        document.getElementById('apiModePill').innerHTML = `<span class="dot"></span>API: RAG(/rag/query)`;
+        document.getElementById('apiModePill').className = 'pill';
+        await startNewChat();
+      }
+
+    setPill('uploadPill', '대기', '');
+    setPill('chatStatusPill', '준비됨', 'good');
+    addWelcomeMessage();
+  })();
+
+  // 채팅방 삭제
+  async function apiDeleteConversation(id) {
+    const res = await fetch(`/api/conversations/${id}`, {
+      method: 'DELETE',
+      headers: { ...csrfHeaders() }
+    });
+    if (!res.ok) throw new Error(await res.text());
+  }
+
+</script>
+
+</body>
+</html>

@@ -44,11 +44,11 @@ public class Post {
     private String userId;
 
     /** 생성 시각 */
-    @Column(nullable = false)
+    @Column(name="created_at", nullable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     /** 수정 시각 */
-    @Column(nullable = false)
+    @Column(name="updated_at" , nullable = false)
     private LocalDateTime updatedAt = LocalDateTime.now();
 
     /** 엔티티가 업데이트 될 때 자동으로 updatedAt 갱신 */

@@ -42,7 +42,7 @@
 <div class="container">
 
     <div class="header">
-        <h1>메인</h1>
+        <h1>메인 TEST</h1>
         <!-- 로그인 상태면 환영 문구, 아니면 안내 문구 -->
         <p th:if="${username != null}">
             <strong th:text="${username}">user</strong> 님, 환영합니다. 아래에서 기능을 선택하세요.
@@ -55,19 +55,19 @@
     <!-- ✅ 3개 버튼(카드) -->
     <div class="grid">
         <!-- 게시판 -->
-        <a th:href="@{/posts}" class="card">
+        <a th:href="@{/posts}" class="card" target="_blank" rel="noopener noreferrer">
             <h3>📝 게시판</h3>
             <p>글 목록을 보고, 로그인하면 새 글 작성/수정/삭제를 할 수 있어요.</p>
         </a>
 
         <!-- 생성형 AI -->
-        <a th:href="@{/ai}" class="card">
+        <a th:href="@{/ai}" class="card" target="_blank" rel="noopener noreferrer">
             <h3>🤖 생성형 AI</h3>
             <p>간단한 데모/진입 페이지. 이후 기능을 확장할 수 있어요.</p>
         </a>
 
         <!-- 모바일 청첩장 -->
-        <a th:href="@{/invite}" class="card">
+        <a th:href="@{/invite}" class="card" target="_blank" rel="noopener noreferrer">
             <h3>💌 모바일 청첩장</h3>
             <p>모바일 청첩장 데모/진입 페이지. 실서비스 구조로 확장 예정.</p>
         </a>

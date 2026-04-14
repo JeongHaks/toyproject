@@ -23,13 +23,14 @@ public class InvitationImage {
     private Invitation invitation;
 
     // 이미지 URL (정적 경로, S3, etc)
-    @Column(nullable = false, length = 1000)
+    @Column(name = "image_url", nullable = false, length = 1000)
     private String imageUrl;
 
     // 정렬 순서
-    @Column(nullable = false)
+    @Column(name="sort_order",nullable = false)
     private int sortOrder = 0;
 
+    @Column(name="created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     // 정적 팩토리 메서드

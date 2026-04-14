@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 @Configuration
-//@Profile("prod") // 추가 작성(로컬 전용)
+@Profile("prod") // 추가 작성(로컬 전용)
 public class S3Config {
     //@Value("${AWS_REGION}")
     @Value("${cloud.aws.region.static}")
@@ -28,8 +28,7 @@ public class S3Config {
     public AmazonS3 amazonS3() {
 
         // 1) env / properties 에서 못 읽어오면 에러 던져서 빨리 알 수 있게
-        if (accessKey == null || accessKey.isBlank() ||
-                secretKey == null || secretKey.isBlank()) {
+        if (accessKey == null || accessKey.isBlank() || secretKey == null || secretKey.isBlank()) {
             throw new IllegalStateException("AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY 설정을 확인해주세요.");
         }
 

@@ -10,7 +10,7 @@ import java.time.OffsetDateTime;
 // 동시성 관련 DB Entity
 @Entity
 @Table(
-        name = "post_like",
+        name = "post_like", //DB 테이블명하고 일치해야 한다.
         uniqueConstraints ={
                 // post_id + user_id 조합은 중복될 수 없다 한 명의 유저가 한 게시글에 좋아요를 두 번 누를 수 없게 하기 위해 유니크 선언
                 @UniqueConstraint(name="uk_post_like", columnNames = {"post_id", "user_id"})
@@ -20,6 +20,7 @@ import java.time.OffsetDateTime;
 @Setter
 public class PostLike {
 
+    // FK값
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

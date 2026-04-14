@@ -43,7 +43,7 @@ public class PostController {
 
 
     /** 게시판 목록 (최신순, 페이징) */
-    // 게시판 목록 (메인에서 게시판 클릭시 첫화면에 보여주는 데이터)
+    // 게시판 목록 화면(게시판 메인 페이지)
     @GetMapping
     public String list(@RequestParam(name = "page", defaultValue = "0") int page,
                        @RequestParam(name = "size", defaultValue = "10") int size,
@@ -58,7 +58,7 @@ public class PostController {
         return "list"; // templates/list.html
     }
 
-    /** 사용자 계정별 상세 목록보기 */
+    /** 사용자 계정별 상세 목록클릭 후 보기 */
     @GetMapping("/{id}")
     public String detail(@PathVariable("id") Long id, Model model, Authentication auth) {
         // 1. 로그인한 사용자 정보 가져오기
@@ -71,7 +71,7 @@ public class PostController {
         // 댓글 목록 조회(해당 ID가 쓴 댓글 리스크 가져오기)
         List<Comment> comments = commentService.getCommentsByPost(String.valueOf(id));
 
-        // ✅ 좋아요 초기 표시용 값 세팅
+        // 좋아요 초기 표시용 값 세팅
         long likeCount = postLikeService.countByPostId(id);
         // 비로그인일 수도 있으니, 로그인 안 했으면 liked=false로 처리
         boolean liked = (currentUser != null) && postLikeService.isLiked(id, currentUser);
@@ -83,7 +83,7 @@ public class PostController {
         model.addAttribute("comments", comments);  // 댓글 목록
         model.addAttribute("commentsCount", comments.size()); // 댓글 수
 
-        // ✅ 템플릿(detail.html)에서 쓰는 값
+        // 템플릿(detail.html)에서 쓰는 값
         model.addAttribute("likeCount", likeCount);
         model.addAttribute("liked", liked);
 
@@ -99,13 +99,13 @@ public class PostController {
         return "form"; // templates/form.html
     }
 
-    /** 작성 및 수정 처리 */
+    /** 작성 후 처리 */
     @PostMapping("/new")
     public String create(@Valid @ModelAttribute("postForm") PostForm form,
                          RedirectAttributes ra,
                          BindingResult bindingResult,
                          Authentication auth) {
-        System.out.println("게시판 순서 PostController 4 : ");
+        System.out.println("게시판 작성");
         // BindingResult는 @ModelAttribute 바로 다음에 위치해야 유효성 에러가 바인딩됨
         // 유효성 검사
         if (bindingResult.hasErrors()) return "form";

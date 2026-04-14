@@ -1,0 +1,133 @@
+<!-- =========================================================
+     RAG 테스트 HTML (현재 사용 x)
+     목적:
+       1) documents.content -> chunk 분할 결과(개수/길이) 확인
+       2) documents.content -> chunk 분할 -> chunks 테이블 저장(ingest)
+     주의:
+       - 아직 임베딩 생성은 안 함(다음 단계)
+       - chunk 내용 전체는 응답으로 내리지 않음(길이/개수만 확인)
+========================================================== -->
+<section class="rag-box" style="margin-top:24px;" xmlns:th="http://www.w3.org/1999/xhtml">
+    <meta name="_csrf" th:content="${_csrf.token}">
+    <meta name="_csrf_header" th:content="${_csrf.headerName}">
+    <h2 style="margin-bottom:8px;">RAG 테스트</h2>
+    <p style="color:#666; margin-top:0;">
+        문서 내용을 청크로 분할하고 저장까지 실행합니다.
+    </p>
+
+    <!-- 입력 폼: documentId / chunkSize / overlap -->
+    <div style="display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap;">
+        <div>
+            <label for="documentId">documentId</label><br/>
+            <input id="documentId" type="number" value="1" style="padding:8px; width:140px;">
+        </div>
+
+        <div>
+            <label for="chunkSize">chunkSize</label><br/>
+            <input id="chunkSize" type="number" value="800" style="padding:8px; width:140px;">
+        </div>
+
+        <div>
+            <label for="overlap">overlap</label><br/>
+            <input id="overlap" type="number" value="150" style="padding:8px; width:140px;">
+        </div>
+
+        <!-- 1) 청크 분할 테스트: GET /rag/test/chunks/{documentId} -->
+        <button type="button" onclick="ragTestSplit()" style="padding:10px 14px; cursor:pointer;">
+            청크 테스트
+        </button>
+
+        <!-- 2) 청크 저장(ingest): POST /rag/ingest/{documentId} -->
+        <button type="button" onclick="ragIngest()" style="padding:10px 14px; cursor:pointer;">
+            청크 저장(ingest)
+        </button>
+    </div>
+
+    <!-- 결과 출력 영역 -->
+    <pre id="ragResult"
+         style="margin-top:16px; background:#111; color:#eee; padding:12px; border-radius:8px; overflow:auto;">
+여기에 결과가 출력됩니다.
+  </pre>
+</section>
+
+<script>
+    /**
+     * 입력값을 읽어서 API 호출 파라미터로 만든다.
+     * - documentId: documents(문서 번호) 테이블 PK
+     * - chunkSize: 한 청크 최대 길이
+     * - overlap: 청크 사이 겹치는 길이 1~1000, 800~1800, 1600~2600
+     */
+     /*텍스트에 입력한 값을 가져와서 return 해준다.*/
+    function ragGetParams() {
+      const documentId = document.getElementById('documentId').value;
+      const chunkSize = document.getElementById('chunkSize').value;
+      const overlap = document.getElementById('overlap').value;
+      return { documentId, chunkSize, overlap };
+    }
+
+    /**
+     * 1) 청크 분할 결과 확인 (현재 : GET) or (POST)
+     * 호출 API:
+     *   /rag/test/chunks/{documentId}?chunkSize=800&overlap=150
+     * 기대 응답:
+     *   chunkCount, chunkLengths, originalLength
+     */
+    async function ragTestSplit() {
+      const { documentId, chunkSize, overlap } = ragGetParams(); /*입력한 값 return 값 변수에 담기.*/
+      const url = `/rag/test/chunks/${documentId}?chunkSize=${chunkSize}&overlap=${overlap}`;
+
+      try {
+            const res = await fetch(url);
+            const text = await res.text(); // 에러도 보기 위해 text로 받음
+            document.getElementById('ragResult').textContent =
+              '[청크 테스트 결과]\\n' + prettyJson(text);
+        } catch (e) {
+            document.getElementById('ragResult').textContent =
+            '[청크 테스트 실패]\\n' + e;
+        }
+    }
+
+    /**
+     * 2) 청크 저장(ingest) 실행 (POST)
+     * 호출 API:
+     *   POST /rag/ingest/{documentId}?chunkSize=800&overlap=150
+     * 기대 응답:
+     *   savedChunkCount
+     */
+    async function ragIngest() {
+       const csrfToken = document.querySelector('meta[name="_csrf"]')?.getAttribute('content');
+       const csrfHeader = document.querySelector('meta[name="_csrf_header"]')?.getAttribute('content');
+
+      const { documentId, chunkSize, overlap } = ragGetParams();
+      const url = `/rag/ingest/${documentId}?chunkSize=${chunkSize}&overlap=${overlap}`;
+
+      try {
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            [csrfHeader]: csrfToken
+          }
+        });
+
+        const text = await res.text();
+        document.getElementById('ragResult').textContent =
+          '[청크 저장(ingest) 결과]\n' + prettyJson(text);
+
+      } catch (e) {
+        document.getElementById('ragResult').textContent =
+          '[청크 저장 실패]\n' + e;
+      }
+    }
+
+    /**
+     * 서버 응답이 JSON이면 보기 좋게 pretty print.
+     * JSON이 아니면 원문 그대로 보여준다.
+     */
+    function prettyJson(text) {
+      try {
+        return JSON.stringify(JSON.parse(text), null, 2);
+      } catch {
+        return text;
+      }
+    }
+</script>

@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/","/login","/auth/signup","/css/**","/js/**","/images/**").permitAll() // 로그인 없이 접근 허용
                         .requestMatchers(HttpMethod.GET, "/posts", "/posts/*").permitAll() // 목록/상세 공개
+                        .requestMatchers("/swagger-ui/**","/v3/api-docs/**").permitAll() // swagger 접근 허용
                         .requestMatchers("/invitation/**").permitAll()
                         .requestMatchers("/api/v1/invitations/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/uploads/**").permitAll()

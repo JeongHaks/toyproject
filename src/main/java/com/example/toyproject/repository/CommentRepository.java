@@ -25,13 +25,14 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, String> {
     // 정렬 조회 (백필 전 NULL 안전 정렬 포함)
     @Query("""
-             select c
-             from Comment c
-             where c.postId = :postId
-             order by
-               c.groupId asc,
-               c.orderInGroup asc,
-               c.createdAt asc
+           select c
+           from Comment c
+           left join Comment g on g.id = c.groupId
+           where c.postId = :postId
+           order by
+             coalesce(g.createdAt, c.createdAt) desc,
+             c.orderInGroup asc,
+             c.createdAt asc
     """)
     List<Comment> findAllForPostOrdered(@Param("postId") String postId);
 

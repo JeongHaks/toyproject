@@ -18,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-//@Profile("prod") // 추가 작성(로컬 전용)
+@Profile("prod") // 추가 작성(로컬 전용)
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/admin/invitations")
@@ -34,13 +34,15 @@ public class InvitationImageAdminController {
         System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + code);
         System.out.println("모바일 초대장 순서 InvitationImageAdminController 1 : " + files);
 
+        // invitation -- 23ESD21xw
         Invitation invitation = invitationService.getInvitationEntityByCode(code);
 
         int sortOrder = 0;
         for (MultipartFile file : files) {
+            // 업로드 이미지가 비워있어도 일단 진행
             if (file.isEmpty()) continue;
 
-            // S3에 업로드
+            // AWS S3에 업로드
             String imageUrl = s3Uploader.upload(file, "gallery");
 
             // DB 저장

@@ -91,7 +91,6 @@ public class InvitationService {
         System.out.println("모바일 초대장 순서 InvitationService 3 : " + code);
         Invitation invitation = invitationRepository.findByCode(code)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 초대장 코드입니다. code=" + code));
-
         return new InvitationResponse(invitation);
     }
 

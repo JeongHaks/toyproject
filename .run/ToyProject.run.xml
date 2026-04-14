@@ -2,6 +2,7 @@
   <configuration default="false" name="ToyProject" type="Application" factoryName="Application">
     <option name="MAIN_CLASS_NAME" value="com.example.toyproject.ToyprojectApplication" />
     <module name="toyproject.main" />
+    <option name="PROGRAM_PARAMETERS" value="--debug" />
     <method v="2">
       <option name="Make" enabled="true" />
     </method>

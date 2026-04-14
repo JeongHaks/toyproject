@@ -8,7 +8,7 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
   <meta charset="UTF-8"/>
-  <title>메인</title>
+  <title>메인(Main)</title>
   <style>
     body {
       font-family: system-ui, sans-serif;
@@ -92,7 +92,7 @@
     </a>
   </div> <!-- class=grid -->
 
-  <!-- ✅ footer: 로그인/비로그인 '서로 배타적' 노출 (중첩 <p> 제거, sec:authorize만 사용) -->
+  <!-- footer: 로그인/로그아웃 했을 경우-->
   <div class="footer">
     <!-- 로그인 상태 전용 블록 -->
     <div sec:authorize="isAuthenticated()">

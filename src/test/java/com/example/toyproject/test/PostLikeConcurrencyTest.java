@@ -51,7 +51,7 @@ public class PostLikeConcurrencyTest {
     }
 
     @Test
-    void 동시에_100번_like_요청해도_DB에는_1건만_저장된다() throws Exception {
+    void togetherliketest() throws Exception {
 
         int threadCount = 100;
 
@@ -71,7 +71,7 @@ public class PostLikeConcurrencyTest {
                     ready.countDown();     // "나 준비됨"
                     start.await();         // 출발 신호 대기
 
-                    // ✅ 동시에 like 호출
+                    // 동시에 like 호출
                     postLikeService.like(postId, userId);
 
                 } catch (Exception e) {

@@ -118,8 +118,8 @@
               const len = input.value.length;
               // 커서 맨 끝
               try { input.setSelectionRange(len, len); } catch(e) {}
-            }
-          });
+            } // if
+          }); //window.addEvent
 
           let timer = null;
           let lastSent = input.value;
@@ -134,7 +134,7 @@
           input.addEventListener('input', () => {
             if (composing) return;
             schedule();
-          });
+          }); // input.addEvent
 
           // X버튼/엔터 처리
           input.addEventListener('search', () => { lastSent = ''; schedule(true); });
@@ -142,7 +142,7 @@
           function schedule(force = false) {
             clearTimeout(timer);
             timer = setTimeout(() => trigger(force), 700);   // ▶ 700~900ms 권장
-          }
+          } // schedule
 
           function trigger(force = false) {
             if (submitting) return;
@@ -160,8 +160,8 @@
 
             submitting = true;         // 중복 submit 방지
             form.submit();
-          }
-        })();
+          } // trigger
+        })(); // function() 검색 기능
 </script>
 </body>
 </html>

@@ -58,6 +58,12 @@ public class CommentService {
         Comment parent = commentRepository.findByIdForUpdate(parentId)
                 .orElseThrow(() -> new IllegalArgumentException("부모 댓글이 존재하지 않습니다."));
 
+        // parent가 이미 답글이면 => 답글의 답글(depth2) 시도 => 차단
+        if (parent.getParentId() != null) {
+            throw new IllegalArgumentException("답글에는 답글을 달 수 없습니다.");
+        }
+
+
         // 대댓글 삽입 위치 계산하기 위한 변수(20251101)
         int insertPos = parent.getOrderInGroup() + 1;
 

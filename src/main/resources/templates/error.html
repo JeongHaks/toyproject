@@ -1,0 +1,18 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8"/>
+  <title>Error</title>
+</head>
+<body>
+<h1>에러가 발생했습니다.</h1>
+
+<p th:if="${status}">status: <span th:text="${status}"></span></p>
+<p th:if="${error}">error: <span th:text="${error}"></span></p>
+<p th:if="${message}">message: <span th:text="${message}"></span></p>
+<p th:if="${path}">path: <span th:text="${path}"></span></p>
+
+<hr/>
+<pre th:if="${trace}" th:text="${trace}"></pre>
+</body>
+</html>

@@ -23,11 +23,13 @@ public class Guestbook {
     @JoinColumn(name = "invitation_id")
     private Invitation invitation;
 
+    @Column(name = "guest_name", nullable = false)
     private String guestName;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(name = "message", columnDefinition = "TEXT")
     private String message;
 
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
     /**

@@ -27,6 +27,7 @@ public class PageController {
         return "home";
     }
 
+    // 로그인 성공시 페이지 이동
     @GetMapping("/")
     public String home(Model model,
                        @AuthenticationPrincipal UserDetails user) {
