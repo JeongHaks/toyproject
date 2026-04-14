@@ -46,8 +46,7 @@ public class InvitationViewController {
     public String showInvitationView(@PathVariable("code") String code
             , Model model
             , HttpServletRequest request) {
-        System.out.println("모바일 초대장 순서 InvitationViewController 1 : " + code);
-
+        System.out.println("branch 분리 후 commit Test!!!!!!!!!");
         // 코드로 초대장 Entity 조회
         Invitation invitation = invitationService.getInvitationEntityByCode(code);
         // model에 담아서 view로 넘겨준다 코드값
