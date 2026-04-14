@@ -36,6 +36,7 @@ public class PostController {
     // 생성자 주입(의존성 주입(?))
     public PostController(PostService postService, CommentService commentService, PostLikeService postLikeService)
     {
+        System.out.println("branch 분리 후 commit Test!!!!");
         this.postService = postService;
         this.commentService =commentService;
         this.postLikeService = postLikeService;
@@ -141,7 +142,6 @@ public class PostController {
                          Authentication auth,
                          Model model) {
         System.out.println("게시판 순서 PostController 6 : " + id);
-        System.out.println("게시판 순서 PostController 6 : " + auth);
         // 에러 시에도 postId를 다시 넣어줘야 form의 th:action 분기가 유지됨
         // 유효성 검사
         if (bindingResult.hasErrors()) {
