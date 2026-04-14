@@ -31,6 +31,8 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 	implementation 'org.apache.pdfbox:pdfbox:2.0.30'
 
+	// JUnit을 사용하기 위한 의존성 주입
+	testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
 	// swagger
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.16'
 
