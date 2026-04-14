@@ -35,7 +35,7 @@ public class RagDocumentController {
      */
     @PostMapping
     public ResponseEntity<?> upload(@RequestParam("file") MultipartFile file) {
-        System.out.println("파일 업로드 컨트롤러 1 : ");
+        System.out.println("branch 분리 후 commit Test!!!!!!!!!!!!!");
         Long documentId = ragDocumentService.createDocument(file);
 
         return ResponseEntity.ok(
